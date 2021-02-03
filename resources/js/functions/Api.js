@@ -4,10 +4,11 @@ export default class Api {
     //   this.server = 'https://ahj-diploma-serv.herokuapp.com';
     }
 
-    getItems(address) {
+    static async getItems(address) {
       return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', `${this.server}/${address}`);
+        // xhr.open('GET', `${this.server}/${address}`);
+        xhr.open('GET', `http://localhost:8000/api/${address}`);
         xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
         xhr.addEventListener('load', () => {
             if (xhr.readyState === 4) {
@@ -24,10 +25,11 @@ export default class Api {
       });
     }
 
-    getShow(address, number) {
+    static getShow(address, number) {
         return new Promise((resolve, reject) => {
           const xhr = new XMLHttpRequest();
-          xhr.open('GET', `${this.server}/${address}/${number}`);
+          // xhr.open('GET', `${this.server}/${address}/${number}`);
+          xhr.open('GET', `http://localhost:8000/api/${address}/${number}`);
           xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
           xhr.addEventListener('load', () => {
             if (xhr.readyState === 4) {

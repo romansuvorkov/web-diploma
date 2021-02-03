@@ -47,7 +47,8 @@ class SeatsController extends Controller
      */
     public function show($id)
     {
-        return Post::collection(Seat::all()->where('hall_id', '=', $id));
+        return Post::collection(Seat::all()->where('hall_id', $id));
+        // return Post::collection(DB::table('seats')->where('id', '=', $id));
     }
 
     /**

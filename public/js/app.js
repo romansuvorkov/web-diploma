@@ -2058,9 +2058,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SectionHeader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SectionHeader */ "./resources/js/components/Admin/SectionHeader.jsx");
 /* harmony import */ var _images_admin_background_admin_jpg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../images/admin/background-admin.jpg */ "./resources/images/admin/background-admin.jpg");
 /* harmony import */ var _HallManagment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./HallManagment */ "./resources/js/components/Admin/HallManagment.jsx");
-/* harmony import */ var _functions_Api__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../functions/Api */ "./resources/js/functions/Api.js");
-/* harmony import */ var _AdminContext__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./AdminContext */ "./resources/js/components/Admin/AdminContext.jsx");
-/* harmony import */ var _AdminProvider__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./AdminProvider */ "./resources/js/components/Admin/AdminProvider.jsx");
+/* harmony import */ var _HallConfig__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./HallConfig */ "./resources/js/components/Admin/HallConfig.jsx");
+/* harmony import */ var _functions_Api__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../functions/Api */ "./resources/js/functions/Api.js");
+/* harmony import */ var _AdminContext__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./AdminContext */ "./resources/js/components/Admin/AdminContext.jsx");
+/* harmony import */ var _AdminProvider__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./AdminProvider */ "./resources/js/components/Admin/AdminProvider.jsx");
+
 
 
 
@@ -2075,7 +2077,7 @@ __webpack_require__.r(__webpack_exports__);
 function AdminPanel() {
   var backgroundImageStyle = "\n        background-image: url(".concat(_images_admin_background_admin_jpg__WEBPACK_IMPORTED_MODULE_4__.default, ");\n        background-color: rgba(0, 0, 0, 0.5);\n        background-blend-mode: multiply;\n        background-size: cover;\n        background-attachment: fixed;\n        counter-reset: num;\n    ");
   document.body.style = backgroundImageStyle;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_AdminProvider__WEBPACK_IMPORTED_MODULE_8__.default, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_AdminProvider__WEBPACK_IMPORTED_MODULE_9__.default, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("header", {
       className: "page-header",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h1", {
@@ -2098,280 +2100,7 @@ function AdminPanel() {
         className: "conf-step",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SectionHeader__WEBPACK_IMPORTED_MODULE_3__.default, {
           title: "\u041A\u043E\u043D\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u044F \u0437\u0430\u043B\u043E\u0432"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-          className: "conf-step__wrapper",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-            className: "conf-step__paragraph",
-            children: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0437\u0430\u043B \u0434\u043B\u044F \u043A\u043E\u043D\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u0438:"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("ul", {
-            className: "conf-step__selectors-box",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("li", {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-                type: "radio",
-                className: "conf-step__radio",
-                name: "chairs-hall",
-                value: "\u0417\u0430\u043B 1"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                className: "conf-step__selector",
-                children: "\u0417\u0430\u043B 1"
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("li", {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-                type: "radio",
-                className: "conf-step__radio",
-                name: "chairs-hall",
-                value: "\u0417\u0430\u043B 2"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                className: "conf-step__selector",
-                children: "\u0417\u0430\u043B 2"
-              })]
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-            className: "conf-step__paragraph",
-            children: "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0440\u044F\u0434\u043E\u0432 \u0438 \u043C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435 \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043A\u0440\u0435\u0441\u0435\u043B \u0432 \u0440\u044F\u0434\u0443:"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-            className: "conf-step__legend",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
-              className: "conf-step__label",
-              children: ["\u0420\u044F\u0434\u043E\u0432, \u0448\u0442", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-                type: "text",
-                className: "conf-step__input",
-                placeholder: "10"
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-              className: "multiplier",
-              children: "x"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
-              className: "conf-step__label",
-              children: ["\u041C\u0435\u0441\u0442, \u0448\u0442", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-                type: "text",
-                className: "conf-step__input",
-                placeholder: "8"
-              })]
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-            className: "conf-step__paragraph",
-            children: "\u0422\u0435\u043F\u0435\u0440\u044C \u0432\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u0443\u043A\u0430\u0437\u0430\u0442\u044C \u0442\u0438\u043F\u044B \u043A\u0440\u0435\u0441\u0435\u043B \u043D\u0430 \u0441\u0445\u0435\u043C\u0435 \u0437\u0430\u043B\u0430:"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-            className: "conf-step__legend",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-              className: "conf-step__chair conf-step__chair_standart"
-            }), " \u2014 \u043E\u0431\u044B\u0447\u043D\u044B\u0435 \u043A\u0440\u0435\u0441\u043B\u0430", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-              className: "conf-step__chair conf-step__chair_vip"
-            }), " \u2014 VIP \u043A\u0440\u0435\u0441\u043B\u0430", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-              className: "conf-step__chair conf-step__chair_disabled"
-            }), " \u2014 \u0437\u0430\u0431\u043B\u043E\u043A\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u044B\u0435 (\u043D\u0435\u0442 \u043A\u0440\u0435\u0441\u043B\u0430)", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-              className: "conf-step__hint",
-              children: "\u0427\u0442\u043E\u0431\u044B \u0438\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u0432\u0438\u0434 \u043A\u0440\u0435\u0441\u043B\u0430, \u043D\u0430\u0436\u043C\u0438\u0442\u0435 \u043F\u043E \u043D\u0435\u043C\u0443 \u043B\u0435\u0432\u043E\u0439 \u043A\u043D\u043E\u043F\u043A\u043E\u0439 \u043C\u044B\u0448\u0438"
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-            className: "conf-step__hall",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-              className: "conf-step__hall-wrapper",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "conf-step__row",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_disabled"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_disabled"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_disabled"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_disabled"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_disabled"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_disabled"
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "conf-step__row",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_disabled"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_disabled"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_disabled"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_disabled"
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "conf-step__row",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_disabled"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_disabled"
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "conf-step__row",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_vip"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_vip"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_disabled"
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "conf-step__row",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_vip"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_vip"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_vip"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_vip"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_disabled"
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "conf-step__row",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_vip"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_vip"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_vip"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_vip"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_disabled"
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "conf-step__row",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_vip"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_vip"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_vip"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_vip"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_disabled"
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "conf-step__row",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_disabled"
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "conf-step__row",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                className: "conf-step__row",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                  className: "conf-step__chair conf-step__chair_standart"
-                })]
-              })]
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("fieldset", {
-            className: "conf-step__buttons text-center",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
-              className: "conf-step__button conf-step__button-regular",
-              children: "\u041E\u0442\u043C\u0435\u043D\u0430"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-              type: "submit",
-              value: "\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C",
-              className: "conf-step__button conf-step__button-accent"
-            })]
-          })]
-        })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_HallConfig__WEBPACK_IMPORTED_MODULE_6__.default, {})]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
         className: "conf-step",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SectionHeader__WEBPACK_IMPORTED_MODULE_3__.default, {
@@ -2598,12 +2327,16 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function AdminProvider(props) {
-  var API = new _functions_Api__WEBPACK_IMPORTED_MODULE_4__.default();
-
+  // const API = new Api;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       halls = _useState2[0],
       setHalls = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      activeHall = _useState4[0],
+      setActiveHall = _useState4[1];
 
   var loadFromServer = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
@@ -2613,13 +2346,14 @@ function AdminProvider(props) {
             case 0:
               _context.t0 = setHalls;
               _context.next = 3;
-              return API.getItems('hall');
+              return _functions_Api__WEBPACK_IMPORTED_MODULE_4__.default.getItems('hall');
 
             case 3:
               _context.t1 = _context.sent;
               (0, _context.t0)(_context.t1);
+              setActiveHall(0);
 
-            case 5:
+            case 6:
             case "end":
               return _context.stop();
           }
@@ -2636,11 +2370,381 @@ function AdminProvider(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_AdminContext__WEBPACK_IMPORTED_MODULE_3__.default.Provider, {
     value: {
       halls: halls,
-      setHalls: setHalls
+      setHalls: setHalls,
+      activeHall: activeHall,
+      setActiveHall: setActiveHall
     },
     children: props.children
   });
 }
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/ConfStepHall.jsx":
+/*!********************************************************!*\
+  !*** ./resources/js/components/Admin/ConfStepHall.jsx ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _AdminContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AdminContext */ "./resources/js/components/Admin/AdminContext.jsx");
+/* harmony import */ var _HallSeat__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./HallSeat */ "./resources/js/components/Admin/HallSeat.jsx");
+/* harmony import */ var _functions_Api__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../functions/Api */ "./resources/js/functions/Api.js");
+
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+function ConfStepHall(props) {
+  // const API = new Api;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      seats = _useState2[0],
+      setSeats = _useState2[1];
+
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_2__.useContext)(_AdminContext__WEBPACK_IMPORTED_MODULE_3__.default),
+      halls = _useContext.halls;
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      seatTable = _useState4[0],
+      setSeatTable = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      isLoaded = _useState6[0],
+      setIsLoaded = _useState6[1];
+
+  var activeHall = props.active;
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
+    var tableSeat, hallForRender, counter, i, row, y;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            tableSeat = [];
+
+            if (!(halls.length > 0 && activeHall !== 0)) {
+              _context.next = 13;
+              break;
+            }
+
+            // console.log('work');
+            hallForRender = halls.find(function (item) {
+              return item.id == activeHall;
+            }); // const rows = halls[activeHall].row;
+            // const rowSeats = halls[activeHall].seats;
+            // const rows = halls[activeHall].row;
+            // const rowSeats = halls[activeHall].seats;
+            // console.log(rowSeats);
+
+            if (!(seats.length === 0)) {
+              _context.next = 9;
+              break;
+            }
+
+            _context.t0 = setSeats;
+            _context.next = 7;
+            return _functions_Api__WEBPACK_IMPORTED_MODULE_5__.default.getShow('seats', hallForRender.id);
+
+          case 7:
+            _context.t1 = _context.sent;
+            (0, _context.t0)(_context.t1);
+
+          case 9:
+            counter = 0; // console.log(counter);
+            // console.log(seats);
+
+            for (i = 1; i <= hallForRender.row; i += 1) {
+              // console.log(rows);                
+              // console.log(rowSeats);
+              row = [];
+
+              for (y = 1; y <= hallForRender.seats; y += 1) {
+                // console.log(seats);
+                row.push(seats[counter]);
+                counter += 1; // setSeatTable(prevState => {
+                //     // Object.assign также будет работать
+                //     return [...prevState, ...row];
+                // });
+              }
+
+              tableSeat.push(row);
+            }
+
+            setSeatTable(tableSeat); // console.log(tableSeat);
+
+            setIsLoaded(true);
+
+          case 13:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  })), [halls, activeHall, seats]);
+  return isLoaded && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+    className: "conf-step__hall",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+      className: "conf-step__hall-wrapper",
+      children: seatTable.map(function (o) {
+        return (
+          /*#__PURE__*/
+          // console.log(o)
+          (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_HallSeat__WEBPACK_IMPORTED_MODULE_4__.default, {
+            data: o
+          }, o[0].id)
+        );
+      })
+    })
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ConfStepHall);
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/HallBtnContainer.jsx":
+/*!************************************************************!*\
+  !*** ./resources/js/components/Admin/HallBtnContainer.jsx ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _HallButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./HallButton */ "./resources/js/components/Admin/HallButton.jsx");
+/* harmony import */ var _AdminContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AdminContext */ "./resources/js/components/Admin/AdminContext.jsx");
+
+
+
+
+
+
+function HallBtnContainer(props) {
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_AdminContext__WEBPACK_IMPORTED_MODULE_3__.default),
+      halls = _useContext.halls;
+
+  var active = props.active,
+      setActive = props.setActive;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("ul", {
+    className: "conf-step__selectors-box",
+    children: halls.map(function (o) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_HallButton__WEBPACK_IMPORTED_MODULE_2__.default, {
+        name: o.name,
+        id: o.id,
+        active: active,
+        setActive: setActive
+      }, o.id);
+    })
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HallBtnContainer);
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/HallButton.jsx":
+/*!******************************************************!*\
+  !*** ./resources/js/components/Admin/HallButton.jsx ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _AdminContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AdminContext */ "./resources/js/components/Admin/AdminContext.jsx");
+
+
+
+
+
+
+function HallButton(props) {
+  // const {active, setActive, id} = props;
+  var handleClick = function handleClick() {
+    // console.log(props.id);
+    // if (props.id === 0) {
+    props.setActive(props.id); // } else {
+    //     props.setActive(props.id - 1);
+    // }
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("li", {
+    children: [props.id === props.active ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+      type: "radio",
+      className: "conf-step__radio",
+      name: "chairs-hall",
+      value: props.name,
+      onClick: handleClick,
+      defaultChecked: true
+    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+      type: "radio",
+      className: "conf-step__radio",
+      name: "chairs-hall",
+      value: props.name,
+      onClick: handleClick
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+      className: "conf-step__selector",
+      children: props.name
+    })]
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HallButton);
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/HallConfig.jsx":
+/*!******************************************************!*\
+  !*** ./resources/js/components/Admin/HallConfig.jsx ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _AdminContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AdminContext */ "./resources/js/components/Admin/AdminContext.jsx");
+/* harmony import */ var _HallBtnContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./HallBtnContainer */ "./resources/js/components/Admin/HallBtnContainer.jsx");
+/* harmony import */ var _ConfStepHall__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ConfStepHall */ "./resources/js/components/Admin/ConfStepHall.jsx");
+
+
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+function HallConfig(props) {
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_AdminContext__WEBPACK_IMPORTED_MODULE_2__.default),
+      halls = _useContext.halls;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+      _useState2 = _slicedToArray(_useState, 2),
+      activeHall = _useState2[0],
+      setActiveHall = _useState2[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    if (halls.length > 0) {
+      setActiveHall(halls[0].id);
+    }
+  }, [halls]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+    className: "conf-step__wrapper",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+      className: "conf-step__paragraph",
+      children: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0437\u0430\u043B \u0434\u043B\u044F \u043A\u043E\u043D\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u0438:"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_HallBtnContainer__WEBPACK_IMPORTED_MODULE_3__.default, {
+      active: activeHall,
+      setActive: setActiveHall
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+      className: "conf-step__paragraph",
+      children: "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0440\u044F\u0434\u043E\u0432 \u0438 \u043C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435 \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043A\u0440\u0435\u0441\u0435\u043B \u0432 \u0440\u044F\u0434\u0443:"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "conf-step__legend",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
+        className: "conf-step__label",
+        children: ["\u0420\u044F\u0434\u043E\u0432, \u0448\u0442", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+          type: "text",
+          className: "conf-step__input",
+          placeholder: "10"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+        className: "multiplier",
+        children: "x"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
+        className: "conf-step__label",
+        children: ["\u041C\u0435\u0441\u0442, \u0448\u0442", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+          type: "text",
+          className: "conf-step__input",
+          placeholder: "8"
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+      className: "conf-step__paragraph",
+      children: "\u0422\u0435\u043F\u0435\u0440\u044C \u0432\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u0443\u043A\u0430\u0437\u0430\u0442\u044C \u0442\u0438\u043F\u044B \u043A\u0440\u0435\u0441\u0435\u043B \u043D\u0430 \u0441\u0445\u0435\u043C\u0435 \u0437\u0430\u043B\u0430:"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "conf-step__legend",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+        className: "conf-step__chair conf-step__chair_standart"
+      }), " \u2014 \u043E\u0431\u044B\u0447\u043D\u044B\u0435 \u043A\u0440\u0435\u0441\u043B\u0430", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+        className: "conf-step__chair conf-step__chair_vip"
+      }), " \u2014 VIP \u043A\u0440\u0435\u0441\u043B\u0430", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+        className: "conf-step__chair conf-step__chair_disabled"
+      }), " \u2014 \u0437\u0430\u0431\u043B\u043E\u043A\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u044B\u0435 (\u043D\u0435\u0442 \u043A\u0440\u0435\u0441\u043B\u0430)", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+        className: "conf-step__hint",
+        children: "\u0427\u0442\u043E\u0431\u044B \u0438\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u0432\u0438\u0434 \u043A\u0440\u0435\u0441\u043B\u0430, \u043D\u0430\u0436\u043C\u0438\u0442\u0435 \u043F\u043E \u043D\u0435\u043C\u0443 \u043B\u0435\u0432\u043E\u0439 \u043A\u043D\u043E\u043F\u043A\u043E\u0439 \u043C\u044B\u0448\u0438"
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_ConfStepHall__WEBPACK_IMPORTED_MODULE_4__.default, {
+      active: activeHall
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("fieldset", {
+      className: "conf-step__buttons text-center",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
+        className: "conf-step__button conf-step__button-regular",
+        children: "\u041E\u0442\u043C\u0435\u043D\u0430"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+        type: "submit",
+        value: "\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C",
+        className: "conf-step__button conf-step__button-accent"
+      })]
+    })]
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HallConfig);
 
 /***/ }),
 
@@ -2722,6 +2826,45 @@ function HallManagement() {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HallManagement);
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/HallSeat.jsx":
+/*!****************************************************!*\
+  !*** ./resources/js/components/Admin/HallSeat.jsx ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _AdminContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AdminContext */ "./resources/js/components/Admin/AdminContext.jsx");
+
+
+
+
+
+function HallSeat(props) {
+  var data = props.data;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+    className: "conf-step__row",
+    children: data.map(function (o) {
+      return (
+        /*#__PURE__*/
+        // console.log(o)
+        (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+          className: "conf-step__chair conf-step__chair_standart"
+        }, o.id)
+      );
+    })
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HallSeat);
 
 /***/ }),
 
@@ -3247,6 +3390,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => /* binding */ Api
 /* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -3260,38 +3411,55 @@ var Api = /*#__PURE__*/function () {
     this.server = 'http://localhost:8000/api'; //   this.server = 'https://ahj-diploma-serv.herokuapp.com';
   }
 
-  _createClass(Api, [{
+  _createClass(Api, null, [{
     key: "getItems",
-    value: function getItems(address) {
-      var _this = this;
+    value: function () {
+      var _getItems = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(address) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                return _context.abrupt("return", new Promise(function (resolve, reject) {
+                  var xhr = new XMLHttpRequest(); // xhr.open('GET', `${this.server}/${address}`);
 
-      return new Promise(function (resolve, reject) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', "".concat(_this.server, "/").concat(address));
-        xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
-        xhr.addEventListener('load', function () {
-          if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-              // console.log(xhr);
-              var data = JSON.parse(xhr.responseText); // console.log(data);
+                  xhr.open('GET', "http://localhost:8000/api/".concat(address));
+                  xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
+                  xhr.addEventListener('load', function () {
+                    if (xhr.readyState === 4) {
+                      if (xhr.status === 200) {
+                        // console.log(xhr);
+                        var data = JSON.parse(xhr.responseText); // console.log(data);
 
-              return resolve(data.data);
+                        return resolve(data.data);
+                      }
+                    }
+
+                    return reject(xhr.responseText);
+                  });
+                  xhr.send();
+                }));
+
+              case 1:
+              case "end":
+                return _context.stop();
             }
           }
+        }, _callee);
+      }));
 
-          return reject(xhr.responseText);
-        });
-        xhr.send();
-      });
-    }
+      function getItems(_x) {
+        return _getItems.apply(this, arguments);
+      }
+
+      return getItems;
+    }()
   }, {
     key: "getShow",
     value: function getShow(address, number) {
-      var _this2 = this;
-
       return new Promise(function (resolve, reject) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', "".concat(_this2.server, "/").concat(address, "/").concat(number));
+        var xhr = new XMLHttpRequest(); // xhr.open('GET', `${this.server}/${address}/${number}`);
+
+        xhr.open('GET', "http://localhost:8000/api/".concat(address, "/").concat(number));
         xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
         xhr.addEventListener('load', function () {
           if (xhr.readyState === 4) {
