@@ -18,7 +18,7 @@ export default function AdminProvider(props) {
     
 
     return (
-        <AdminContext.Provider value={{halls, setHalls, activeHall, setActiveHall}}>
+        <AdminContext.Provider value={{halls, setHalls, activeHall, setActiveHall, loadFromServer}}>
             {props.children}
         </AdminContext.Provider>
     )

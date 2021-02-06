@@ -2372,7 +2372,8 @@ function AdminProvider(props) {
       halls: halls,
       setHalls: setHalls,
       activeHall: activeHall,
-      setActiveHall: setActiveHall
+      setActiveHall: setActiveHall,
+      loadFromServer: loadFromServer
     },
     children: props.children
   });
@@ -2392,18 +2393,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _AdminContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AdminContext */ "./resources/js/components/Admin/AdminContext.jsx");
-/* harmony import */ var _HallSeat__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./HallSeat */ "./resources/js/components/Admin/HallSeat.jsx");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _AdminContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AdminContext */ "./resources/js/components/Admin/AdminContext.jsx");
+/* harmony import */ var _HallSeat__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./HallSeat */ "./resources/js/components/Admin/HallSeat.jsx");
+/* harmony import */ var _InterfaceBtnContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./InterfaceBtnContainer */ "./resources/js/components/Admin/InterfaceBtnContainer.jsx");
 /* harmony import */ var _functions_Api__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../functions/Api */ "./resources/js/functions/Api.js");
 
 
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -2423,108 +2428,164 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function ConfStepHall(props) {
-  // const API = new Api;
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
+  var seats = props.seats,
+      rows = props.rows,
+      seatsInRow = props.seatsInRow,
+      activeHall = props.activeHall,
+      resetChanges = props.resetChanges,
+      setHallForRender = props.setHallForRender;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
-      seats = _useState2[0],
-      setSeats = _useState2[1];
+      changedSeats = _useState2[0],
+      setChangedSeats = _useState2[1];
 
-  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_2__.useContext)(_AdminContext__WEBPACK_IMPORTED_MODULE_3__.default),
-      halls = _useContext.halls;
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_AdminContext__WEBPACK_IMPORTED_MODULE_2__.default),
+      halls = _useContext.halls,
+      loadFromServer = _useContext.loadFromServer,
+      setHalls = _useContext.setHalls;
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(seats),
       _useState4 = _slicedToArray(_useState3, 2),
       seatTable = _useState4[0],
       setSeatTable = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
       _useState6 = _slicedToArray(_useState5, 2),
       isLoaded = _useState6[0],
       setIsLoaded = _useState6[1];
 
-  var activeHall = props.active;
-  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
-    var tableSeat, hallForRender, counter, i, row, y;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            tableSeat = [];
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    setIsLoaded(false);
+    var tableSeat = [];
+    var counter = 0;
 
-            if (!(halls.length > 0 && activeHall !== 0)) {
-              _context.next = 13;
-              break;
-            }
+    for (var i = 1; i <= rows; i += 1) {
+      var row = [];
 
-            // console.log('work');
-            hallForRender = halls.find(function (item) {
-              return item.id == activeHall;
-            }); // const rows = halls[activeHall].row;
-            // const rowSeats = halls[activeHall].seats;
-            // const rows = halls[activeHall].row;
-            // const rowSeats = halls[activeHall].seats;
-            // console.log(rowSeats);
-
-            if (!(seats.length === 0)) {
-              _context.next = 9;
-              break;
-            }
-
-            _context.t0 = setSeats;
-            _context.next = 7;
-            return _functions_Api__WEBPACK_IMPORTED_MODULE_5__.default.getShow('seats', hallForRender.id);
-
-          case 7:
-            _context.t1 = _context.sent;
-            (0, _context.t0)(_context.t1);
-
-          case 9:
-            counter = 0; // console.log(counter);
-            // console.log(seats);
-
-            for (i = 1; i <= hallForRender.row; i += 1) {
-              // console.log(rows);                
-              // console.log(rowSeats);
-              row = [];
-
-              for (y = 1; y <= hallForRender.seats; y += 1) {
-                // console.log(seats);
-                row.push(seats[counter]);
-                counter += 1; // setSeatTable(prevState => {
-                //     // Object.assign также будет работать
-                //     return [...prevState, ...row];
-                // });
-              }
-
-              tableSeat.push(row);
-            }
-
-            setSeatTable(tableSeat); // console.log(tableSeat);
-
-            setIsLoaded(true);
-
-          case 13:
-          case "end":
-            return _context.stop();
-        }
+      for (var y = 1; y <= seatsInRow; y += 1) {
+        row.push(seats[counter]);
+        counter += 1;
       }
-    }, _callee);
-  })), [halls, activeHall, seats]);
-  return isLoaded && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-    className: "conf-step__hall",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-      className: "conf-step__hall-wrapper",
-      children: seatTable.map(function (o) {
-        return (
-          /*#__PURE__*/
-          // console.log(o)
-          (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_HallSeat__WEBPACK_IMPORTED_MODULE_4__.default, {
-            data: o
-          }, o[0].id)
-        );
+
+      tableSeat.push(row);
+    } // console.log(tableSeat);
+
+
+    setSeatTable(tableSeat); // console.log('Work hall')
+    // const tableSeat = [];
+    // const hallForRender = halls.find(item => item.id == props.activeHall);
+    // let counter = 0;
+    // for (let i = 1; i <= hallForRender.row; i += 1) {
+    //     let row = [];
+    //     for (let y = 1; y <= hallForRender.seats; y += 1) {
+    //         row.push(props.seats[counter]);
+    //         counter += 1;
+    //     }
+    //     tableSeat.push(row);
+    // }
+    // setSeatTable(seats);
+
+    setChangedSeats(seats);
+    setIsLoaded(true);
+  }, [halls, activeHall, seats]);
+
+  var refreshRenderArr = function refreshRenderArr() {
+    // const hallForRender = halls.find(item => item.id == props.activeHall);
+    var tableSeat = [];
+    var counter = 0;
+
+    for (var i = 1; i <= rows; i += 1) {
+      var row = [];
+
+      for (var y = 1; y <= seatsInRow; y += 1) {
+        row.push(changedSeats[counter]);
+        counter += 1;
+      }
+
+      tableSeat.push(row);
+    }
+
+    setSeatTable(tableSeat);
+  };
+
+  var handleStatusChange = function handleStatusChange(seat) {
+    var index = seat - 1;
+    var status = changedSeats[index].status;
+    var newStatus;
+
+    if (status + 1 > 2) {
+      newStatus = 0;
+    } else {
+      newStatus = status + 1;
+    }
+
+    var newArray = _toConsumableArray(changedSeats);
+
+    newArray[index].status = newStatus;
+    setChangedSeats(newArray);
+    refreshRenderArr();
+  }; // const resetChanges = async () => {
+  //     setIsLoaded(false);
+  //     // const hallForRender = halls.find(item => item.id == props.activeHall);
+  //     const serverSeats = await Api.getShow('seats', hallForRender.id);
+  //     const tableSeat = [];
+  //     let counter = 0;
+  //     for (let i = 1; i <= hallForRender.row; i += 1) {
+  //         let row = [];
+  //         for (let y = 1; y <= hallForRender.seats; y += 1) {
+  //             row.push(serverSeats[counter]);
+  //             counter += 1;
+  //         }
+  //         tableSeat.push(row);
+  //     }
+  //     setSeatTable(tableSeat);
+  //     setIsLoaded(true);
+  //     setChangedSeats(props.seats);
+  // }
+
+
+  var submitChanges = function submitChanges() {
+    try {
+      _functions_Api__WEBPACK_IMPORTED_MODULE_5__.default.updateItem('seats', activeHall, changedSeats, rows, seatsInRow);
+    } catch (e) {
+      console.log(e);
+    }
+
+    setHallForRender([]);
+    setHalls([]);
+    loadFromServer();
+  };
+
+  var seatStatus = ['chair_disabled', 'chair_standart', 'chair_vip'];
+  return isLoaded && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+      className: "conf-step__hall",
+      onClick: function onClick() {
+        return console.log(seatTable);
+      },
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "conf-step__hall-wrapper",
+        children: rows > 0 && seatsInRow > 0 && seatTable.length > 0 && seatTable.map(function (row) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+            className: "conf-step__row",
+            children: row.map(function (o) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+                className: "conf-step__chair conf-step__".concat(seatStatus[o.status]),
+                onClick: function onClick() {
+                  return handleStatusChange(o.seat_number);
+                }
+              }, o.id);
+            })
+          }, row[0].id);
+        })
       })
-    })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_InterfaceBtnContainer__WEBPACK_IMPORTED_MODULE_4__.default, {
+      reset: resetChanges,
+      accept: submitChanges
+    })]
   });
 }
 
@@ -2558,7 +2619,8 @@ function HallBtnContainer(props) {
       halls = _useContext.halls;
 
   var active = props.active,
-      setActive = props.setActive;
+      setActive = props.setActive,
+      setHallForRender = props.setHallForRender;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("ul", {
     className: "conf-step__selectors-box",
     children: halls.map(function (o) {
@@ -2566,7 +2628,8 @@ function HallBtnContainer(props) {
         name: o.name,
         id: o.id,
         active: active,
-        setActive: setActive
+        setActive: setActive,
+        setHallForRender: setHallForRender
       }, o.id);
     })
   });
@@ -2597,11 +2660,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function HallButton(props) {
-  // const {active, setActive, id} = props;
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_AdminContext__WEBPACK_IMPORTED_MODULE_2__.default),
+      halls = _useContext.halls; // const {active, setActive, id} = props;
+
+
   var handleClick = function handleClick() {
-    // console.log(props.id);
-    // if (props.id === 0) {
-    props.setActive(props.id); // } else {
+    console.log(props.id); // if (props.id === 0) {
+
+    props.setActive(props.id);
+    props.setHallForRender(halls.find(function (item) {
+      return item.id == props.id;
+    })); // } else {
     //     props.setActive(props.id - 1);
     // }
   };
@@ -2643,12 +2712,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _AdminContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AdminContext */ "./resources/js/components/Admin/AdminContext.jsx");
-/* harmony import */ var _HallBtnContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./HallBtnContainer */ "./resources/js/components/Admin/HallBtnContainer.jsx");
-/* harmony import */ var _ConfStepHall__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ConfStepHall */ "./resources/js/components/Admin/ConfStepHall.jsx");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _AdminContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AdminContext */ "./resources/js/components/Admin/AdminContext.jsx");
+/* harmony import */ var _HallBtnContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./HallBtnContainer */ "./resources/js/components/Admin/HallBtnContainer.jsx");
+/* harmony import */ var _ConfStepHall__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ConfStepHall */ "./resources/js/components/Admin/ConfStepHall.jsx");
+/* harmony import */ var _functions_Api__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../functions/Api */ "./resources/js/functions/Api.js");
 
 
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -2668,39 +2745,265 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function HallConfig(props) {
-  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_AdminContext__WEBPACK_IMPORTED_MODULE_2__.default),
+
+function HallConfig() {
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_2__.useContext)(_AdminContext__WEBPACK_IMPORTED_MODULE_3__.default),
       halls = _useContext.halls;
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(1),
       _useState2 = _slicedToArray(_useState, 2),
       activeHall = _useState2[0],
       setActiveHall = _useState2[1];
 
-  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    if (halls.length > 0) {
-      setActiveHall(halls[0].id);
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      seats = _useState4[0],
+      setSeats = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      hallForRender = _useState6[0],
+      setHallForRender = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0),
+      _useState8 = _slicedToArray(_useState7, 2),
+      rows = _useState8[0],
+      setRows = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0),
+      _useState10 = _slicedToArray(_useState9, 2),
+      seatsInRow = _useState10[0],
+      setSeatsInRow = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
+      _useState12 = _slicedToArray(_useState11, 2),
+      isLoaded = _useState12[0],
+      setIsLoaded = _useState12[1];
+
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
+      _useState14 = _slicedToArray(_useState13, 2),
+      seatsIsLoaded = _useState14[0],
+      setSeatsIsLoaded = _useState14[1];
+
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
+      _useState16 = _slicedToArray(_useState15, 2),
+      isRedacting = _useState16[0],
+      setIsRedacting = _useState16[1]; // const [seatTable, setSeatTable] = useState([]);
+
+
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            setIsLoaded(false); // setSeatsIsLoaded(false);
+
+            if (!(halls.length > 0)) {
+              _context.next = 15;
+              break;
+            }
+
+            if (!(hallForRender.length === 0)) {
+              _context.next = 6;
+              break;
+            }
+
+            setHallForRender(halls.find(function (item) {
+              return item.id == activeHall;
+            }));
+            _context.next = 15;
+            break;
+
+          case 6:
+            console.log('trouble');
+            _context.t0 = setSeats;
+            _context.next = 10;
+            return _functions_Api__WEBPACK_IMPORTED_MODULE_6__.default.getShow('seats', hallForRender.id);
+
+          case 10:
+            _context.t1 = _context.sent;
+            (0, _context.t0)(_context.t1);
+            // setSeatsIsLoaded(true);
+            setRows(hallForRender.row);
+            setSeatsInRow(hallForRender.seats);
+            setIsLoaded(true);
+
+          case 15:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  })), [halls, hallForRender]);
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
+    setSeatsIsLoaded(false); // console.log('work use effect seats');
+
+    if (isRedacting) {
+      console.log('work Redacting');
+
+      if (rows <= 0) {
+        return;
+      } else if (seatsInRow <= 0) {
+        return;
+      }
+
+      var arrLength = rows * seatsInRow;
+      var seatsArr = [];
+
+      for (var i = 1; i <= arrLength; i += 1) {
+        var newObj = {
+          id: i,
+          hall_id: activeHall,
+          seat_number: i,
+          status: 1
+        }; // console.log('counter');
+        // console.log(newObj);
+
+        seatsArr.push(newObj);
+        setSeats(seatsArr);
+        setIsRedacting(false);
+        setSeatsIsLoaded(true);
+      }
+    } // if(seats.length !== 0 && !isRedacting) {
+    //   console.log('work for cycle for tableseat in use effect');
+    //   const tableSeat = [];
+    //   let counter = 0;
+    //   for (let i = 1; i <= rows; i += 1) {
+    //     let row = [];
+    //     for (let y = 1; y <= seatsInRow; y += 1) {
+    //       row.push(seats[counter]);
+    //       counter += 1;
+    //     }
+    //       tableSeat.push(row);
+    //   }
+    // setSeatTable(tableSeat);
+
+
+    setSeatsIsLoaded(true); // }
+  }, [seats, rows, seatsInRow]);
+
+  var handleLabelChange = function handleLabelChange(e) {
+    setSeatsIsLoaded(false);
+    var _e$target = e.target,
+        name = _e$target.name,
+        value = _e$target.value;
+
+    if (value === '') {
+      if (name === 'rows') {
+        setRows(0);
+      } else if (name === 'seats') {
+        setSeatsInRow(0);
+      }
+
+      return;
     }
-  }, [halls]);
+
+    var number;
+
+    try {
+      number = Number.parseInt(value, 10);
+    } catch (_unused) {
+      return;
+    }
+
+    if (name === 'rows') {
+      setRows(number);
+    } else if (name === 'seats') {
+      setSeatsInRow(number);
+    }
+
+    setIsRedacting(true); // let seatsArr = [];
+    // console.log('seats');
+    // if (rows <= 0) {
+    //   return;
+    // } else if (seatsInRow < 0) {
+    //   return;
+    // }
+    // const arrLength = rows * seatsInRow;
+    // console.log('arrLength');
+    // console.log(arrLength);
+    // for (let i = 1; i <= arrLength; i += 1) {
+    //   const newObj = {
+    //     id: i,
+    //     hall_id: activeHall,
+    //     seat_number: i,
+    //     status: 1
+    //   };
+    // console.log(newObj);
+    // seatsArr.push(newObj);
+    // }
+    // console.log('seatsArr');
+    // console.log(seatsArr);
+    // setSeats(seatsArr);
+    // const tableSeat = [];
+    //   let counter = 0;
+    //   for (let i = 1; i <= rows; i += 1) {
+    //     let row = [];
+    //     for (let y = 1; y <= seatsInRow; y += 1) {
+    //       row.push(seats[counter]);
+    //       counter += 1;
+    //     }
+    //       tableSeat.push(row);
+    //   }
+    //   // console.log(tableSeat);
+    // setSeatTable(tableSeat);
+    // console.log('seats');
+    // console.log(seats);
+    // setSeatsIsLoaded(true);
+  };
+
+  var resetChanges = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.t0 = setSeats;
+              _context2.next = 3;
+              return _functions_Api__WEBPACK_IMPORTED_MODULE_6__.default.getShow('seats', hallForRender.id);
+
+            case 3:
+              _context2.t1 = _context2.sent;
+              (0, _context2.t0)(_context2.t1);
+
+            case 5:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function resetChanges() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
     className: "conf-step__wrapper",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
       className: "conf-step__paragraph",
       children: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0437\u0430\u043B \u0434\u043B\u044F \u043A\u043E\u043D\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u0438:"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_HallBtnContainer__WEBPACK_IMPORTED_MODULE_3__.default, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_HallBtnContainer__WEBPACK_IMPORTED_MODULE_4__.default, {
       active: activeHall,
-      setActive: setActiveHall
+      setActive: setActiveHall,
+      setHallForRender: setHallForRender
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
       className: "conf-step__paragraph",
       children: "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0440\u044F\u0434\u043E\u0432 \u0438 \u043C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435 \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043A\u0440\u0435\u0441\u0435\u043B \u0432 \u0440\u044F\u0434\u0443:"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+    }), isLoaded && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
       className: "conf-step__legend",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
         className: "conf-step__label",
         children: ["\u0420\u044F\u0434\u043E\u0432, \u0448\u0442", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
           type: "text",
           className: "conf-step__input",
-          placeholder: "10"
+          placeholder: "10",
+          name: "rows",
+          value: rows,
+          onChange: function onChange(e) {
+            return handleLabelChange(e);
+          }
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
         className: "multiplier",
@@ -2710,7 +3013,12 @@ function HallConfig(props) {
         children: ["\u041C\u0435\u0441\u0442, \u0448\u0442", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
           type: "text",
           className: "conf-step__input",
-          placeholder: "8"
+          placeholder: "10",
+          name: "seats",
+          value: seatsInRow,
+          onChange: function onChange(e) {
+            return handleLabelChange(e);
+          }
         })]
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
@@ -2728,18 +3036,13 @@ function HallConfig(props) {
         className: "conf-step__hint",
         children: "\u0427\u0442\u043E\u0431\u044B \u0438\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u0432\u0438\u0434 \u043A\u0440\u0435\u0441\u043B\u0430, \u043D\u0430\u0436\u043C\u0438\u0442\u0435 \u043F\u043E \u043D\u0435\u043C\u0443 \u043B\u0435\u0432\u043E\u0439 \u043A\u043D\u043E\u043F\u043A\u043E\u0439 \u043C\u044B\u0448\u0438"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_ConfStepHall__WEBPACK_IMPORTED_MODULE_4__.default, {
-      active: activeHall
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("fieldset", {
-      className: "conf-step__buttons text-center",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
-        className: "conf-step__button conf-step__button-regular",
-        children: "\u041E\u0442\u043C\u0435\u043D\u0430"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-        type: "submit",
-        value: "\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C",
-        className: "conf-step__button conf-step__button-accent"
-      })]
+    }), isLoaded && seatsIsLoaded && seats.length > 0 && activeHall !== 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_ConfStepHall__WEBPACK_IMPORTED_MODULE_5__.default, {
+      activeHall: activeHall,
+      seats: seats,
+      rows: rows,
+      setHallForRender: setHallForRender,
+      seatsInRow: seatsInRow,
+      resetChanges: resetChanges
     })]
   });
 }
@@ -2868,6 +3171,45 @@ function HallSeat(props) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Admin/InterfaceBtnContainer.jsx":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/Admin/InterfaceBtnContainer.jsx ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+
+ // import HallButton from './HallButton';
+// import AdminContext from './AdminContext';
+
+function InterfaceBtnContainer(props) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("fieldset", {
+    className: "conf-step__buttons text-center",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
+      className: "conf-step__button conf-step__button-regular",
+      onClick: props.reset,
+      children: "\u041E\u0442\u043C\u0435\u043D\u0430"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+      type: "submit",
+      value: "\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C",
+      className: "conf-step__button conf-step__button-accent",
+      onClick: props.accept
+    })]
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (InterfaceBtnContainer);
+
+/***/ }),
+
 /***/ "./resources/js/components/Admin/SectionHeader.jsx":
 /*!*********************************************************!*\
   !*** ./resources/js/components/Admin/SectionHeader.jsx ***!
@@ -2894,7 +3236,7 @@ function SectionHeader(props) {
   var title = props.title;
 
   var _onClick = function onClick(event) {
-    console.log(halls);
+    // console.log(halls);
     event.currentTarget.classList.toggle('conf-step__header_closed');
     event.currentTarget.classList.toggle('conf-step__header_opened');
   };
@@ -3455,27 +3797,88 @@ var Api = /*#__PURE__*/function () {
     }()
   }, {
     key: "getShow",
-    value: function getShow(address, number) {
-      return new Promise(function (resolve, reject) {
-        var xhr = new XMLHttpRequest(); // xhr.open('GET', `${this.server}/${address}/${number}`);
+    value: function () {
+      var _getShow = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(address, number) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                return _context2.abrupt("return", new Promise(function (resolve, reject) {
+                  var xhr = new XMLHttpRequest(); // xhr.open('GET', `${this.server}/${address}/${number}`);
 
-        xhr.open('GET', "http://localhost:8000/api/".concat(address, "/").concat(number));
-        xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
-        xhr.addEventListener('load', function () {
-          if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-              console.log(xhr);
-              var data = JSON.parse(xhr.responseText);
-              console.log(data.data);
-              return resolve(data.data);
+                  xhr.open('GET', "http://localhost:8000/api/".concat(address, "/").concat(number));
+                  xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
+                  xhr.addEventListener('load', function () {
+                    if (xhr.readyState === 4) {
+                      if (xhr.status === 200) {
+                        // console.log(xhr);
+                        var data = JSON.parse(xhr.responseText); // console.log(data.data);
+
+                        return resolve(data.data);
+                      }
+                    }
+
+                    return reject(xhr.responseText);
+                  });
+                  xhr.send();
+                }));
+
+              case 1:
+              case "end":
+                return _context2.stop();
             }
           }
+        }, _callee2);
+      }));
 
-          return reject(xhr.responseText);
-        });
-        xhr.send();
-      });
-    } // sendOrder(name, phone, email) {
+      function getShow(_x2, _x3) {
+        return _getShow.apply(this, arguments);
+      }
+
+      return getShow;
+    }()
+  }, {
+    key: "updateItem",
+    value: function () {
+      var _updateItem = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(address, id, array, row, seats) {
+        var dataString;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                dataString = JSON.stringify(array);
+                return _context3.abrupt("return", new Promise(function (resolve, reject) {
+                  var params = new URLSearchParams();
+                  params.append('status', dataString);
+                  params.append('row', row);
+                  params.append('seats', seats);
+                  var xhr = new XMLHttpRequest();
+                  xhr.open('PATCH', "http://localhost:8000/api/".concat(address, "/").concat(id));
+                  xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
+                  xhr.addEventListener('load', function () {
+                    if (xhr.status === 200) {
+                      return resolve(xhr.responseText);
+                    }
+
+                    return reject(xhr.responseText);
+                  });
+                  xhr.send(params);
+                }));
+
+              case 2:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      function updateItem(_x4, _x5, _x6, _x7, _x8) {
+        return _updateItem.apply(this, arguments);
+      }
+
+      return updateItem;
+    }() // sendOrder(name, phone, email) {
     //   return new Promise((resolve, reject) => {
     //     const params = new URLSearchParams();
     //     params.append('name', name);

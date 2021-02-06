@@ -8,6 +8,7 @@ import API from '../../functions/Api';
 import AdminContext from './AdminContext';
 import AdminProvider from './AdminProvider';
 
+
 function AdminPanel() {
 
     const backgroundImageStyle = `
@@ -20,7 +21,6 @@ function AdminPanel() {
     `;
 
     document.body.style  = backgroundImageStyle;
-    
 
     return (
         <AdminProvider >

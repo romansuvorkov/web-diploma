@@ -3,13 +3,15 @@ import { useContext } from 'react';
 import AdminContext from './AdminContext';
 
 function HallButton(props) {
+    const { halls } = useContext(AdminContext);
 
     // const {active, setActive, id} = props;
 
     const handleClick = () => {
-        // console.log(props.id);
+        console.log(props.id);
         // if (props.id === 0) {
-        props.setActive(props.id);            
+        props.setActive(props.id);
+        props.setHallForRender(halls.find(item => item.id == props.id));       
         // } else {
         //     props.setActive(props.id - 1);
         // }

@@ -18,6 +18,7 @@ class CreateSeatsTable extends Migration
             $table->unsignedBigInteger('hall_id');
             $table->unsignedBigInteger('seat_number');
             $table->unsignedBigInteger('status');
+            $table->timestamps();
 
             $table->foreign('hall_id')->references('id')->on('hall');
         });

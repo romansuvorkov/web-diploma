@@ -2,75 +2,127 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useContext } from 'react';
 import AdminContext from './AdminContext';
 import HallSeat from './HallSeat';
+import InterfaceBtnContainer from './InterfaceBtnContainer';
+
 import Api from '../../functions/Api';
 
 function ConfStepHall(props) {
 
-    // const API = new Api;
-    const [seats, setSeats] = useState([]);
-    const { halls } = useContext(AdminContext);
-    const [seatTable, setSeatTable] = useState([]);
+    const {seats, rows, seatsInRow, activeHall, resetChanges, setHallForRender} = props;
+    const [changedSeats, setChangedSeats] = useState([]);
+    const { halls, loadFromServer, setHalls } = useContext(AdminContext);
+    const [seatTable, setSeatTable] = useState(seats);
     const [isLoaded, setIsLoaded] = useState(false);
-    const activeHall = props.active;
 
-    useEffect(async () => {
+    useEffect(() => {
+        setIsLoaded(false);
         const tableSeat = [];
-        if(halls.length > 0 && activeHall !== 0) {
-            // console.log('work');
-            const hallForRender = halls.find(item => item.id == activeHall);
-            // const rows = halls[activeHall].row;
-            // const rowSeats = halls[activeHall].seats;
-            // const rows = halls[activeHall].row;
-            // const rowSeats = halls[activeHall].seats;
-            // console.log(rowSeats);
-            if (seats.length === 0) {
-                // setSeats(await Api.getShow('seats', halls[activeHall].id));
-                setSeats(await Api.getShow('seats', hallForRender.id));
-            }
-            let counter = 0;
-            // console.log(counter);
-            // console.log(seats);
-            for (let i = 1; i <= hallForRender.row; i += 1) {
-                // console.log(rows);                
-                // console.log(rowSeats);
-                let row = [];
-                for (let y = 1; y <= hallForRender.seats; y += 1) {
-                    // console.log(seats);
-                    row.push(seats[counter]);
-                    counter += 1;
-                    // setSeatTable(prevState => {
-                    //     // Object.assign также будет работать
-                    //     return [...prevState, ...row];
-                    // });
-                }
-                tableSeat.push(row);
-            }
-            setSeatTable(tableSeat);
-            // console.log(tableSeat);
-            setIsLoaded(true);
+        let counter = 0;
+        for (let i = 1; i <= rows; i += 1) {
+          let row = [];
+          for (let y = 1; y <= seatsInRow; y += 1) {
+            row.push(seats[counter]);
+            counter += 1;
+          }
+            tableSeat.push(row);
         }
-
+        // console.log(tableSeat);
+        setSeatTable(tableSeat);
+        // console.log('Work hall')
+        // const tableSeat = [];
+        // const hallForRender = halls.find(item => item.id == props.activeHall);
+        // let counter = 0;
+        // for (let i = 1; i <= hallForRender.row; i += 1) {
+        //     let row = [];
+        //     for (let y = 1; y <= hallForRender.seats; y += 1) {
+        //         row.push(props.seats[counter]);
+        //         counter += 1;
+        //     }
+        //     tableSeat.push(row);
+        // }
+        // setSeatTable(seats);
+        setChangedSeats(seats);        
+        setIsLoaded(true);
     }, [halls, activeHall, seats]);
 
+    const refreshRenderArr = () => {
+        // const hallForRender = halls.find(item => item.id == props.activeHall);
+        const tableSeat = [];
+        let counter = 0;
+        for (let i = 1; i <= rows; i += 1) {
+            let row = [];
+            for (let y = 1; y <= seatsInRow; y += 1) {
+                row.push(changedSeats[counter]);
+                counter += 1;
+            }
+            tableSeat.push(row);
+        }
+        setSeatTable(tableSeat);
+    }
+
+    const handleStatusChange = (seat) => {
+        const index = seat - 1;
+        const status = changedSeats[index].status;
+        let newStatus;
+        if (status + 1 > 2) {
+            newStatus = 0;
+        } else {
+            newStatus = status + 1;
+        }
+        let newArray = [...changedSeats];
+        newArray[index].status = newStatus;
+        setChangedSeats(newArray);
+        refreshRenderArr();
+    }
+
+    // const resetChanges = async () => {
+    //     setIsLoaded(false);
+    //     // const hallForRender = halls.find(item => item.id == props.activeHall);
+    //     const serverSeats = await Api.getShow('seats', hallForRender.id);
+    //     const tableSeat = [];
+    //     let counter = 0;
+    //     for (let i = 1; i <= hallForRender.row; i += 1) {
+    //         let row = [];
+    //         for (let y = 1; y <= hallForRender.seats; y += 1) {
+    //             row.push(serverSeats[counter]);
+    //             counter += 1;
+    //         }
+    //         tableSeat.push(row);
+    //     }
+    //     setSeatTable(tableSeat);
+    //     setIsLoaded(true);
+    //     setChangedSeats(props.seats);
+    // }
+
+    const submitChanges = () => {
+        try {
+           Api.updateItem('seats', activeHall, changedSeats, rows, seatsInRow); 
+        } catch (e) {
+            console.log(e);
+        }
+        setHallForRender([]);
+        setHalls([]);
+        loadFromServer();
+        
+    }
+
+    const seatStatus = ['chair_disabled', 'chair_standart', 'chair_vip']
 
     return (
-
-        isLoaded && <div className="conf-step__hall">
+        isLoaded && <>
+            <div className="conf-step__hall" onClick={() => console.log(seatTable)}>
               <div className="conf-step__hall-wrapper">
-                {seatTable.map(o => (
-                    // console.log(o)
-                    <HallSeat key={o[0].id} data={o} />
+                {rows > 0 && seatsInRow > 0 && seatTable.length > 0 && seatTable.map((row) => (
+                  <div className="conf-step__row" key={row[0].id}>
+                    { row.map((o) => (
+                      <span key={o.id} className={`conf-step__chair conf-step__${seatStatus[o.status]}`} onClick={() => handleStatusChange(o.seat_number)}></span>
+                    ))}
+                  </div>
                 ))}
-                {/* <div class="conf-step__row">
-                    <span class="conf-step__chair conf-step__chair_standart"></span><span class="conf-step__chair conf-step__chair_standart"></span>
-                    <span class="conf-step__chair conf-step__chair_vip"></span><span class="conf-step__chair conf-step__chair_vip"></span>
-                    <span class="conf-step__chair conf-step__chair_vip"></span><span class="conf-step__chair conf-step__chair_vip"></span>
-                    <span class="conf-step__chair conf-step__chair_standart"></span><span class="conf-step__chair conf-step__chair_disabled"></span>
-                </div> */}
-                {/* <span className="conf-step__chair conf-step__chair_standart" onClick={() => console.log(seatTable)}></span>           */}
-              </div>  
+              </div>
             </div>
-        
+            <InterfaceBtnContainer reset={resetChanges} accept={submitChanges}/>
+        </>
     )
 
   }

@@ -25,7 +25,7 @@ export default class Api {
       });
     }
 
-    static getShow(address, number) {
+    static async getShow(address, number) {
         return new Promise((resolve, reject) => {
           const xhr = new XMLHttpRequest();
           // xhr.open('GET', `${this.server}/${address}/${number}`);
@@ -34,9 +34,9 @@ export default class Api {
           xhr.addEventListener('load', () => {
             if (xhr.readyState === 4) {
               if (xhr.status === 200) {
-              console.log(xhr);
+              // console.log(xhr);
               const data = JSON.parse(xhr.responseText);
-              console.log(data.data);
+              // console.log(data.data);
               return resolve(data.data);
               }
             }
@@ -44,6 +44,26 @@ export default class Api {
           });
           xhr.send();
         });
+    }
+
+    static async updateItem(address, id, array, row, seats) {
+      const dataString = JSON.stringify(array);
+      return new Promise((resolve, reject) => {
+        const params = new URLSearchParams();
+        params.append('status', dataString);
+        params.append('row', row);
+        params.append('seats', seats);
+        const xhr = new XMLHttpRequest();
+        xhr.open('PATCH', `http://localhost:8000/api/${address}/${id}`);
+        xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
+        xhr.addEventListener('load', () => {
+          if (xhr.status === 200) {
+            return resolve(xhr.responseText);
+          }
+          return reject(xhr.responseText);
+        });
+        xhr.send(params);
+      });
     }
 
     // sendOrder(name, phone, email) {

@@ -9,7 +9,7 @@ function SectionHeader(props) {
     const title = props.title;
 
     const onClick = (event) => {
-        console.log(halls);
+        // console.log(halls);
         event.currentTarget.classList.toggle('conf-step__header_closed');
         event.currentTarget.classList.toggle('conf-step__header_opened');
     };

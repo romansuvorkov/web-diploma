@@ -21,6 +21,7 @@ class CreateHallTable extends Migration
             $table->unsignedBigInteger('price');
             $table->unsignedBigInteger('vip_price');
             $table->unsignedBigInteger('is_active');
+            $table->timestamps();
         });
     }
 
