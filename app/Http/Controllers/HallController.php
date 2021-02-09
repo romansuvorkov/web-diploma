@@ -72,7 +72,11 @@ class HallController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $hall = Hall::findOrFail($id);
+        $hall->price = $request->price;
+        $hall->vip_price = $request->vip_price;
+        $hall->save();
+        return "Update successful";
     }
 
     /**

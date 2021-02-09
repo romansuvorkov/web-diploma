@@ -26,27 +26,12 @@ function ConfStepHall(props) {
           }
             tableSeat.push(row);
         }
-        // console.log(tableSeat);
         setSeatTable(tableSeat);
-        // console.log('Work hall')
-        // const tableSeat = [];
-        // const hallForRender = halls.find(item => item.id == props.activeHall);
-        // let counter = 0;
-        // for (let i = 1; i <= hallForRender.row; i += 1) {
-        //     let row = [];
-        //     for (let y = 1; y <= hallForRender.seats; y += 1) {
-        //         row.push(props.seats[counter]);
-        //         counter += 1;
-        //     }
-        //     tableSeat.push(row);
-        // }
-        // setSeatTable(seats);
         setChangedSeats(seats);        
         setIsLoaded(true);
     }, [halls, activeHall, seats]);
 
     const refreshRenderArr = () => {
-        // const hallForRender = halls.find(item => item.id == props.activeHall);
         const tableSeat = [];
         let counter = 0;
         for (let i = 1; i <= rows; i += 1) {
@@ -75,28 +60,9 @@ function ConfStepHall(props) {
         refreshRenderArr();
     }
 
-    // const resetChanges = async () => {
-    //     setIsLoaded(false);
-    //     // const hallForRender = halls.find(item => item.id == props.activeHall);
-    //     const serverSeats = await Api.getShow('seats', hallForRender.id);
-    //     const tableSeat = [];
-    //     let counter = 0;
-    //     for (let i = 1; i <= hallForRender.row; i += 1) {
-    //         let row = [];
-    //         for (let y = 1; y <= hallForRender.seats; y += 1) {
-    //             row.push(serverSeats[counter]);
-    //             counter += 1;
-    //         }
-    //         tableSeat.push(row);
-    //     }
-    //     setSeatTable(tableSeat);
-    //     setIsLoaded(true);
-    //     setChangedSeats(props.seats);
-    // }
-
     const submitChanges = () => {
         try {
-           Api.updateItem('seats', activeHall, changedSeats, rows, seatsInRow); 
+           Api.updateSeats('seats', activeHall, changedSeats, rows, seatsInRow); 
         } catch (e) {
             console.log(e);
         }

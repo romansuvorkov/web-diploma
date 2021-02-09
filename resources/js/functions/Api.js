@@ -46,7 +46,7 @@ export default class Api {
         });
     }
 
-    static async updateItem(address, id, array, row, seats) {
+    static async updateSeats(address, id, array, row, seats) {
       const dataString = JSON.stringify(array);
       return new Promise((resolve, reject) => {
         const params = new URLSearchParams();
@@ -63,6 +63,54 @@ export default class Api {
           return reject(xhr.responseText);
         });
         xhr.send(params);
+      });
+    }
+
+    static async updateHallPrice(address, id, price, vipPrice) {
+      return new Promise((resolve, reject) => {
+        const params = new URLSearchParams();
+        params.append('price', price);
+        params.append('vip_price', vipPrice);
+        const xhr = new XMLHttpRequest();
+        xhr.open('PATCH', `http://localhost:8000/api/${address}/${id}`);
+        xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
+        xhr.addEventListener('load', () => {
+          if (xhr.status === 200) {
+            return resolve(xhr.responseText);
+          }
+          return reject(xhr.responseText);
+        });
+        xhr.send(params);
+      });
+    }
+
+    static async storeFilm(address, object, poster) {
+      // const formData = new FormData();
+      // formData.append('name', object.name);
+      // formData.append('description', object.description);
+      // formData.append('duration', object.duration);
+      // formData.append('country', object.country);
+      // formData.append('poster', poster);
+    //   for (var value of formData.values()) {
+    //     console.log(value);
+    //  }
+      return new Promise((resolve, reject) => {
+        const formData = new FormData();
+        formData.append('name', object.name);
+        formData.append('description', object.description);
+        formData.append('duration', object.duration);
+        formData.append('country', object.country);
+        formData.append('poster', poster);
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', `http://localhost:8000/api/${address}`);
+        xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
+        xhr.addEventListener('load', () => {
+          if (xhr.status === 200) {
+            return resolve(xhr.responseText);
+          }
+          return reject(xhr.responseText);
+        });
+        xhr.send(formData);
       });
     }
 

@@ -103,46 +103,6 @@ function HallConfig() {
       setSeatsInRow(number);
     }
     setIsRedacting(true);
-    
-    // let seatsArr = [];
-    // console.log('seats');
-    // if (rows <= 0) {
-    //   return;
-    // } else if (seatsInRow < 0) {
-    //   return;
-    // }
-    // const arrLength = rows * seatsInRow;
-    // console.log('arrLength');
-    // console.log(arrLength);
-    // for (let i = 1; i <= arrLength; i += 1) {
-    //   const newObj = {
-    //     id: i,
-    //     hall_id: activeHall,
-    //     seat_number: i,
-    //     status: 1
-    //   };
-      // console.log(newObj);
-      // seatsArr.push(newObj);
-    // }
-    // console.log('seatsArr');
-    // console.log(seatsArr);
-    // setSeats(seatsArr);
-    // const tableSeat = [];
-    //   let counter = 0;
-    //   for (let i = 1; i <= rows; i += 1) {
-    //     let row = [];
-    //     for (let y = 1; y <= seatsInRow; y += 1) {
-    //       row.push(seats[counter]);
-    //       counter += 1;
-    //     }
-    //       tableSeat.push(row);
-    //   }
-    //   // console.log(tableSeat);
-    // setSeatTable(tableSeat);
-    // console.log('seats');
-    // console.log(seats);
-    // setSeatsIsLoaded(true);
-    
   }
 
   const resetChanges = async () => {

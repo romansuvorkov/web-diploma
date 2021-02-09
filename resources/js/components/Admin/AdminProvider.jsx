@@ -3,22 +3,29 @@ import AdminContext from './AdminContext';
 import Api from '../../functions/Api';
 
 export default function AdminProvider(props) {
-    // const API = new Api;
+    
     const [halls, setHalls] = useState([]);
     const [activeHall, setActiveHall] = useState('');
+    const [films, setFilms] = useState([]);
 
     const loadFromServer = async () => {
-        // setHalls(await API.getItems('hall'));
         setHalls(await Api.getItems('hall'));
         setActiveHall(0);
     };
 
-    useEffect(loadFromServer, []);
+    const loadFilmsFromServer = async () => {
+        setFilms(await Api.getItems('film'));
+    };
+
+    useEffect(() => {
+        loadFromServer();
+        loadFilmsFromServer();
+    }, []);
 
     
 
     return (
-        <AdminContext.Provider value={{halls, setHalls, activeHall, setActiveHall, loadFromServer}}>
+        <AdminContext.Provider value={{halls, setHalls, activeHall, setActiveHall, loadFromServer, loadFilmsFromServer, films}}>
             {props.children}
         </AdminContext.Provider>
     )

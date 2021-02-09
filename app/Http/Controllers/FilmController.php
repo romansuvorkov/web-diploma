@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Film;
 use Illuminate\Http\Request;
 use App\Http\Resources\Post;
+use Illuminate\Support\Facades\Storage;
+use File;
 
 class FilmController extends Controller
 {
@@ -36,7 +38,25 @@ class FilmController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request->name;
+        // $path = $request->file('poster');
+        // return $path;
+
+        // $image = $request->file('poster');
+        // $imageName = time().'.'.$image->extension();
+        // $image->move(public_path('images'),$imageName);
+        // $path = 'images/'.$imageName;
+
+        $image_path = 'images/1612891883.jpg';
+        if (File::exists($image_path)) {
+            File::delete($image_path);
+            // unlink($image_path);
+        }
+        // $path = Storage::putFile('poster', $request->file('poster'));
+
+        // return $path;
+
+        // return 'test';
     }
 
     /**

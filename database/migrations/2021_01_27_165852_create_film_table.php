@@ -20,6 +20,7 @@ class CreateFilmTable extends Migration
             $table->string('country');
             $table->unsignedBigInteger('duration');
             $table->string('poster');
+            $table->timestamps();
         });
     }
 
