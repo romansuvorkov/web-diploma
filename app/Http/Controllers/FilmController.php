@@ -42,19 +42,28 @@ class FilmController extends Controller
         // $path = $request->file('poster');
         // return $path;
 
-        // $image = $request->file('poster');
-        // $imageName = time().'.'.$image->extension();
-        // $image->move(public_path('images'),$imageName);
-        // $path = 'images/'.$imageName;
+        $image = $request->file('poster');
+        $imageName = time().'.'.$image->extension();
+        $image->move(public_path('images'),$imageName);
+        $path = 'images/'.$imageName;
 
-        $image_path = 'images/1612891883.jpg';
-        if (File::exists($image_path)) {
-            File::delete($image_path);
-            // unlink($image_path);
-        }
+        $newFilm = new Film([
+            'name' =>  $request->name,
+            'description' => $request->description,
+            'country' => $request->country,
+            'duration' => $request->duration,
+            'poster' => $path
+        ]);
+        $newFilm->save();
+
+        // $image_path = 'images/1612891883.jpg';
+        // if (File::exists($image_path)) {
+        //     File::delete($image_path);
+        //     // unlink($image_path);
+        // }
         // $path = Storage::putFile('poster', $request->file('poster'));
 
-        // return $path;
+        return 'New film added';
 
         // return 'test';
     }

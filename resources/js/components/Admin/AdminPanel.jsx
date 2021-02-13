@@ -25,15 +25,14 @@ function AdminPanel() {
 
     document.body.style  = backgroundImageStyle;
 
-    const [isAddPopup, setIsAddPopup] = useState(false);
+    // const [isAddPopup, setIsAddPopup] = useState(false);
 
     // const handleOnAddClick = () => {
     //   setIsAddPopup(true);
     // }
 
     return (
-        <AdminProvider >
-          {isAddPopup && <AddFilmPopup handleClose={setIsAddPopup}/>}
+        <AdminProvider>
     <header className="page-header">
         <h1 className="page-header__title">Идём<span>в</span>кино</h1>
         <span className="page-header__subtitle">Администраторррская</span>
@@ -57,7 +56,7 @@ function AdminPanel() {
         
         <section className="conf-step">
           <SectionHeader title="Сетка сеансов" />
-          <MovieShowConfig handleAdd={setIsAddPopup}/>
+          <MovieShowConfig/>
         </section>
         
         <section className="conf-step">

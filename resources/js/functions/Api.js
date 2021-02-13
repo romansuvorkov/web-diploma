@@ -114,6 +114,60 @@ export default class Api {
       });
     }
 
+    static async getMovie(address, date) {
+      return new Promise((resolve, reject) => {
+        const params = new URLSearchParams();
+        // params.append('date', date);
+        // console.log(date);
+        const xhr = new XMLHttpRequest();
+        // xhr.open('GET', `${this.server}/${address}`);
+        xhr.open('GET', `http://localhost:8000/api/${address}/${date}`);
+        xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
+        xhr.addEventListener('load', () => {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                // console.log(xhr);
+                const data = JSON.parse(xhr.responseText);
+                // console.log(data);
+                return resolve(data.data);
+                }
+            }
+            return reject(xhr.responseText);
+        });
+        xhr.send();
+      });
+    }
+
+
+    static async storeMovie(address, filmId, hallId, start, filmDuration, date) {
+      // const formData = new FormData();
+      // formData.append('name', object.name);
+      // formData.append('description', object.description);
+      // formData.append('duration', object.duration);
+      // formData.append('country', object.country);
+      // formData.append('poster', poster);
+    //   for (var value of formData.values()) {
+    //     console.log(value);
+    //  }
+      return new Promise((resolve, reject) => {
+        const formData = new FormData();
+        formData.append('film_id', filmId);
+        formData.append('hall_id', hallId);
+        formData.append('start_time', start);
+        formData.append('movie_show_duration', filmDuration);
+        formData.append('start_day', date);
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', `http://localhost:8000/api/${address}`);
+        xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
+        xhr.addEventListener('load', () => {
+          if (xhr.status === 200) {
+            return resolve(xhr.responseText);
+          }
+          return reject(xhr.responseText);
+        });
+        xhr.send(formData);
+      });
+    }
     // sendOrder(name, phone, email) {
     //   return new Promise((resolve, reject) => {
     //     const params = new URLSearchParams();

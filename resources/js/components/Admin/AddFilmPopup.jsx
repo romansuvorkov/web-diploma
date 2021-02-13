@@ -6,7 +6,8 @@ import Api from '../../functions/Api';
 
 function AddFilmPopup(props) {
 
-    const { handleClose } = props;
+    const { handleClose, handleSubmit } = props;
+    // const { loadFilmsFromServer } = useContext(AdminContext);
     const [newFilm, setNewFilm] = useState({
         name: '',
         description: '',
@@ -16,12 +17,17 @@ function AddFilmPopup(props) {
 
     const fileRef = useRef();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.dir(fileRef.current.files[0]);
-        console.log(fileRef.current.files[0]);
-        Api.storeFilm('film', newFilm, fileRef.current.files[0]);
-    }
+    // const handleSubmit = async(e) => {
+    //     e.preventDefault();
+    //     // console.dir(fileRef.current.files[0]);
+    //     // console.log(fileRef.current.files[0]);
+    //     let response = await Api.storeFilm('film', newFilm, fileRef.current.files[0]);
+    //     // console.log(test);
+    //     if(response === 'New film added') {
+    //         handleClose(false);
+    //         loadFilmsFromServer();
+    //     }
+    // }
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -29,7 +35,7 @@ function AddFilmPopup(props) {
             ...prevState,
             [name]: value
         }));
-        console.log(newFilm);
+        // console.log(newFilm);
     }
         
 
@@ -46,7 +52,7 @@ function AddFilmPopup(props) {
 
             </div>
             <div className="popup__wrapper">
-                <form method="post" acceptCharset="utf-8" onSubmit={(e) => handleSubmit(e)}>
+                <form method="post" acceptCharset="utf-8" onSubmit={(e) => handleSubmit(e, newFilm, fileRef.current.files[0])}>
                 <label className="conf-step__label conf-step__label-fullsize" htmlFor="name">
                     Название фильма
                     <input className="conf-step__input" type="text" placeholder="Например, &laquo;Гражданин Кейн&raquo;" name="name" required value={newFilm.name} onChange={(e) => handleChange(e)} />

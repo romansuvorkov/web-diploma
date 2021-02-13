@@ -8,7 +8,7 @@ import Api from '../../functions/Api';
 function HallConfig() {
 
   const { halls } = useContext(AdminContext);
-  const [activeHall, setActiveHall] = useState(1);
+  const [activeHall, setActiveHall] = useState(0);
   const [seats, setSeats] = useState([]);
   const [hallForRender, setHallForRender] = useState([]);
   const [rows, setRows] = useState(0);
@@ -23,7 +23,9 @@ function HallConfig() {
     // setSeatsIsLoaded(false);
     if (halls.length > 0) {
       if (hallForRender.length === 0) {
-        setHallForRender(halls.find(item => item.id == activeHall));
+        // setHallForRender(halls.find(item => item.id == activeHall));
+        setActiveHall(halls[0].id);
+        setHallForRender(halls[0]);
       } else {
         console.log('trouble');
         setSeats(await Api.getShow('seats', hallForRender.id));

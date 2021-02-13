@@ -2067,7 +2067,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function AddFilmPopup(props) {
-  var handleClose = props.handleClose;
+  var handleClose = props.handleClose,
+      handleSubmit = props.handleSubmit; // const { loadFilmsFromServer } = useContext(AdminContext);
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
     name: '',
@@ -2079,14 +2080,17 @@ function AddFilmPopup(props) {
       newFilm = _useState2[0],
       setNewFilm = _useState2[1];
 
-  var fileRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
-
-  var handleSubmit = function handleSubmit(e) {
-    e.preventDefault();
-    console.dir(fileRef.current.files[0]);
-    console.log(fileRef.current.files[0]);
-    _functions_Api__WEBPACK_IMPORTED_MODULE_4__.default.storeFilm('film', newFilm, fileRef.current.files[0]);
-  };
+  var fileRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(); // const handleSubmit = async(e) => {
+  //     e.preventDefault();
+  //     // console.dir(fileRef.current.files[0]);
+  //     // console.log(fileRef.current.files[0]);
+  //     let response = await Api.storeFilm('film', newFilm, fileRef.current.files[0]);
+  //     // console.log(test);
+  //     if(response === 'New film added') {
+  //         handleClose(false);
+  //         loadFilmsFromServer();
+  //     }
+  // }
 
   var handleChange = function handleChange(e) {
     var _e$target = e.target,
@@ -2094,8 +2098,7 @@ function AddFilmPopup(props) {
         value = _e$target.value;
     setNewFilm(function (prevState) {
       return _objectSpread(_objectSpread({}, prevState), {}, _defineProperty({}, name, value));
-    });
-    console.log(newFilm);
+    }); // console.log(newFilm);
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
@@ -2126,7 +2129,7 @@ function AddFilmPopup(props) {
             method: "post",
             acceptCharset: "utf-8",
             onSubmit: function onSubmit(e) {
-              return handleSubmit(e);
+              return handleSubmit(e, newFilm, fileRef.current.files[0]);
             },
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
               className: "conf-step__label conf-step__label-fullsize",
@@ -2217,6 +2220,143 @@ function AddFilmPopup(props) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Admin/AddMovieShowPopup.jsx":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/Admin/AddMovieShowPopup.jsx ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _AdminContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AdminContext */ "./resources/js/components/Admin/AdminContext.jsx");
+/* harmony import */ var _images_admin_close_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../images/admin/close.png */ "./resources/images/admin/close.png");
+/* harmony import */ var _functions_Api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../functions/Api */ "./resources/js/functions/Api.js");
+
+
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+function AddMovieShowPopup(props) {
+  var handleClose = props.handleClose,
+      handleSubmit = props.handleSubmit,
+      hall = props.hall,
+      film = props.film,
+      error = props.error;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)('00:00'),
+      _useState2 = _slicedToArray(_useState, 2),
+      time = _useState2[0],
+      setTime = _useState2[1];
+
+  var handleChange = function handleChange(e) {
+    var target = e.target;
+
+    if (target.value === '') {
+      setTime('00:00');
+    } else {
+      setTime(target.value);
+    }
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+    className: "popup active",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+      className: "popup__container",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+        className: "popup__content",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+          className: "popup__header",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h2", {
+            className: "popup__title",
+            children: ["\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u0435 \u0441\u0435\u0430\u043D\u0441\u0430", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
+              className: "popup__dismiss",
+              href: "#",
+              onClick: function onClick() {
+                return handleClose(false);
+              },
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
+                src: _images_admin_close_png__WEBPACK_IMPORTED_MODULE_3__.default,
+                alt: "\u0417\u0430\u043A\u0440\u044B\u0442\u044C"
+              })
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+          className: "popup__wrapper",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
+            action: "add_movie",
+            method: "post",
+            acceptCharset: "utf-8",
+            onSubmit: function onSubmit(e) {
+              return handleSubmit(e, film, hall.id, time);
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
+              className: "conf-step__paragraph",
+              children: ["\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u0435 \u0441\u0435\u0430\u043D\u0441\u0430 \u0432 ", hall.name]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
+              className: "conf-step__paragraph",
+              children: ["\u0424\u0438\u043B\u044C\u043C ", film.name]
+            }), time && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
+              className: "conf-step__label conf-step__label-fullsize",
+              htmlFor: "name",
+              children: ["\u0412\u0440\u0435\u043C\u044F \u043D\u0430\u0447\u0430\u043B\u0430", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+                className: "conf-step__input",
+                type: "time",
+                name: "start_time",
+                value: time,
+                onChange: function onChange(e) {
+                  return handleChange(e);
+                },
+                required: true
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+              className: "conf-step__paragraph",
+              children: error
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+              className: "conf-step__buttons text-center",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+                type: "submit",
+                value: "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C",
+                className: "conf-step__button conf-step__button-accent"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
+                className: "conf-step__button conf-step__button-regular",
+                onClick: function onClick() {
+                  return handleClose(false);
+                },
+                children: "\u041E\u0442\u043C\u0435\u043D\u0438\u0442\u044C"
+              })]
+            })]
+          })
+        })]
+      })
+    })
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AddMovieShowPopup);
+
+/***/ }),
+
 /***/ "./resources/js/components/Admin/AdminContext.jsx":
 /*!********************************************************!*\
   !*** ./resources/js/components/Admin/AdminContext.jsx ***!
@@ -2262,19 +2402,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
 
 
 
@@ -2289,20 +2416,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function AdminPanel() {
   var backgroundImageStyle = "\n        background-image: url(".concat(_images_admin_background_admin_jpg__WEBPACK_IMPORTED_MODULE_4__.default, ");\n        background-color: rgba(0, 0, 0, 0.5);\n        background-blend-mode: multiply;\n        background-size: cover;\n        background-attachment: fixed;\n        counter-reset: num;\n    ");
-  document.body.style = backgroundImageStyle;
-
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      isAddPopup = _useState2[0],
-      setIsAddPopup = _useState2[1]; // const handleOnAddClick = () => {
+  document.body.style = backgroundImageStyle; // const [isAddPopup, setIsAddPopup] = useState(false);
+  // const handleOnAddClick = () => {
   //   setIsAddPopup(true);
   // }
 
-
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_AdminProvider__WEBPACK_IMPORTED_MODULE_10__.default, {
-    children: [isAddPopup && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_AddFilmPopup__WEBPACK_IMPORTED_MODULE_12__.default, {
-      handleClose: setIsAddPopup
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("header", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("header", {
       className: "page-header",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h1", {
         className: "page-header__title",
@@ -2334,9 +2454,7 @@ function AdminPanel() {
         className: "conf-step",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SectionHeader__WEBPACK_IMPORTED_MODULE_3__.default, {
           title: "\u0421\u0435\u0442\u043A\u0430 \u0441\u0435\u0430\u043D\u0441\u043E\u0432"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_MovieShowConfig__WEBPACK_IMPORTED_MODULE_11__.default, {
-          handleAdd: setIsAddPopup
-        })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_MovieShowConfig__WEBPACK_IMPORTED_MODULE_11__.default, {})]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
         className: "conf-step",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SectionHeader__WEBPACK_IMPORTED_MODULE_3__.default, {
@@ -2408,12 +2526,8 @@ function AdminProvider(props) {
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
       activeHall = _useState4[0],
-      setActiveHall = _useState4[1];
+      setActiveHall = _useState4[1]; // const [films, setFilms] = useState([]);
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
-      _useState6 = _slicedToArray(_useState5, 2),
-      films = _useState6[0],
-      setFilms = _useState6[1];
 
   var loadFromServer = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
@@ -2441,38 +2555,14 @@ function AdminProvider(props) {
     return function loadFromServer() {
       return _ref.apply(this, arguments);
     };
-  }();
+  }(); // const loadFilmsFromServer = async () => {
+  //     setFilms(await Api.getItems('film'));
+  //     console.log('loadFilmsFromServer');
+  // };
 
-  var loadFilmsFromServer = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              _context2.t0 = setFilms;
-              _context2.next = 3;
-              return _functions_Api__WEBPACK_IMPORTED_MODULE_4__.default.getItems('film');
-
-            case 3:
-              _context2.t1 = _context2.sent;
-              (0, _context2.t0)(_context2.t1);
-
-            case 5:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }));
-
-    return function loadFilmsFromServer() {
-      return _ref2.apply(this, arguments);
-    };
-  }();
 
   (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
-    loadFromServer();
-    loadFilmsFromServer();
+    loadFromServer(); // loadFilmsFromServer();
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_AdminContext__WEBPACK_IMPORTED_MODULE_3__.default.Provider, {
     value: {
@@ -2480,12 +2570,13 @@ function AdminProvider(props) {
       setHalls: setHalls,
       activeHall: activeHall,
       setActiveHall: setActiveHall,
-      loadFromServer: loadFromServer,
-      loadFilmsFromServer: loadFilmsFromServer,
-      films: films
+      loadFromServer: loadFromServer
     },
     children: props.children
-  });
+  }) // <AdminContext.Provider value={{halls, setHalls, activeHall, setActiveHall, loadFromServer, loadFilmsFromServer, films}}>
+  //     {props.children}
+  // </AdminContext.Provider>
+  ;
 }
 
 /***/ }),
@@ -2822,7 +2913,7 @@ function HallConfig() {
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_2__.useContext)(_AdminContext__WEBPACK_IMPORTED_MODULE_3__.default),
       halls = _useContext.halls;
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(1),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0),
       _useState2 = _slicedToArray(_useState, 2),
       activeHall = _useState2[0],
       setActiveHall = _useState2[1];
@@ -2871,28 +2962,28 @@ function HallConfig() {
             setIsLoaded(false); // setSeatsIsLoaded(false);
 
             if (!(halls.length > 0)) {
-              _context.next = 15;
+              _context.next = 16;
               break;
             }
 
             if (!(hallForRender.length === 0)) {
-              _context.next = 6;
+              _context.next = 7;
               break;
             }
 
-            setHallForRender(halls.find(function (item) {
-              return item.id == activeHall;
-            }));
-            _context.next = 15;
+            // setHallForRender(halls.find(item => item.id == activeHall));
+            setActiveHall(halls[0].id);
+            setHallForRender(halls[0]);
+            _context.next = 16;
             break;
 
-          case 6:
+          case 7:
             console.log('trouble');
             _context.t0 = setSeats;
-            _context.next = 10;
+            _context.next = 11;
             return _functions_Api__WEBPACK_IMPORTED_MODULE_6__.default.getShow('seats', hallForRender.id);
 
-          case 10:
+          case 11:
             _context.t1 = _context.sent;
             (0, _context.t0)(_context.t1);
             // setSeatsIsLoaded(true);
@@ -2900,7 +2991,7 @@ function HallConfig() {
             setSeatsInRow(hallForRender.seats);
             setIsLoaded(true);
 
-          case 15:
+          case 16:
           case "end":
             return _context.stop();
         }
@@ -3257,12 +3348,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _AdminContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AdminContext */ "./resources/js/components/Admin/AdminContext.jsx");
-/* harmony import */ var _images_poster1_jpg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../images/poster1.jpg */ "./resources/images/poster1.jpg");
-/* harmony import */ var _images_poster2_jpg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../images/poster2.jpg */ "./resources/images/poster2.jpg");
-/* harmony import */ var _functions_Api__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../functions/Api */ "./resources/js/functions/Api.js");
-/* harmony import */ var _AddFilmPopup__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./AddFilmPopup */ "./resources/js/components/Admin/AddFilmPopup.jsx");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _AdminContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AdminContext */ "./resources/js/components/Admin/AdminContext.jsx");
+/* harmony import */ var _images_poster1_jpg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../images/poster1.jpg */ "./resources/images/poster1.jpg");
+/* harmony import */ var _images_poster2_jpg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../images/poster2.jpg */ "./resources/images/poster2.jpg");
+/* harmony import */ var _functions_Api__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../functions/Api */ "./resources/js/functions/Api.js");
+/* harmony import */ var _AddFilmPopup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./AddFilmPopup */ "./resources/js/components/Admin/AddFilmPopup.jsx");
+/* harmony import */ var _AddMovieShowPopup__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./AddMovieShowPopup */ "./resources/js/components/Admin/AddMovieShowPopup.jsx");
+
+
+
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
@@ -3273,38 +3388,364 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function MovieShowConfig(props) {
-  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_AdminContext__WEBPACK_IMPORTED_MODULE_2__.default),
-      films = _useContext.films; // const [films, setFilms] = useState([]);
-  // const [isAddPopup, setIsAddPopup] = useState(false);
+function MovieShowConfig() {
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_2__.useContext)(_AdminContext__WEBPACK_IMPORTED_MODULE_3__.default),
+      halls = _useContext.halls;
 
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      movieShows = _useState2[0],
+      setMovieShows = _useState2[1];
 
-  var handleAdd = props.handleAdd; // useEffect(async () => {
-  //     if (films.length === 0) {
-  //         setFilms(await Api.getItems('film'));
-  //         return;
-  //     }
-  // },[films]);
-  // const handleOnAddClick = () => {
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      isAddPopup = _useState4[0],
+      setIsAddPopup = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      isAddMovieShow = _useState6[0],
+      setIsAddMovieShow = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
+      _useState8 = _slicedToArray(_useState7, 2),
+      films = _useState8[0],
+      setFilms = _useState8[1];
+
+  var now = new Date();
+  var day = ("0" + now.getDate()).slice(-2);
+  var month = ("0" + (now.getMonth() + 1)).slice(-2);
+  var today = now.getFullYear() + "-" + month + "-" + day;
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(today),
+      _useState10 = _slicedToArray(_useState9, 2),
+      activeDate = _useState10[0],
+      setActiveDate = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({}),
+      _useState12 = _slicedToArray(_useState11, 2),
+      draggedFilm = _useState12[0],
+      setDraggedFilm = _useState12[1];
+
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
+      _useState14 = _slicedToArray(_useState13, 2),
+      activeHall = _useState14[0],
+      setActiveHall = _useState14[1];
+
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(''),
+      _useState16 = _slicedToArray(_useState15, 2),
+      addMovieShowErr = _useState16[0],
+      setAddMovieShowErr = _useState16[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.t0 = setMovieShows;
+            _context.next = 3;
+            return _functions_Api__WEBPACK_IMPORTED_MODULE_6__.default.getMovie('movie', today);
+
+          case 3:
+            _context.t1 = _context.sent;
+            (0, _context.t0)(_context.t1);
+            _context.t2 = setFilms;
+            _context.next = 8;
+            return _functions_Api__WEBPACK_IMPORTED_MODULE_6__.default.getItems('film');
+
+          case 8:
+            _context.t3 = _context.sent;
+            (0, _context.t2)(_context.t3);
+
+          case 10:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  })), []);
+
+  var handleAddFilmSubmit = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2(e, film, file) {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              e.preventDefault(); // console.dir(fileRef.current.files[0]);
+              // console.log(fileRef.current.files[0]);
+
+              _context2.next = 3;
+              return _functions_Api__WEBPACK_IMPORTED_MODULE_6__.default.storeFilm('film', film, file);
+
+            case 3:
+              response = _context2.sent;
+
+              if (!(response === 'New film added')) {
+                _context2.next = 11;
+                break;
+              }
+
+              setIsAddPopup(false);
+              _context2.t0 = setFilms;
+              _context2.next = 9;
+              return _functions_Api__WEBPACK_IMPORTED_MODULE_6__.default.getItems('film');
+
+            case 9:
+              _context2.t1 = _context2.sent;
+              (0, _context2.t0)(_context2.t1);
+
+            case 11:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function handleAddFilmSubmit(_x, _x2, _x3) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  var handleAddMovieShow = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee3(e, film, hallId, startTime) {
+      var hour, minutes, movieShowStart, _iterator, _step, item, start, end, response;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              e.preventDefault();
+              hour = Number.parseInt(startTime.substr(0, 2));
+              minutes = Number.parseInt(startTime.substr(3));
+              movieShowStart = hour * 60 + minutes;
+              console.log(movieShowStart);
+              _iterator = _createForOfIteratorHelper(movieShows);
+              _context3.prev = 6;
+
+              _iterator.s();
+
+            case 8:
+              if ((_step = _iterator.n()).done) {
+                _context3.next = 37;
+                break;
+              }
+
+              item = _step.value;
+
+              if (!(hallId === item.hall_id)) {
+                _context3.next = 35;
+                break;
+              }
+
+              start = Number.parseInt(item.start_time);
+              end = Number.parseInt(item.start_time) + item.movie_show_duration; // console.log(start);
+              // console.log(end);
+              // console.log(start < movieShowStart && movieShowStart < end);
+
+              if (!(start < movieShowStart && movieShowStart < end)) {
+                _context3.next = 16;
+                break;
+              }
+
+              setAddMovieShowErr("\u0421\u0435\u0430\u043D\u0441 \u043F\u0435\u0440\u0435\u0441\u0435\u043A\u0430\u0435\u0442\u0441\u044F \u043F\u043E \u0432\u0435\u0440\u0435\u043C\u0435\u043D\u0438 \u0441 \u0441\u0435\u0430\u043D\u0441\u043E\u043C ".concat(item.id));
+              return _context3.abrupt("return");
+
+            case 16:
+              if (!(start < movieShowStart + film.duration && movieShowStart + film.duration < end)) {
+                _context3.next = 19;
+                break;
+              }
+
+              setAddMovieShowErr("\u0421\u0435\u0430\u043D\u0441 \u043F\u0435\u0440\u0435\u0441\u0435\u043A\u0430\u0435\u0442\u0441\u044F \u043F\u043E \u0432\u0435\u0440\u0435\u043C\u0435\u043D\u0438 \u0441 \u0441\u0435\u0430\u043D\u0441\u043E\u043C ".concat(item.id));
+              return _context3.abrupt("return");
+
+            case 19:
+              if (!(start > movieShowStart && movieShowStart + film.duration > end)) {
+                _context3.next = 22;
+                break;
+              }
+
+              setAddMovieShowErr("\u0421\u0435\u0430\u043D\u0441 \u043F\u0435\u0440\u0435\u0441\u0435\u043A\u0430\u0435\u0442\u0441\u044F \u043F\u043E \u0432\u0435\u0440\u0435\u043C\u0435\u043D\u0438 \u0441 \u0441\u0435\u0430\u043D\u0441\u043E\u043C ".concat(item.id));
+              return _context3.abrupt("return");
+
+            case 22:
+              setAddMovieShowErr('');
+              console.log('film.duration');
+              console.log(film.duration);
+              _context3.next = 27;
+              return _functions_Api__WEBPACK_IMPORTED_MODULE_6__.default.storeMovie('movie', film.id, hallId, movieShowStart, film.duration, activeDate);
+
+            case 27:
+              response = _context3.sent;
+
+              if (!(response === 'New movie show added')) {
+                _context3.next = 35;
+                break;
+              }
+
+              setIsAddMovieShow(false);
+              _context3.t0 = setMovieShows;
+              _context3.next = 33;
+              return _functions_Api__WEBPACK_IMPORTED_MODULE_6__.default.getMovie('movie', activeDate);
+
+            case 33:
+              _context3.t1 = _context3.sent;
+              (0, _context3.t0)(_context3.t1);
+
+            case 35:
+              _context3.next = 8;
+              break;
+
+            case 37:
+              _context3.next = 42;
+              break;
+
+            case 39:
+              _context3.prev = 39;
+              _context3.t2 = _context3["catch"](6);
+
+              _iterator.e(_context3.t2);
+
+            case 42:
+              _context3.prev = 42;
+
+              _iterator.f();
+
+              return _context3.finish(42);
+
+            case 45:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[6, 39, 42, 45]]);
+    }));
+
+    return function handleAddMovieShow(_x4, _x5, _x6, _x7) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+
+  var handleDateChange = function handleDateChange(e) {
+    var target = e.target;
+    setActiveDate(target.value);
+    console.log(activeDate);
+  };
+
+  var handleDate = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee4() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.t0 = setMovieShows;
+              _context4.next = 3;
+              return _functions_Api__WEBPACK_IMPORTED_MODULE_6__.default.getMovie('movie', activeDate);
+
+            case 3:
+              _context4.t1 = _context4.sent;
+              return _context4.abrupt("return", (0, _context4.t0)(_context4.t1));
+
+            case 5:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }));
+
+    return function handleDate() {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+
+  var handleDragStart = function handleDragStart(o) {
+    setDraggedFilm(o);
+    console.log(draggedFilm);
+  };
+
+  var handleDragEnd = function handleDragEnd(e, hall) {
+    e.preventDefault();
+    var target = e.target;
+
+    if (target.classList.contains('conf-step__seances-timeline')) {
+      target.style.backgroundColor = 'transparent';
+    }
+
+    setIsAddMovieShow(true);
+    setActiveHall(hall);
+  };
+
+  var handleDragOver = function handleDragOver(e) {
+    e.preventDefault();
+    var target = e.target;
+
+    if (target.classList.contains('conf-step__seances-timeline')) {
+      target.style.backgroundColor = 'grey';
+    }
+  };
+
+  var handleDragLeave = function handleDragLeave(e) {
+    var target = e.target;
+
+    if (target.classList.contains('conf-step__seances-timeline')) {
+      target.style.backgroundColor = 'transparent';
+    }
+  }; // const handleOnAddClick = () => {
   //   setIsAddPopup(true);
   // }
 
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
     className: "conf-step__wrapper",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+    children: [isAddPopup && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_AddFilmPopup__WEBPACK_IMPORTED_MODULE_7__.default, {
+      handleClose: setIsAddPopup,
+      handleSubmit: handleAddFilmSubmit
+    }), isAddMovieShow && activeHall && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_AddMovieShowPopup__WEBPACK_IMPORTED_MODULE_8__.default, {
+      error: addMovieShowErr,
+      film: draggedFilm,
+      hall: activeHall,
+      handleClose: setIsAddMovieShow,
+      handleSubmit: handleAddMovieShow
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
       className: "conf-step__paragraph",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
         className: "conf-step__button conf-step__button-accent",
         onClick: function onClick() {
-          return handleAdd(true);
+          setIsAddMovieShow(true);
+          console.log(isAddMovieShow);
+        },
+        children: "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0441\u0435\u0430\u043D\u0441"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
+        className: "conf-step__button conf-step__button-accent",
+        onClick: function onClick() {
+          return setIsAddPopup(true);
         },
         children: "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0444\u0438\u043B\u044C\u043C"
-      })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
+        className: "conf-step__button conf-step__button-accent",
+        onClick: handleDate,
+        children: "\u0412\u044B\u0431\u0440\u0430\u0442\u044C \u0434\u0430\u0442\u0443"
+      }), activeDate && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+        type: "date",
+        name: "date",
+        value: activeDate,
+        min: today,
+        onChange: function onChange(e) {
+          return handleDateChange(e);
+        }
+      })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
       className: "conf-step__movies",
       children: films.length > 0 && films.map(function (film) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
           className: "conf-step__movie",
+          draggable: true,
+          onDragStart: function onDragStart() {
+            return handleDragStart(film);
+          },
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
             className: "conf-step__movie-poster",
             alt: "poster",
@@ -3318,97 +3759,45 @@ function MovieShowConfig(props) {
           })]
         }, film.id);
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
       className: "conf-step__seances",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        className: "conf-step__seances-hall",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h3", {
-          className: "conf-step__seances-title",
-          children: "\u0417\u0430\u043B 1"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-          className: "conf-step__seances-timeline",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-            className: "conf-step__seances-movie",
-            style: {
-              width: 60 + 'px',
-              backgroundColor: 'rgb(133, 255, 137)',
-              left: 0
+      children: halls.length > 0 && halls.map(function (hall) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+          className: "conf-step__seances-hall",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h3", {
+            className: "conf-step__seances-title",
+            children: hall.name
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+            className: "conf-step__seances-timeline",
+            onDragOver: function onDragOver(e) {
+              return handleDragOver(e);
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-              className: "conf-step__seances-movie-title",
-              children: "\u041C\u0438\u0441\u0441\u0438\u044F \u0432\u044B\u043F\u043E\u043B\u043D\u0438\u043C\u0430"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-              className: "conf-step__seances-movie-start",
-              children: "00:00"
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-            className: "conf-step__seances-movie",
-            style: {
-              width: 60 + 'px',
-              backgroundColor: 'rgb(133, 255, 137)',
-              left: 360 + 'px'
+            onDragLeave: function onDragLeave(e) {
+              return handleDragLeave(e);
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-              className: "conf-step__seances-movie-title",
-              children: "\u041C\u0438\u0441\u0441\u0438\u044F \u0432\u044B\u043F\u043E\u043B\u043D\u0438\u043C\u0430"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-              className: "conf-step__seances-movie-start",
-              children: "12:00"
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-            className: "conf-step__seances-movie",
-            style: {
-              width: 65 + 'px',
-              backgroundColor: 'rgb(202, 255, 133)',
-              left: 420 + 'px'
+            onDrop: function onDrop(e) {
+              return handleDragEnd(e, hall);
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-              className: "conf-step__seances-movie-title",
-              children: "\u0417\u0432\u0451\u0437\u0434\u043D\u044B\u0435 \u0432\u043E\u0439\u043D\u044B XXIII: \u0410\u0442\u0430\u043A\u0430 \u043A\u043B\u043E\u043D\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u044B\u0445 \u043A\u043B\u043E\u043D\u043E\u0432"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-              className: "conf-step__seances-movie-start",
-              children: "14:00"
-            })]
+            children: movieShows && movieShows.map(function (movie) {
+              return movie.hall_id === hall.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                className: "conf-step__seances-movie",
+                style: {
+                  width: 100 * movie.movie_show_duration / 1440 + '%',
+                  backgroundColor: 'rgb(202, 255, 133)',
+                  left: 100 * movie.start_time / 1440 + '%'
+                },
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+                  className: "conf-step__seances-movie-title",
+                  children: movie.film_id
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+                  className: "conf-step__seances-movie-start",
+                  children: movie.start_time
+                })]
+              }, movie.id);
+            })
           })]
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        className: "conf-step__seances-hall",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h3", {
-          className: "conf-step__seances-title",
-          children: "\u0417\u0430\u043B 2"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-          className: "conf-step__seances-timeline",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-            className: "conf-step__seances-movie",
-            style: {
-              width: 65 + 'px',
-              backgroundColor: 'rgb(202, 255, 133)',
-              left: 595 + 'px'
-            },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-              className: "conf-step__seances-movie-title",
-              children: "\u0417\u0432\u0451\u0437\u0434\u043D\u044B\u0435 \u0432\u043E\u0439\u043D\u044B XXIII: \u0410\u0442\u0430\u043A\u0430 \u043A\u043B\u043E\u043D\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u044B\u0445 \u043A\u043B\u043E\u043D\u043E\u0432"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-              className: "conf-step__seances-movie-start",
-              children: "19:50"
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-            className: "conf-step__seances-movie",
-            style: {
-              width: 60 + 'px',
-              backgroundColor: 'rgb(133, 255, 137)',
-              left: 66 + 'px'
-            },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-              className: "conf-step__seances-movie-title",
-              children: "\u041C\u0438\u0441\u0441\u0438\u044F \u0432\u044B\u043F\u043E\u043B\u043D\u0438\u043C\u0430"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-              className: "conf-step__seances-movie-start",
-              children: "22:00"
-            })]
-          })]
-        })]
-      })]
+        }, hall.id);
+      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("fieldset", {
       className: "conf-step__buttons text-center",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
@@ -4369,6 +4758,93 @@ var Api = /*#__PURE__*/function () {
       }
 
       return storeFilm;
+    }()
+  }, {
+    key: "getMovie",
+    value: function () {
+      var _getMovie = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(address, date) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                return _context6.abrupt("return", new Promise(function (resolve, reject) {
+                  var params = new URLSearchParams(); // params.append('date', date);
+                  // console.log(date);
+
+                  var xhr = new XMLHttpRequest(); // xhr.open('GET', `${this.server}/${address}`);
+
+                  xhr.open('GET', "http://localhost:8000/api/".concat(address, "/").concat(date));
+                  xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
+                  xhr.addEventListener('load', function () {
+                    if (xhr.readyState === 4) {
+                      if (xhr.status === 200) {
+                        // console.log(xhr);
+                        var data = JSON.parse(xhr.responseText); // console.log(data);
+
+                        return resolve(data.data);
+                      }
+                    }
+
+                    return reject(xhr.responseText);
+                  });
+                  xhr.send();
+                }));
+
+              case 1:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6);
+      }));
+
+      function getMovie(_x16, _x17) {
+        return _getMovie.apply(this, arguments);
+      }
+
+      return getMovie;
+    }()
+  }, {
+    key: "storeMovie",
+    value: function () {
+      var _storeMovie = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7(address, filmId, hallId, start, filmDuration, date) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                return _context7.abrupt("return", new Promise(function (resolve, reject) {
+                  var formData = new FormData();
+                  formData.append('film_id', filmId);
+                  formData.append('hall_id', hallId);
+                  formData.append('start_time', start);
+                  formData.append('movie_show_duration', filmDuration);
+                  formData.append('start_day', date);
+                  var xhr = new XMLHttpRequest();
+                  xhr.open('POST', "http://localhost:8000/api/".concat(address));
+                  xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
+                  xhr.addEventListener('load', function () {
+                    if (xhr.status === 200) {
+                      return resolve(xhr.responseText);
+                    }
+
+                    return reject(xhr.responseText);
+                  });
+                  xhr.send(formData);
+                }));
+
+              case 1:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7);
+      }));
+
+      function storeMovie(_x18, _x19, _x20, _x21, _x22, _x23) {
+        return _storeMovie.apply(this, arguments);
+      }
+
+      return storeMovie;
     }() // sendOrder(name, phone, email) {
     //   return new Promise((resolve, reject) => {
     //     const params = new URLSearchParams();
@@ -4433,7 +4909,7 @@ var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_g
 var ___CSS_LOADER_URL_REPLACEMENT_1___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_images_admin_trash_sprite_png__WEBPACK_IMPORTED_MODULE_3__.default);
 var ___CSS_LOADER_URL_REPLACEMENT_2___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_images_admin_green_pattern_png__WEBPACK_IMPORTED_MODULE_4__.default);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "@charset \"UTF-8\";\r\n@-webkit-keyframes slideFromTop {\r\n  0% {\r\n    top: -50vh; }\r\n  100% {\r\n    top: 100px; } }\r\n@keyframes slideFromTop {\r\n  0% {\r\n    top: -50vh; }\r\n  100% {\r\n    top: 100px; } }\r\n@-webkit-keyframes darken {\r\n  0% {\r\n    background: 0; }\r\n  100% {\r\n    background: rgba(0, 0, 0, 0.7); } }\r\n@keyframes darken {\r\n  0% {\r\n    background: 0; }\r\n  100% {\r\n    background: rgba(0, 0, 0, 0.7); } }\r\n* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box; }\r\n\r\nhtml {\r\n  font-family: \"Roboto\", sans-serif;\r\n  font-size: 62.5%; }\r\n\r\n/* body {\r\n  background-image: url(\"../../../images/admin/background-admin.jpg\");\r\n  background-color: rgba(0, 0, 0, 0.5);\r\n  background-blend-mode: multiply;\r\n  background-size: cover;\r\n  background-attachment: fixed;\r\n  counter-reset: num; } */\r\n\r\ninput[type='radio'], input[type='submit'], button, .conf-step__header, select {\r\n  cursor: pointer; }\r\n\r\n.text-center {\r\n  text-align: center; }\r\n\r\n.conf-steps, .page-header {\r\n  width: 972px;\r\n  margin: 0 auto; }\r\n\r\n.conf-step__wrapper, .conf-step__header, .page-header {\r\n  padding: 35px 42px 35px 104px; }\r\n\r\n.page-header {\r\n  color: #FFFFFF;\r\n  text-transform: uppercase; }\r\n  .page-header .page-header__title {\r\n    margin: 0;\r\n    font-weight: 900;\r\n    font-size: 3.4rem; }\r\n    .page-header .page-header__title span {\r\n      font-weight: 100; }\r\n  .page-header .page-header__subtitle {\r\n    font-size: 1rem;\r\n    letter-spacing: 0.46em; }\r\n\r\n.conf-step {\r\n  position: relative;\r\n  background-color: rgba(234, 233, 235, 0.95); }\r\n  .conf-step::before {\r\n    content: '';\r\n    position: absolute;\r\n    left: 62px;\r\n    margin-left: -1px;\r\n    top: 0;\r\n    bottom: 0;\r\n    display: block;\r\n    width: 2px;\r\n    background-color: #BC95D6; }\r\n\r\n.conf-step__header_opened + .conf-step__wrapper {\r\n  display: block; }\r\n\r\n.conf-step__header_closed + .conf-step__wrapper {\r\n  display: none; }\r\n\r\n.conf-step__header_closed::after {\r\n  transform: rotate(-90deg); }\r\n\r\n.conf-step__header {\r\n  position: relative;\r\n  box-sizing: border-box;\r\n  background-color: #63536C;\r\n  color: #FFFFFF;\r\n  transition-property: all;\r\n  transition-duration: .6s;\r\n  transition-timing-function: ease; }\r\n  .conf-step__header::before {\r\n    content: '';\r\n    position: absolute;\r\n    left: 62px;\r\n    margin-left: -1px;\r\n    top: 0;\r\n    bottom: 0;\r\n    display: block;\r\n    width: 2px;\r\n    background-color: #BC95D6; }\r\n  .conf-step__header::after {\r\n    content: '';\r\n    position: absolute;\r\n    top: calc(50% - 8px);\r\n    display: block;\r\n    right: 42px;\r\n    width: 24px;\r\n    height: 16px;\r\n    background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n    background-size: 24px 16px; }\r\n  .conf-step__header:hover, .conf-step__header:focus {\r\n    background-color: #89639e; }\r\n  .conf-step__header .conf-step__title {\r\n    font-size: 2.2rem;\r\n    font-weight: 700;\r\n    text-transform: uppercase;\r\n    counter-increment: num;\r\n    transition-property: all;\r\n    transition-duration: .6s;\r\n    transition-timing-function: ease; }\r\n    .conf-step__header .conf-step__title::before {\r\n      content: counter(num);\r\n      position: absolute;\r\n      display: block;\r\n      left: 62px;\r\n      top: 50%;\r\n      margin-left: -22px;\r\n      margin-top: -22px;\r\n      width: 44px;\r\n      height: 44px;\r\n      border-radius: 50%;\r\n      border: 5px solid #BC95D6;\r\n      background-color: #FFFFFF;\r\n      box-sizing: border-box;\r\n      color: #63536C;\r\n      font-weight: 900;\r\n      font-size: 2.8rem;\r\n      text-align: center;\r\n      letter-spacing: normal; }\r\n\r\n.conf-step__header:hover .conf-step__title {\r\n  letter-spacing: 2px;\r\n  transition-property: all;\r\n  transition-duration: .6s;\r\n  transition-timing-function: ease; }\r\n  .conf-step__header:hover .conf-step__title::before {\r\n    letter-spacing: normal; }\r\n\r\n.conf-step:first-of-type .conf-step__header::before {\r\n  top: 50%; }\r\n\r\n.conf-step:last-of-type .conf-step__header::before {\r\n  bottom: 50%; }\r\n.conf-step:last-of-type::before {\r\n  display: none; }\r\n\r\n.conf-step__paragraph {\r\n  font-size: 1.6rem;\r\n  font-weight: 400;\r\n  color: #000000;\r\n  margin-bottom: 12px; }\r\n\r\n.conf-step__paragraph:not(:first-of-type) {\r\n  margin-top: 35px; }\r\n\r\n.conf-step__list {\r\n  list-style: none;\r\n  font-size: 1.6rem;\r\n  text-transform: uppercase;\r\n  font-weight: 500;\r\n  margin: 14px 0 5px 25px; }\r\n  .conf-step__list li {\r\n    position: relative; }\r\n  .conf-step__list li + li {\r\n    margin-top: 10px; }\r\n  .conf-step__list li::before {\r\n    content: '–';\r\n    position: absolute;\r\n    left: -14px; }\r\n\r\n.conf-step__button, .login__button {\r\n  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.24), 0px 0px 3px rgba(0, 0, 0, 0.12);\r\n  border-radius: 3px;\r\n  border: none;\r\n  background-color: #FFFFFF;\r\n  text-transform: uppercase;\r\n  font-weight: 500;\r\n  font-size: 1.4rem;\r\n  transition-property: background-color;\r\n  transition-duration: .5s;\r\n  transition-timing-function: ease; }\r\n  .conf-step__button:hover, .conf-step__button:focus, .login__button:hover, .login__button:focus {\r\n    background-color: #EEEAF1;\r\n    outline: none; }\r\n  .conf-step__button:active, .login__button:active {\r\n    position: relative;\r\n    top: 2px;\r\n    background-color: #63536C;\r\n    color: #FFFFFF;\r\n    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75); }\r\n  .conf-step__button + .conf-step__button, .login__button + .conf-step__button, .conf-step__button + .login__button, .login__button + .login__button {\r\n    margin-left: 12px; }\r\n\r\n.conf-step__buttons {\r\n  margin-top: 10px; }\r\n\r\n.conf-step__button-regular {\r\n  color: #63536C;\r\n  padding: 12px 32px;\r\n  margin-top: 17px; }\r\n\r\n.conf-step__button.conf-step__button-accent, .login__button {\r\n  color: #FFFFFF;\r\n  background-color: #16A6AF;\r\n  padding: 12px 32px;\r\n  margin-top: 17px; }\r\n  .conf-step__button.conf-step__button-accent:hover, .conf-step__button.conf-step__button-accent:focus, .login__button:hover, .login__button:focus {\r\n    background-color: #2FC9D2;\r\n    outline: none; }\r\n  .conf-step__button.conf-step__button-accent:active, .login__button:active {\r\n    position: relative;\r\n    top: 2px;\r\n    background-color: #146C72;\r\n    color: #FFFFFF;\r\n    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75); }\r\n\r\n.conf-step__button-trash {\r\n  position: relative;\r\n  width: 20px;\r\n  height: 20px;\r\n  vertical-align: text-top; }\r\n  .conf-step__button-trash::before {\r\n    content: '';\r\n    position: absolute;\r\n    top: 4px;\r\n    left: 4px;\r\n    width: 12px;\r\n    height: 12px;\r\n    background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ");\r\n    background-position: 0 0;\r\n    background-size: 24px 12px;\r\n    background-repeat: no-repeat; }\r\n  .conf-step__button-trash:active::before {\r\n    background-position: -12px 0; }\r\n\r\n.conf-step__legend {\r\n  color: #848484;\r\n  font-size: 1.4rem;\r\n  margin-bottom: 12px; }\r\n  .conf-step__legend .multiplier {\r\n    font-family: monospace;\r\n    font-size: 18px;\r\n    padding: 0 10px; }\r\n  .conf-step__legend .conf-step__chair:not(:first-of-type) {\r\n    margin-left: 20px; }\r\n\r\n.conf-step__hint {\r\n  margin-top: 10px; }\r\n\r\n.conf-step__label, .login__label {\r\n  display: inline-block;\r\n  font-size: 1.2rem;\r\n  color: #848484; }\r\n\r\n.conf-step__label-fullsize {\r\n  width: 100%;\r\n  margin-bottom: 0.8rem; }\r\n  .conf-step__label-fullsize :last-of-type {\r\n    margin-bottom: 0; }\r\n  .conf-step__label-fullsize .conf-step__input {\r\n    width: 100%; }\r\n\r\n.conf-step__input, .login__input {\r\n  display: block;\r\n  width: 100px;\r\n  margin-top: 1px;\r\n  padding: 8px;\r\n  font-size: 1.6rem;\r\n  color: #000000;\r\n  border: 1px solid #b7b7b7; }\r\n  .conf-step__input:focus, .login__input:focus {\r\n    outline: 1px #CF87FF solid;\r\n    outline-offset: -1px; }\r\n\r\n.conf-step__chair {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  width: 26px;\r\n  height: 26px;\r\n  border-width: 2px;\r\n  border-style: solid;\r\n  box-sizing: border-box;\r\n  border-radius: 4px; }\r\n\r\n.conf-step__chair_standart {\r\n  border-color: #393939;\r\n  background-color: #C4C4C4; }\r\n\r\n.conf-step__chair_vip {\r\n  border-color: #0a828a;\r\n  background-color: #b0d6d8;\r\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_2___ + ");\r\n  background-repeat: repeat; }\r\n\r\n.conf-step__chair_disabled {\r\n  border-color: #C4C4C4; }\r\n\r\n.conf-step__selectors-box {\r\n  font-size: 0;\r\n  list-style: none;\r\n  margin-bottom: 15px; }\r\n  .conf-step__selectors-box li {\r\n    position: relative;\r\n    display: inline-block;\r\n    font-size: 1.2rem; }\r\n  .conf-step__selectors-box .conf-step__radio {\r\n    position: absolute;\r\n    top: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    right: 0;\r\n    z-index: 20;\r\n    width: 80px;\r\n    height: 42px;\r\n    opacity: 0; }\r\n  .conf-step__selectors-box .conf-step__selector {\r\n    position: relative;\r\n    display: block;\r\n    padding: 13px 21px;\r\n    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.24), 0px 0px 3px rgba(0, 0, 0, 0.12);\r\n    border-radius: 3px;\r\n    border: none;\r\n    background-color: rgba(255, 255, 255, 0.45);\r\n    text-transform: uppercase;\r\n    font-weight: 500;\r\n    font-size: 1.4rem;\r\n    transition-property: background-color;\r\n    transition-duration: .5s;\r\n    transition-timing-function: ease;\r\n    z-index: 5; }\r\n  .conf-step__selectors-box .conf-step__radio:checked + .conf-step__selector {\r\n    background-color: #FFFFFF;\r\n    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.24), 0px 2px 2px rgba(0, 0, 0, 0.24), 0px 0px 2px rgba(0, 0, 0, 0.12);\r\n    transform: scale(1.1);\r\n    font-weight: 900;\r\n    font-size: 1.4rem;\r\n    z-index: 10; }\r\n  .conf-step__selectors-box .conf-step__radio:hover + .conf-step__selector {\r\n    background-color: rgba(255, 255, 255, 0.9); }\r\n\r\n.conf-step__hall {\r\n  position: relative;\r\n  padding: 62px 32px 34px;\r\n  border: 2px solid #000000;\r\n  text-align: center; }\r\n  .conf-step__hall::before {\r\n    content: ' экран';\r\n    position: absolute;\r\n    top: 24px;\r\n    left: 1.2em;\r\n    right: 0;\r\n    font-size: 1.6rem;\r\n    letter-spacing: 1.2em;\r\n    text-transform: uppercase; }\r\n  .conf-step__hall .conf-step__chair {\r\n    cursor: pointer; }\r\n  .conf-step__hall .conf-step__hall-wrapper {\r\n    display: inline-block; }\r\n    .conf-step__hall .conf-step__hall-wrapper .conf-step__row {\r\n      font-size: 0; }\r\n    .conf-step__hall .conf-step__hall-wrapper .conf-step__row + .conf-step__row {\r\n      margin-top: 10px; }\r\n    .conf-step__hall .conf-step__hall-wrapper .conf-step__chair + .conf-step__chair {\r\n      margin-left: 10px; }\r\n\r\n.conf-step__movies {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  align-items: flex-start; }\r\n  .conf-step__movies .conf-step__movie {\r\n    position: relative;\r\n    width: calc((100% - 30px) / 3);\r\n    min-height: 52px;\r\n    padding: 8px 8px 8px 48px;\r\n    background: #FFEB85;\r\n    border: 1px solid rgba(0, 0, 0, 0.3);\r\n    box-sizing: border-box;\r\n    cursor: pointer; }\r\n    .conf-step__movies .conf-step__movie:nth-of-type(3n + 2) {\r\n      margin: 0 15px; }\r\n    .conf-step__movies .conf-step__movie:nth-of-type(n + 4) {\r\n      margin-top: 15px; }\r\n    .conf-step__movies .conf-step__movie:nth-of-type(1) {\r\n      background-color: #caff85; }\r\n    .conf-step__movies .conf-step__movie:nth-of-type(2) {\r\n      background-color: #85ff89; }\r\n    .conf-step__movies .conf-step__movie:nth-of-type(3) {\r\n      background-color: #85ffd3; }\r\n    .conf-step__movies .conf-step__movie:nth-of-type(4) {\r\n      background-color: #85e2ff; }\r\n    .conf-step__movies .conf-step__movie:nth-of-type(5) {\r\n      background-color: #8599ff; }\r\n    .conf-step__movies .conf-step__movie:nth-of-type(6) {\r\n      background-color: #ba85ff; }\r\n    .conf-step__movies .conf-step__movie:nth-of-type(7) {\r\n      background-color: #ff85fb; }\r\n    .conf-step__movies .conf-step__movie:nth-of-type(8) {\r\n      background-color: #ff85b1; }\r\n    .conf-step__movies .conf-step__movie:nth-of-type(9) {\r\n      background-color: #ffa285; }\r\n  .conf-step__movies .conf-step__movie-poster {\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    width: 38px;\r\n    height: 50px; }\r\n  .conf-step__movies .conf-step__movie-title {\r\n    font-weight: 500;\r\n    font-size: 1.4rem; }\r\n  .conf-step__movies .conf-step__movie-duration {\r\n    font-size: 1.4rem;\r\n    color: rgba(0, 0, 0, 0.7); }\r\n\r\n.conf-step__seances-hall {\r\n  margin: 35px; }\r\n\r\n.conf-step__seances-title {\r\n  font-weight: 500;\r\n  font-size: 1.6rem;\r\n  text-transform: uppercase; }\r\n\r\n.conf-step__seances-timeline {\r\n  position: relative;\r\n  outline: 1px solid #848484;\r\n  padding: 10px 0;\r\n  height: 40px;\r\n  box-sizing: content-box;\r\n  width: calc(1440px * 0.5); }\r\n\r\n.conf-step__seances-movie {\r\n  position: absolute;\r\n  height: 40px;\r\n  border: 1px solid rgba(0, 0, 0, 0.3);\r\n  box-sizing: border-box;\r\n  padding: 10px 2px 10px 10px; }\r\n  .conf-step__seances-movie .conf-step__seances-movie-title {\r\n    overflow: hidden;\r\n    line-height: 10px;\r\n    height: 100%; }\r\n  .conf-step__seances-movie .conf-step__seances-movie-start {\r\n    position: absolute;\r\n    bottom: -33px;\r\n    left: -14px;\r\n    color: #848484;\r\n    font-size: 1.2rem; }\r\n  .conf-step__seances-movie::before {\r\n    content: '';\r\n    position: absolute;\r\n    display: block;\r\n    width: 1px;\r\n    height: 5px;\r\n    bottom: -17px;\r\n    left: 0;\r\n    background-color: #848484; }\r\n\r\n.login {\r\n  width: 480px;\r\n  margin: 0 auto;\r\n  position: relative;\r\n  background-color: rgba(234, 233, 235, 0.95); }\r\n  .login__wrapper {\r\n    padding: 35px 104px; }\r\n  .login__header {\r\n    position: relative;\r\n    box-sizing: border-box;\r\n    padding: 16px 104px;\r\n    background-color: #63536C;\r\n    color: #FFFFFF; }\r\n  .login__title {\r\n    font-size: 2.2rem;\r\n    font-weight: 700;\r\n    text-transform: uppercase; }\r\n  .login__label {\r\n    width: 100%;\r\n    margin-bottom: 0.8rem; }\r\n    .login__label:last-of-type {\r\n      margin-bottom: 0; }\r\n  .login__input {\r\n    width: 100%; }\r\n\r\n.popup {\r\n  display: none;\r\n  position: fixed;\r\n  width: 100%;\r\n  height: 100%;\r\n  z-index: 100; }\r\n  .popup__title {\r\n    font-size: 2.2rem;\r\n    font-weight: 700;\r\n    text-transform: uppercase; }\r\n  .popup.active {\r\n    display: block;\r\n    background: rgba(0, 0, 0, 0.7);\r\n    -webkit-animation: 0.5s ease-out 0s 1 darken;\r\n            animation: 0.5s ease-out 0s 1 darken; }\r\n    .popup.active .popup__content {\r\n      top: 100px;\r\n      -webkit-animation: 0.5s ease-out 0s 1 slideFromTop;\r\n              animation: 0.5s ease-out 0s 1 slideFromTop; }\r\n  .popup__container {\r\n    position: relative;\r\n    width: 100%; }\r\n  .popup__content {\r\n    position: relative;\r\n    top: -50vh;\r\n    background-color: rgba(234, 233, 235, 0.95);\r\n    width: 960px;\r\n    margin: 0 auto; }\r\n  .popup__header {\r\n    box-sizing: border-box;\r\n    padding: 16px 42px;\r\n    background-color: #63536C;\r\n    color: #FFFFFF; }\r\n  .popup__wrapper {\r\n    padding: 35px 104px; }\r\n  .popup__dismiss {\r\n    float: right; }\r\n    .popup__dismiss img {\r\n      height: 1em;\r\n      transition: .3s all ease; }\r\n      .popup__dismiss img:hover {\r\n        transform: scale(1.2);\r\n        transition: .3s all ease; }", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "@charset \"UTF-8\";\r\n@-webkit-keyframes slideFromTop {\r\n  0% {\r\n    top: -50vh; }\r\n  100% {\r\n    top: 100px; } }\r\n@keyframes slideFromTop {\r\n  0% {\r\n    top: -50vh; }\r\n  100% {\r\n    top: 100px; } }\r\n@-webkit-keyframes darken {\r\n  0% {\r\n    background: 0; }\r\n  100% {\r\n    background: rgba(0, 0, 0, 0.7); } }\r\n@keyframes darken {\r\n  0% {\r\n    background: 0; }\r\n  100% {\r\n    background: rgba(0, 0, 0, 0.7); } }\r\n* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box; }\r\n\r\nhtml {\r\n  font-family: \"Roboto\", sans-serif;\r\n  font-size: 62.5%; }\r\n\r\n/* body {\r\n  background-image: url(\"../../../images/admin/background-admin.jpg\");\r\n  background-color: rgba(0, 0, 0, 0.5);\r\n  background-blend-mode: multiply;\r\n  background-size: cover;\r\n  background-attachment: fixed;\r\n  counter-reset: num; } */\r\n\r\ninput[type='radio'], input[type='submit'], button, .conf-step__header, select {\r\n  cursor: pointer; }\r\n\r\n.text-center {\r\n  text-align: center; }\r\n\r\n.conf-steps, .page-header {\r\n  width: 972px;\r\n  margin: 0 auto; }\r\n\r\n.conf-step__wrapper, .conf-step__header, .page-header {\r\n  padding: 35px 42px 35px 104px; }\r\n\r\n.page-header {\r\n  color: #FFFFFF;\r\n  text-transform: uppercase; }\r\n  .page-header .page-header__title {\r\n    margin: 0;\r\n    font-weight: 900;\r\n    font-size: 3.4rem; }\r\n    .page-header .page-header__title span {\r\n      font-weight: 100; }\r\n  .page-header .page-header__subtitle {\r\n    font-size: 1rem;\r\n    letter-spacing: 0.46em; }\r\n\r\n.conf-step {\r\n  position: relative;\r\n  background-color: rgba(234, 233, 235, 0.95); }\r\n  .conf-step::before {\r\n    content: '';\r\n    position: absolute;\r\n    left: 62px;\r\n    margin-left: -1px;\r\n    top: 0;\r\n    bottom: 0;\r\n    display: block;\r\n    width: 2px;\r\n    background-color: #BC95D6; }\r\n\r\n.conf-step__header_opened + .conf-step__wrapper {\r\n  display: block;\r\n }\r\n\r\n.conf-step__header_closed + .conf-step__wrapper {\r\n  display: none; }\r\n\r\n.conf-step__header_closed::after {\r\n  transform: rotate(-90deg); }\r\n\r\n.conf-step__header {\r\n  position: relative;\r\n  box-sizing: border-box;\r\n  background-color: #63536C;\r\n  color: #FFFFFF;\r\n  transition-property: all;\r\n  transition-duration: .6s;\r\n  transition-timing-function: ease; }\r\n  .conf-step__header::before {\r\n    content: '';\r\n    position: absolute;\r\n    left: 62px;\r\n    margin-left: -1px;\r\n    top: 0;\r\n    bottom: 0;\r\n    display: block;\r\n    width: 2px;\r\n    background-color: #BC95D6; }\r\n  .conf-step__header::after {\r\n    content: '';\r\n    position: absolute;\r\n    top: calc(50% - 8px);\r\n    display: block;\r\n    right: 42px;\r\n    width: 24px;\r\n    height: 16px;\r\n    background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n    background-size: 24px 16px; }\r\n  .conf-step__header:hover, .conf-step__header:focus {\r\n    background-color: #89639e; }\r\n  .conf-step__header .conf-step__title {\r\n    font-size: 2.2rem;\r\n    font-weight: 700;\r\n    text-transform: uppercase;\r\n    counter-increment: num;\r\n    transition-property: all;\r\n    transition-duration: .6s;\r\n    transition-timing-function: ease; }\r\n    .conf-step__header .conf-step__title::before {\r\n      content: counter(num);\r\n      position: absolute;\r\n      display: block;\r\n      left: 62px;\r\n      top: 50%;\r\n      margin-left: -22px;\r\n      margin-top: -22px;\r\n      width: 44px;\r\n      height: 44px;\r\n      border-radius: 50%;\r\n      border: 5px solid #BC95D6;\r\n      background-color: #FFFFFF;\r\n      box-sizing: border-box;\r\n      color: #63536C;\r\n      font-weight: 900;\r\n      font-size: 2.8rem;\r\n      text-align: center;\r\n      letter-spacing: normal; }\r\n\r\n.conf-step__header:hover .conf-step__title {\r\n  letter-spacing: 2px;\r\n  transition-property: all;\r\n  transition-duration: .6s;\r\n  transition-timing-function: ease; }\r\n  .conf-step__header:hover .conf-step__title::before {\r\n    letter-spacing: normal; }\r\n\r\n.conf-step:first-of-type .conf-step__header::before {\r\n  top: 50%; }\r\n\r\n.conf-step:last-of-type .conf-step__header::before {\r\n  bottom: 50%; }\r\n.conf-step:last-of-type::before {\r\n  display: none; }\r\n\r\n.conf-step__paragraph {\r\n  font-size: 1.6rem;\r\n  font-weight: 400;\r\n  color: #000000;\r\n  margin-bottom: 12px; }\r\n\r\n.conf-step__paragraph:not(:first-of-type) {\r\n  margin-top: 35px; }\r\n\r\n.conf-step__list {\r\n  list-style: none;\r\n  font-size: 1.6rem;\r\n  text-transform: uppercase;\r\n  font-weight: 500;\r\n  margin: 14px 0 5px 25px; }\r\n  .conf-step__list li {\r\n    position: relative; }\r\n  .conf-step__list li + li {\r\n    margin-top: 10px; }\r\n  .conf-step__list li::before {\r\n    content: '–';\r\n    position: absolute;\r\n    left: -14px; }\r\n\r\n.conf-step__button, .login__button {\r\n  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.24), 0px 0px 3px rgba(0, 0, 0, 0.12);\r\n  border-radius: 3px;\r\n  border: none;\r\n  background-color: #FFFFFF;\r\n  text-transform: uppercase;\r\n  font-weight: 500;\r\n  font-size: 1.4rem;\r\n  transition-property: background-color;\r\n  transition-duration: .5s;\r\n  transition-timing-function: ease; }\r\n  .conf-step__button:hover, .conf-step__button:focus, .login__button:hover, .login__button:focus {\r\n    background-color: #EEEAF1;\r\n    outline: none; }\r\n  .conf-step__button:active, .login__button:active {\r\n    position: relative;\r\n    top: 2px;\r\n    background-color: #63536C;\r\n    color: #FFFFFF;\r\n    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75); }\r\n  .conf-step__button + .conf-step__button, .login__button + .conf-step__button, .conf-step__button + .login__button, .login__button + .login__button {\r\n    margin-left: 12px; }\r\n\r\n.conf-step__buttons {\r\n  margin-top: 10px; }\r\n\r\n.conf-step__button-regular {\r\n  color: #63536C;\r\n  padding: 12px 32px;\r\n  margin-top: 17px; }\r\n\r\n.conf-step__button.conf-step__button-accent, .login__button {\r\n  color: #FFFFFF;\r\n  background-color: #16A6AF;\r\n  padding: 12px 32px;\r\n  margin-top: 17px; }\r\n  .conf-step__button.conf-step__button-accent:hover, .conf-step__button.conf-step__button-accent:focus, .login__button:hover, .login__button:focus {\r\n    background-color: #2FC9D2;\r\n    outline: none; }\r\n  .conf-step__button.conf-step__button-accent:active, .login__button:active {\r\n    position: relative;\r\n    top: 2px;\r\n    background-color: #146C72;\r\n    color: #FFFFFF;\r\n    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75); }\r\n\r\n.conf-step__button-trash {\r\n  position: relative;\r\n  width: 20px;\r\n  height: 20px;\r\n  vertical-align: text-top; }\r\n  .conf-step__button-trash::before {\r\n    content: '';\r\n    position: absolute;\r\n    top: 4px;\r\n    left: 4px;\r\n    width: 12px;\r\n    height: 12px;\r\n    background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ");\r\n    background-position: 0 0;\r\n    background-size: 24px 12px;\r\n    background-repeat: no-repeat; }\r\n  .conf-step__button-trash:active::before {\r\n    background-position: -12px 0; }\r\n\r\n.conf-step__legend {\r\n  color: #848484;\r\n  font-size: 1.4rem;\r\n  margin-bottom: 12px; }\r\n  .conf-step__legend .multiplier {\r\n    font-family: monospace;\r\n    font-size: 18px;\r\n    padding: 0 10px; }\r\n  .conf-step__legend .conf-step__chair:not(:first-of-type) {\r\n    margin-left: 20px; }\r\n\r\n.conf-step__hint {\r\n  margin-top: 10px; }\r\n\r\n.conf-step__label, .login__label {\r\n  display: inline-block;\r\n  font-size: 1.2rem;\r\n  color: #848484; }\r\n\r\n.conf-step__label-fullsize {\r\n  width: 100%;\r\n  margin-bottom: 0.8rem; }\r\n  .conf-step__label-fullsize :last-of-type {\r\n    margin-bottom: 0; }\r\n  .conf-step__label-fullsize .conf-step__input {\r\n    width: 100%; }\r\n\r\n.conf-step__input, .login__input {\r\n  display: block;\r\n  width: 100px;\r\n  margin-top: 1px;\r\n  padding: 8px;\r\n  font-size: 1.6rem;\r\n  color: #000000;\r\n  border: 1px solid #b7b7b7; }\r\n  .conf-step__input:focus, .login__input:focus {\r\n    outline: 1px #CF87FF solid;\r\n    outline-offset: -1px; }\r\n\r\n.conf-step__chair {\r\n  display: inline-block;\r\n  vertical-align: middle;\r\n  width: 26px;\r\n  height: 26px;\r\n  border-width: 2px;\r\n  border-style: solid;\r\n  box-sizing: border-box;\r\n  border-radius: 4px; }\r\n\r\n.conf-step__chair_standart {\r\n  border-color: #393939;\r\n  background-color: #C4C4C4; }\r\n\r\n.conf-step__chair_vip {\r\n  border-color: #0a828a;\r\n  background-color: #b0d6d8;\r\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_2___ + ");\r\n  background-repeat: repeat; }\r\n\r\n.conf-step__chair_disabled {\r\n  border-color: #C4C4C4; }\r\n\r\n.conf-step__selectors-box {\r\n  font-size: 0;\r\n  list-style: none;\r\n  margin-bottom: 15px; }\r\n  .conf-step__selectors-box li {\r\n    position: relative;\r\n    display: inline-block;\r\n    font-size: 1.2rem; }\r\n  .conf-step__selectors-box .conf-step__radio {\r\n    position: absolute;\r\n    top: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    right: 0;\r\n    z-index: 20;\r\n    width: 80px;\r\n    height: 42px;\r\n    opacity: 0; }\r\n  .conf-step__selectors-box .conf-step__selector {\r\n    position: relative;\r\n    display: block;\r\n    padding: 13px 21px;\r\n    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.24), 0px 0px 3px rgba(0, 0, 0, 0.12);\r\n    border-radius: 3px;\r\n    border: none;\r\n    background-color: rgba(255, 255, 255, 0.45);\r\n    text-transform: uppercase;\r\n    font-weight: 500;\r\n    font-size: 1.4rem;\r\n    transition-property: background-color;\r\n    transition-duration: .5s;\r\n    transition-timing-function: ease;\r\n    z-index: 5; }\r\n  .conf-step__selectors-box .conf-step__radio:checked + .conf-step__selector {\r\n    background-color: #FFFFFF;\r\n    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.24), 0px 2px 2px rgba(0, 0, 0, 0.24), 0px 0px 2px rgba(0, 0, 0, 0.12);\r\n    transform: scale(1.1);\r\n    font-weight: 900;\r\n    font-size: 1.4rem;\r\n    z-index: 10; }\r\n  .conf-step__selectors-box .conf-step__radio:hover + .conf-step__selector {\r\n    background-color: rgba(255, 255, 255, 0.9); }\r\n\r\n.conf-step__hall {\r\n  position: relative;\r\n  padding: 62px 32px 34px;\r\n  border: 2px solid #000000;\r\n  text-align: center; }\r\n  .conf-step__hall::before {\r\n    content: ' экран';\r\n    position: absolute;\r\n    top: 24px;\r\n    left: 1.2em;\r\n    right: 0;\r\n    font-size: 1.6rem;\r\n    letter-spacing: 1.2em;\r\n    text-transform: uppercase; }\r\n  .conf-step__hall .conf-step__chair {\r\n    cursor: pointer; }\r\n  .conf-step__hall .conf-step__hall-wrapper {\r\n    display: inline-block; }\r\n    .conf-step__hall .conf-step__hall-wrapper .conf-step__row {\r\n      font-size: 0; }\r\n    .conf-step__hall .conf-step__hall-wrapper .conf-step__row + .conf-step__row {\r\n      margin-top: 10px; }\r\n    .conf-step__hall .conf-step__hall-wrapper .conf-step__chair + .conf-step__chair {\r\n      margin-left: 10px; }\r\n\r\n.conf-step__movies {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  align-items: flex-start; }\r\n  .conf-step__movies .conf-step__movie {\r\n    position: relative;\r\n    width: calc((100% - 30px) / 3);\r\n    min-height: 52px;\r\n    padding: 8px 8px 8px 48px;\r\n    background: #FFEB85;\r\n    border: 1px solid rgba(0, 0, 0, 0.3);\r\n    box-sizing: border-box;\r\n    cursor: pointer; }\r\n    .conf-step__movies .conf-step__movie:nth-of-type(3n + 2) {\r\n      margin: 0 15px; }\r\n    .conf-step__movies .conf-step__movie:nth-of-type(n + 4) {\r\n      margin-top: 15px; }\r\n    .conf-step__movies .conf-step__movie:nth-of-type(1) {\r\n      background-color: #caff85; }\r\n    .conf-step__movies .conf-step__movie:nth-of-type(2) {\r\n      background-color: #85ff89; }\r\n    .conf-step__movies .conf-step__movie:nth-of-type(3) {\r\n      background-color: #85ffd3; }\r\n    .conf-step__movies .conf-step__movie:nth-of-type(4) {\r\n      background-color: #85e2ff; }\r\n    .conf-step__movies .conf-step__movie:nth-of-type(5) {\r\n      background-color: #8599ff; }\r\n    .conf-step__movies .conf-step__movie:nth-of-type(6) {\r\n      background-color: #ba85ff; }\r\n    .conf-step__movies .conf-step__movie:nth-of-type(7) {\r\n      background-color: #ff85fb; }\r\n    .conf-step__movies .conf-step__movie:nth-of-type(8) {\r\n      background-color: #ff85b1; }\r\n    .conf-step__movies .conf-step__movie:nth-of-type(9) {\r\n      background-color: #ffa285; }\r\n  .conf-step__movies .conf-step__movie-poster {\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    width: 38px;\r\n    height: 50px; }\r\n  .conf-step__movies .conf-step__movie-title {\r\n    font-weight: 500;\r\n    font-size: 1.4rem; }\r\n  .conf-step__movies .conf-step__movie-duration {\r\n    font-size: 1.4rem;\r\n    color: rgba(0, 0, 0, 0.7); }\r\n\r\n.conf-step__seances-hall {\r\n  margin: 35px; }\r\n\r\n.conf-step__seances-title {\r\n  font-weight: 500;\r\n  font-size: 1.6rem;\r\n  text-transform: uppercase; }\r\n\r\n.conf-step__seances-timeline {\r\n  position: relative;\r\n  outline: 1px solid #848484;\r\n  padding: 10px 0;\r\n  height: 40px;\r\n  box-sizing: content-box;\r\n  width: calc(1440px * 0.5); }\r\n\r\n.conf-step__seances-movie {\r\n  position: absolute;\r\n  height: 40px;\r\n  border: 1px solid rgba(0, 0, 0, 0.3);\r\n  box-sizing: border-box;\r\n  padding: 10px 2px 10px 10px; }\r\n  .conf-step__seances-movie .conf-step__seances-movie-title {\r\n    overflow: hidden;\r\n    line-height: 10px;\r\n    height: 100%; }\r\n  .conf-step__seances-movie .conf-step__seances-movie-start {\r\n    position: absolute;\r\n    bottom: -33px;\r\n    left: -14px;\r\n    color: #848484;\r\n    font-size: 1.2rem; }\r\n  .conf-step__seances-movie::before {\r\n    content: '';\r\n    position: absolute;\r\n    display: block;\r\n    width: 1px;\r\n    height: 5px;\r\n    bottom: -17px;\r\n    left: 0;\r\n    background-color: #848484; }\r\n\r\n.login {\r\n  width: 480px;\r\n  margin: 0 auto;\r\n  position: relative;\r\n  background-color: rgba(234, 233, 235, 0.95); }\r\n  .login__wrapper {\r\n    padding: 35px 104px; }\r\n  .login__header {\r\n    position: relative;\r\n    box-sizing: border-box;\r\n    padding: 16px 104px;\r\n    background-color: #63536C;\r\n    color: #FFFFFF; }\r\n  .login__title {\r\n    font-size: 2.2rem;\r\n    font-weight: 700;\r\n    text-transform: uppercase; }\r\n  .login__label {\r\n    width: 100%;\r\n    margin-bottom: 0.8rem; }\r\n    .login__label:last-of-type {\r\n      margin-bottom: 0; }\r\n  .login__input {\r\n    width: 100%; }\r\n\r\n.popup {\r\n  display: none;\r\n  position: fixed;\r\n  width: 100%;\r\n  height: 100%;\r\n  z-index: 100;\r\n  top: 0px;\r\n  left: 0px;\r\n }\r\n  .popup__title {\r\n    font-size: 2.2rem;\r\n    font-weight: 700;\r\n    text-transform: uppercase; }\r\n  .popup.active {\r\n    display: block;\r\n    background: rgba(0, 0, 0, 0.7);\r\n    -webkit-animation: 0.5s ease-out 0s 1 darken;\r\n            animation: 0.5s ease-out 0s 1 darken; }\r\n    .popup.active .popup__content {\r\n      top: 100px;\r\n      -webkit-animation: 0.5s ease-out 0s 1 slideFromTop;\r\n              animation: 0.5s ease-out 0s 1 slideFromTop; }\r\n  .popup__container {\r\n    position: relative;\r\n    width: 100%; }\r\n  .popup__content {\r\n    position: relative;\r\n    top: -50vh;\r\n    background-color: rgba(234, 233, 235, 0.95);\r\n    width: 960px;\r\n    margin: 0 auto; }\r\n  .popup__header {\r\n    box-sizing: border-box;\r\n    padding: 16px 42px;\r\n    background-color: #63536C;\r\n    color: #FFFFFF; }\r\n  .popup__wrapper {\r\n    padding: 35px 104px; }\r\n  .popup__dismiss {\r\n    float: right; }\r\n    .popup__dismiss img {\r\n      height: 1em;\r\n      transition: .3s all ease; }\r\n      .popup__dismiss img:hover {\r\n        transform: scale(1.2);\r\n        transition: .3s all ease; }", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
