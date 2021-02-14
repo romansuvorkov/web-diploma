@@ -18,25 +18,64 @@ function HallConfig() {
   const [isRedacting, setIsRedacting] = useState(false);
   // const [seatTable, setSeatTable] = useState([]);
 
+  // useEffect(async () => {
+  //   setIsLoaded(false);
+  //   // setSeatsIsLoaded(false);
+  //   if (halls.length > 0) {
+  //     if (hallForRender.length === 0) {
+  //       // setHallForRender(halls.find(item => item.id == activeHall));
+  //       setActiveHall(halls[0].id);
+  //       setHallForRender(halls[0]);
+  //     } else {
+  //       console.log('trouble');
+  //       setSeats(await Api.getShow('seats', hallForRender.id));
+  //       // setSeatsIsLoaded(true);
+  //       setRows(hallForRender.row);
+  //       setSeatsInRow(hallForRender.seats);
+  //       setIsLoaded(true);
+  //     }
+  //       // setIsLoaded(true);
+  //   }
+  // }, [halls, hallForRender]);
+
   useEffect(async () => {
     setIsLoaded(false);
     // setSeatsIsLoaded(false);
     if (halls.length > 0) {
-      if (hallForRender.length === 0) {
+      // if (hallForRender.length === 0) {
         // setHallForRender(halls.find(item => item.id == activeHall));
         setActiveHall(halls[0].id);
         setHallForRender(halls[0]);
-      } else {
+      // } else {
         console.log('trouble');
+        setSeats(await Api.getShow('seats', halls[0].id));
+        // setSeatsIsLoaded(true);
+        setRows(halls[0].row);
+        setSeatsInRow(halls[0].seats);
+        setIsLoaded(true);
+      // }
+        // setIsLoaded(true);
+    }
+  }, [halls]);
+
+  useEffect(async () => {
+    setIsLoaded(false);
+    // setSeatsIsLoaded(false);
+      // if (hallForRender.length === 0) {
+        // setHallForRender(halls.find(item => item.id == activeHall));
+        // setActiveHall(halls[0].id);
+        setHallForRender(halls[activeHall]);
+      // } else {
         setSeats(await Api.getShow('seats', hallForRender.id));
         // setSeatsIsLoaded(true);
         setRows(hallForRender.row);
         setSeatsInRow(hallForRender.seats);
         setIsLoaded(true);
-      }
+      // }
         // setIsLoaded(true);
-    }
-  }, [halls, hallForRender]);
+  }, [activeHall]);
+
+
 
   useEffect(() => {
     setSeatsIsLoaded(false);

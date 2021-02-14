@@ -46,6 +46,27 @@ export default class Api {
         });
     }
 
+    static async deleteItem(address, id) {
+      return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        // xhr.open('GET', `${this.server}/${address}/${number}`);
+        xhr.open('DELETE', `http://localhost:8000/api/${address}/${id}`);
+        xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
+        xhr.addEventListener('load', () => {
+          if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+            // console.log(xhr);
+            const data = xhr.responseText;
+            console.log(data);
+            return resolve(data);
+            }
+          }
+          return reject(xhr.responseText);
+        });
+        xhr.send();
+      });
+    }
+
     static async updateSeats(address, id, array, row, seats) {
       const dataString = JSON.stringify(array);
       return new Promise((resolve, reject) => {
@@ -139,25 +160,15 @@ export default class Api {
     }
 
 
-    static async storeMovie(address, filmId, hallId, start, filmDuration, date) {
-      // const formData = new FormData();
-      // formData.append('name', object.name);
-      // formData.append('description', object.description);
-      // formData.append('duration', object.duration);
-      // formData.append('country', object.country);
-      // formData.append('poster', poster);
-    //   for (var value of formData.values()) {
-    //     console.log(value);
-    //  }
+    static async patchMovie(address, date, dataArray, deleted) {
+      const dataString = JSON.stringify(dataArray);
+      const deletedString = JSON.stringify(deleted);
       return new Promise((resolve, reject) => {
-        const formData = new FormData();
-        formData.append('film_id', filmId);
-        formData.append('hall_id', hallId);
-        formData.append('start_time', start);
-        formData.append('movie_show_duration', filmDuration);
-        formData.append('start_day', date);
+        const params = new URLSearchParams();
+        params.append('dataArray', dataString);
+        params.append('deleted', deletedString);
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', `http://localhost:8000/api/${address}`);
+        xhr.open('PATCH', `http://localhost:8000/api/${address}/${date}`);
         xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
         xhr.addEventListener('load', () => {
           if (xhr.status === 200) {
@@ -165,7 +176,7 @@ export default class Api {
           }
           return reject(xhr.responseText);
         });
-        xhr.send(formData);
+        xhr.send(params);
       });
     }
     // sendOrder(name, phone, email) {

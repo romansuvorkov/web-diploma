@@ -56,16 +56,16 @@ class MovieShowController extends Controller
         // $image->move(public_path('images'),$imageName);
         // $path = 'images/'.$imageName;
 
-        // $newMovie = new MovieShow([
-        //     'film_id' =>  $request->film_id,
-        //     'hall_id' => $request->hall_id,
-        //     'start_time' => $request->start_time,
-        //     'movie_show_duration' => $request->movie_show_duration,
-        //     'start_day' => $request->start_day,
-        //     'film_name' => 'Альфа',
-        // ]);
+        $newMovie = new MovieShow([
+            'film_id' =>  $request->film_id,
+            'hall_id' => $request->hall_id,
+            'start_time' => $request->start_time,
+            'movie_show_duration' => $request->movie_show_duration,
+            'start_day' => $request->start_day,
+            'film_name' => $request->name,
+        ]);
 
-        // $newMovie->save();
+        $newMovie->save();
 
         // $image_path = 'images/1612891883.jpg';
         // if (File::exists($image_path)) {
@@ -73,8 +73,8 @@ class MovieShowController extends Controller
         //     // unlink($image_path);
         // }
         // $path = Storage::putFile('poster', $request->file('poster'));
-
-        return $request->movie_show_duration;
+        return 'New movie show added';
+        // return $request->movie_show_duration;
 
         // return 'test';
     }
@@ -110,7 +110,32 @@ class MovieShowController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $newData = json_decode($request->dataArray);
+        $deleted = json_decode($request->deleted);
+
+        if(count($deleted) > 0) {
+            // $arrForDelete = MovieShow::all()->where('start_day', $id);
+            foreach($deleted as $item) {
+                $targetItem = MovieShow::findOrFail($item);
+                $targetItem->delete();
+            }
+        }
+
+        if(count($newData) > 0) {
+            foreach($newData as $newMovieShow) {
+                $newMovie = new MovieShow([
+                    'film_id' =>  $newMovieShow->film_id,
+                    'hall_id' => $newMovieShow->hall_id,
+                    'start_time' => $newMovieShow->start_time,
+                    'movie_show_duration' => $newMovieShow->movie_show_duration,
+                    'start_day' => $newMovieShow->start_day,
+                    'film_name' => $newMovieShow->film_name,
+                ]);
+                $newMovie->save();
+            }
+        }
+
+        return "Update successful";
     }
 
     /**

@@ -6,6 +6,10 @@ import poster1 from '../../../images/poster2.jpg';
 import Api from '../../functions/Api';
 import AddFilmPopup from './AddFilmPopup';
 import AddMovieShowPopup from './AddMovieShowPopup';
+import ConfirmPopup from './ConfirmPopup';
+import { v4 as uuidv4 } from 'uuid';
+
+
 
 
 function  MovieShowConfig() {
@@ -15,7 +19,12 @@ function  MovieShowConfig() {
     const [movieShows, setMovieShows] = useState(false);
     const [isAddPopup, setIsAddPopup] = useState(false);
     const [isAddMovieShow, setIsAddMovieShow] = useState(false);
+    const [isDeletePopup, setIsDeletePopup] = useState(false);
     const [films, setFilms] = useState([]);
+    const [newMovieShows, setNewMovieShows] = useState([]);
+    const [deletedMoviesShow, setDeletedMoviesShow] = useState([]);
+    const [addedMoviesShow, setAddedMoviesShow] = useState([]);
+    const [deleteState, setDeleteState] = useState({});
 
     const now = new Date();
     const day = ("0" + now.getDate()).slice(-2);
@@ -28,19 +37,16 @@ function  MovieShowConfig() {
     const [addMovieShowErr, setAddMovieShowErr] = useState('');
 
 
-
-
     useEffect(async () => {
-      setMovieShows(await Api.getMovie('movie', today));
+      const movies = await Api.getMovie('movie', today);
+      setMovieShows([...movies]);
+      setNewMovieShows([...movies]);
       setFilms(await Api.getItems('film'));
     },[]);
 
     const handleAddFilmSubmit = async(e, film, file) => {
       e.preventDefault();
-      // console.dir(fileRef.current.files[0]);
-      // console.log(fileRef.current.files[0]);
       let response = await Api.storeFilm('film', film, file);
-      // console.log(test);
       if(response === 'New film added') {
           setIsAddPopup(false);
           setFilms(await Api.getItems('film'));
@@ -53,29 +59,14 @@ function  MovieShowConfig() {
       const minutes = Number.parseInt(startTime.substr(3));
       const movieShowStart = hour * 60 + minutes;
       console.log(movieShowStart);
-      for (let item of movieShows) {
+      for (let item of newMovieShows) {
         if (hallId === item.hall_id) {
           const start = Number.parseInt(item.start_time);
           const end = Number.parseInt(item.start_time) + item.movie_show_duration;
-          // console.log(start);
-          // console.log(end);
-          // console.log(start < movieShowStart && movieShowStart < end);
           if ( start < movieShowStart && movieShowStart < end ) {
             setAddMovieShowErr(`Сеанс пересекается по веремени с сеансом ${item.id}`);
             return;
           }
-          // console.log('start < movieShowStart && movieShowStart < end');
-          // console.log(start < movieShowStart && movieShowStart < end);
-          // console.log('start < movieShowStart + film.duration && movieShowStart + film.duration < end ');
-          // console.log(start < movieShowStart + film.duration && movieShowStart + film.duration < end );
-          // console.log('start');
-          // console.log(start);
-          // console.log('movieShowStart + film.duration ');
-          // console.log(movieShowStart + film.duration);
-          // console.log('end');
-          // console.log(end);
-          // console.log('start > movieShowStart && movieShowStart + film.duration > end');
-          // console.log(start > movieShowStart && movieShowStart + film.duration > end);
           if ( start < movieShowStart + film.duration && movieShowStart + film.duration < end ) {
             setAddMovieShowErr(`Сеанс пересекается по веремени с сеансом ${item.id}`);
             return;
@@ -84,21 +75,51 @@ function  MovieShowConfig() {
             setAddMovieShowErr(`Сеанс пересекается по веремени с сеансом ${item.id}`);
             return;
           }
-          setAddMovieShowErr('');
-          console.log('film.duration');
-          console.log(film.duration);
-          let response = await Api.storeMovie('movie', film.id, hallId, movieShowStart, film.duration, activeDate);
-          // console.log(test);
-          if(response === 'New movie show added') {
-              setIsAddMovieShow(false);
-              setMovieShows(await Api.getMovie('movie', activeDate));
-          }
+
+// *************************************
+// ********Сохранение на сервер***********
+// *************************************
+          // let response = await Api.storeMovie('movie', film.id, hallId, movieShowStart, film.duration, activeDate, film.name);
+          // // console.log(test);
+          // if(response === 'New movie show added') {
+          //     setIsAddMovieShow(false);
+          //     setMovieShows(await Api.getMovie('movie', activeDate));
+          // }
         }
-        
       }
-      // console.log("Работает правильно");
+      setAddMovieShowErr('');
+      const newMovieShow = {
+        film_id: film.id,
+        hall_id: hallId,
+        start_time: movieShowStart,
+        movie_show_duration: film.duration,
+        start_day: activeDate,
+        film_name: film.name,
+        id: uuidv4(),
+        newItem: true
+      }
+      setNewMovieShows(prevState => [...prevState, newMovieShow]);
+      setAddedMoviesShow(prevState => [...prevState, newMovieShow]);
+      setIsAddMovieShow(false);
+    }
 
+    const handleSumbitMovieShow = async () => {
+      // let response = await Api.storeMovie('movie', film.id, hallId, movieShowStart, film.duration, activeDate, film.name);
+      let response = await Api.patchMovie('movie', activeDate, addedMoviesShow, deletedMoviesShow);
+          // console.log(test);
+      if(response === 'Update successful') {
+        const movies = await Api.getMovie('movie', activeDate);
+        setMovieShows([...movies]);
+        setNewMovieShows([...movies]);
+      }
+      setAddedMoviesShow([]);
+      setDeletedMoviesShow([]);
+    }
 
+    const handleResetMovieShows = () => {
+      setNewMovieShows([...movieShows]);
+      setAddedMoviesShow([]);
+      setDeletedMoviesShow([]);
     }
 
     const handleDateChange = (e) => {
@@ -107,7 +128,11 @@ function  MovieShowConfig() {
       console.log(activeDate);
     }
 
-    const handleDate = async () => setMovieShows(await Api.getMovie('movie', activeDate));
+    const handleDate = async () => {
+      const movies = await Api.getMovie('movie', activeDate);
+      setMovieShows([...movies]);
+      setNewMovieShows([...movies]);
+    }
 
     const handleDragStart = (o) => {
       setDraggedFilm(o);
@@ -139,6 +164,39 @@ function  MovieShowConfig() {
       }
     }
 
+    const handleDeleteReset = () => {
+      setIsDeletePopup(false);
+    }
+
+    const hadleMovieShowClick = (o) => {
+      setDeleteState(o);
+      setIsDeletePopup(true);
+    }
+
+    const handleDelete = (e, object) => {
+      e.preventDefault();
+      console.log(object);
+      if (object.newItem) {
+        for(let i = 0; i < newMovieShows.length; i += 1) {
+          if (object.id === newMovieShows[i].id) {
+            const modyfiedArr = [...newMovieShows];
+            modyfiedArr.splice(i, 1);
+            setNewMovieShows([...modyfiedArr]);
+          }
+        }
+      } else {
+        for(let i = 0; i < newMovieShows.length; i += 1) {
+          if (object.id === newMovieShows[i].id) {
+            const modyfiedArr = newMovieShows;
+            modyfiedArr.splice(i, 1);
+            setNewMovieShows(modyfiedArr);
+            setDeletedMoviesShow(prevState => [...prevState, object.id]);
+          }
+        }
+      }
+      setIsDeletePopup(false);
+    }
+
   
     // const handleOnAddClick = () => {
     //   setIsAddPopup(true);
@@ -150,8 +208,9 @@ function  MovieShowConfig() {
             <div className="conf-step__wrapper">
               {isAddPopup && <AddFilmPopup handleClose={setIsAddPopup} handleSubmit={handleAddFilmSubmit}/>}
               {isAddMovieShow && activeHall && <AddMovieShowPopup error={addMovieShowErr} film={draggedFilm} hall={activeHall} handleClose={setIsAddMovieShow} handleSubmit={handleAddMovieShow}/>}
+              {isDeletePopup && <ConfirmPopup reset={handleDeleteReset} submit={handleDelete} data={deleteState} actionName={'Снятие с сеанса'} question={'Вы действительно хотите снять с сеанса фильм '}/>}
             <p className="conf-step__paragraph">
-              <button className="conf-step__button conf-step__button-accent" onClick={() => {setIsAddMovieShow(true); console.log(isAddMovieShow);}}>Добавить сеанс</button>
+              <button className="conf-step__button conf-step__button-accent" onClick={() => {console.log(deletedMoviesShow);console.log(newMovieShows);}}>Добавить сеанс</button>
               <button className="conf-step__button conf-step__button-accent" onClick={() => setIsAddPopup(true)}>Добавить фильм</button>
               <button className="conf-step__button conf-step__button-accent" onClick={handleDate}>Выбрать дату</button>
               {activeDate && <input type="date" name="date" value={activeDate} min={today} onChange={(e) => handleDateChange(e)}></input>}
@@ -177,9 +236,9 @@ function  MovieShowConfig() {
                       onDragLeave={(e) => handleDragLeave(e)}
                       onDrop={(e) => handleDragEnd(e, hall)}
                     >
-                      {movieShows && movieShows.map((movie) => (
-                      movie.hall_id === hall.id && <div key={movie.id} className="conf-step__seances-movie" style={{width: 100*movie.movie_show_duration/1440 + '%', backgroundColor: 'rgb(202, 255, 133)', left: 100*movie.start_time/1440 + '%'}}>
-                        <p className="conf-step__seances-movie-title">{movie.film_id}</p>
+                      {newMovieShows && newMovieShows.map((movie) => (
+                      movie.hall_id === hall.id && <div key={movie.id} onClick={() => hadleMovieShowClick(movie)} className="conf-step__seances-movie" style={{width: 100*movie.movie_show_duration/1440 + '%', backgroundColor: 'rgb(202, 255, 133)', left: 100*movie.start_time/1440 + '%'}}>
+                        <p className="conf-step__seances-movie-title">{movie.film_name}</p>
                         <p className="conf-step__seances-movie-start">{movie.start_time}</p>
                       </div>))}
                     </div>
@@ -218,8 +277,8 @@ function  MovieShowConfig() {
             </div>
             
             <fieldset className="conf-step__buttons text-center">
-              <button className="conf-step__button conf-step__button-regular">Отмена</button>
-              <input type="submit" value="Сохранить" className="conf-step__button conf-step__button-accent" />
+              <button className="conf-step__button conf-step__button-regular" onClick={handleResetMovieShows}>Отмена</button>
+              <input type="submit" value="Сохранить" className="conf-step__button conf-step__button-accent" onClick={handleSumbitMovieShow} />
             </fieldset>  
           </div>
     )

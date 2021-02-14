@@ -12,8 +12,12 @@ class MovieShow extends Model
     protected $fillable = [
         'hall_id',
         'film_id',
-        'start_time'
+        'start_time',
+        'movie_show_duration',
+        'film_name',
+        'start_day'
     ];
-
+ 
     protected $table = 'movie_show';
+    
 }

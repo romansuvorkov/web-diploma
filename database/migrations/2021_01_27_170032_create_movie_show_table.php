@@ -17,7 +17,7 @@ class CreateMovieShowTable extends Migration
             $table->id();
             $table->unsignedBigInteger('hall_id');
             $table->unsignedBigInteger('film_id');
-            $table->unsignedBigInteger('movie_show_duration')->nullable();
+            $table->unsignedBigInteger('movie_show_duration');
             $table->string('film_name');
             $table->string('start_day');
             $table->string('start_time');
