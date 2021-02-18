@@ -1,32 +1,68 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import HallManageItem from './HallManageItem';
+import HallAddPopup from './HallAddPopup';
+import ConfirmPopup from './ConfirmPopup';
 import AdminContext from './AdminContext';
 import Api from '../../functions/Api';
 
 function HallManagement() {
 
     const { halls, loadFromServer } = useContext(AdminContext);
+    const [addPopup, setAddPopup] = useState(false);
+    const [confirmPopup, setConfirmPopup] = useState(false);
+    const [deleteTarget, setDeleteTarget] = useState(0);
 
-    const handleDeleteHall = async (id) => {
-        const response = await Api.deleteItem('hall', id);
+
+    const closeAddPopup = () => {
+        setAddPopup(false);
+    }
+
+    const openAddPopup = () => {
+        setAddPopup(true);
+    }
+
+    const closeConfirmPopup = () => {
+        setConfirmPopup(false);
+    }
+
+    const openConfrimPopup = (obj) => {
+        setDeleteTarget(obj);
+        setConfirmPopup(true);
+    }
+
+    const handleDeleteHall = async (e, obj) => {
+        e.preventDefault();
+        const response = await Api.deleteItem('hall', obj.id);
         console.log(response);
         if (response === 'Successful delete') {
-            loadFromServer();            
+            loadFromServer();
+            setConfirmPopup(false);            
         }
+    }
 
+    const createNewHall = async (e, name) => {
+        e.preventDefault();
+        const response = await Api.createItem('hall', name);
+        console.log(response);
+        if (response === 'Hall created') {
+            loadFromServer();
+            setAddPopup(false);            
+        }
     }
 
 
     return (
             <div className="conf-step__wrapper">
+                {addPopup && <HallAddPopup handleClose={closeAddPopup} handleSubmit={createNewHall} />}
+                {confirmPopup && <ConfirmPopup reset={closeConfirmPopup} submit={handleDeleteHall} name={deleteTarget.name} data={deleteTarget} actionName={'Удаление зала'} question={'Вы действительно хотите удалить '}/>}
                 <p className="conf-step__paragraph">Доступные залы:</p>
                 <ul className="conf-step__list">
                 {halls.map(o => (
-                    <HallManageItem key={o.id} name={o.name} hallId={o.id} handleDeleteHall={handleDeleteHall} />
+                    <HallManageItem key={o.id} target={o} handleDeleteHall={openConfrimPopup}/>
                 ))}
                 </ul>
-                <button className="conf-step__button conf-step__button-accent">Создать зал</button>
+                <button className="conf-step__button conf-step__button-accent" onClick={openAddPopup}>Создать зал</button>
             </div>
     );
   }

@@ -1,6 +1,11 @@
 import React from 'react';
 import './user.css';
+import DateNavigation from './DateNavigation';
+import UserMoviesList from './UserMoviesList';
 import backgroundImage from '../../../images/background.jpg';
+import UserContext from './UserContext';
+import UserProvider from './UserProvider';
+import Api from '../../functions/Api';
 
 function UserPanel() {
 
@@ -12,12 +17,12 @@ function UserPanel() {
     `;
 
     return (
-<>
+      <UserProvider>
         <header className="page-header">
         <h1 className="page-header__title">Идём<span>в</span>кино</h1>
         </header>
-  
-  <nav className="page-nav">
+  <DateNavigation />
+  {/* <nav className="page-nav">
     <a className="page-nav__day page-nav__day_today" href="#">
       <span className="page-nav__day-week">Пн</span><span className="page-nav__day-number">31</span>
     </a>
@@ -38,10 +43,11 @@ function UserPanel() {
     </a>
     <a className="page-nav__day page-nav__day_next" href="#">
     </a>
-  </nav>
+  </nav> */}
   
   <main>
-    <section className="movie">
+    <UserMoviesList />
+    {/* <section className="movie">
       <div className="movie__info">
         <div className="movie__poster">
           <img className="movie__poster-image" alt="Звёздные войны постер" src="images/poster1.jpg" />
@@ -144,9 +150,9 @@ function UserPanel() {
           <li className="movie-seances__time-block"><a className="movie-seances__time" href="hall.html">22:00</a></li>
         </ul>
       </div>     
-    </section>     
+    </section>      */}
   </main>
-      </>
+      </UserProvider>
     );
   }
   

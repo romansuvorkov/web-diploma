@@ -5,6 +5,7 @@ import backgroundImage from '../../../images/admin/background-admin.jpg';
 import HallManagement from './HallManagment';
 import HallConfig from './HallConfig';
 import PriceConfig from './PriceConfig';
+import HallSaleManagement from './HallSaleManagement';
 import API from '../../functions/Api';
 import AdminContext from './AdminContext';
 import AdminProvider from './AdminProvider';
@@ -61,10 +62,12 @@ function AdminPanel() {
         
         <section className="conf-step">
           <SectionHeader title="Открыть продажи" />
-          <div className="conf-step__wrapper text-center">
+          <HallSaleManagement />
+          
+          {/* <div className="conf-step__wrapper text-center">
             <p className="conf-step__paragraph">Всё готово, теперь можно:</p>
             <button className="conf-step__button conf-step__button-accent">Открыть продажу билетов</button>
-          </div>
+          </div> */}
         </section>    
       </main>
   </AdminProvider>

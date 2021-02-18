@@ -6,7 +6,7 @@ import Api from '../../functions/Api';
 
 function ConfirmPopup(props) {
 
-    const { reset, submit, data, actionName, question } = props;
+    const { reset, submit, data, actionName, question, name } = props;
         
     return (
         <div className="popup active">
@@ -20,7 +20,7 @@ function ConfirmPopup(props) {
                     </div>
                     <div className="popup__wrapper">
                         <form action="hall" method="post" acceptCharset="utf-8" onSubmit={(e) => submit(e, data)}>
-                            <p className="conf-step__paragraph">{question}<span>{data.film_name}</span>?</p>
+                            <p className="conf-step__paragraph">{question}<span>{name}</span>?</p>
                             <div className="conf-step__buttons text-center">
                                 <input type="submit" value="Удалить" className="conf-step__button conf-step__button-accent" />
                                 <button className="conf-step__button conf-step__button-regular" onClick={reset}>Отменить</button>            

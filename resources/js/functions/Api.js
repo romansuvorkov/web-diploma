@@ -25,6 +25,29 @@ export default class Api {
       });
     }
 
+    static async createItem(address, name) {
+      return new Promise((resolve, reject) => {
+        const params = new URLSearchParams();
+        params.append('name', name);
+        const xhr = new XMLHttpRequest();
+        // xhr.open('GET', `${this.server}/${address}`);
+        xhr.open('POST', `http://localhost:8000/api/${address}`);
+        xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
+        xhr.addEventListener('load', () => {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                // console.log(xhr);
+                const data = xhr.responseText;
+                // console.log(data);
+                return resolve(data);
+                }
+            }
+            return reject(xhr.responseText);
+        });
+        xhr.send(params);
+      });
+    }
+
     static async getShow(address, number) {
         return new Promise((resolve, reject) => {
           const xhr = new XMLHttpRequest();
@@ -137,7 +160,7 @@ export default class Api {
 
     static async getMovie(address, date) {
       return new Promise((resolve, reject) => {
-        const params = new URLSearchParams();
+        // const params = new URLSearchParams();
         // params.append('date', date);
         // console.log(date);
         const xhr = new XMLHttpRequest();
@@ -150,7 +173,10 @@ export default class Api {
                 // console.log(xhr);
                 const data = JSON.parse(xhr.responseText);
                 // console.log(data);
-                return resolve(data.data);
+                if(data.data) {
+                  return resolve(data.data);
+                }
+                return resolve(data);
                 }
             }
             return reject(xhr.responseText);
@@ -169,6 +195,23 @@ export default class Api {
         params.append('deleted', deletedString);
         const xhr = new XMLHttpRequest();
         xhr.open('PATCH', `http://localhost:8000/api/${address}/${date}`);
+        xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
+        xhr.addEventListener('load', () => {
+          if (xhr.status === 200) {
+            return resolve(xhr.responseText);
+          }
+          return reject(xhr.responseText);
+        });
+        xhr.send(params);
+      });
+    }
+
+    static async openSales(address, status, id) {
+      return new Promise((resolve, reject) => {
+        const params = new URLSearchParams();
+        params.append('status', status);
+        const xhr = new XMLHttpRequest();
+        xhr.open('PATCH', `http://localhost:8000/api/${address}/${id}`);
         xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
         xhr.addEventListener('load', () => {
           if (xhr.status === 200) {

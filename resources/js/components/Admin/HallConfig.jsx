@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import AdminContext from './AdminContext';
 import HallBtnContainer from './HallBtnContainer';
+import Preloader from '../Preloader';
 import ConfStepHall from './ConfStepHall';
 import Api from '../../functions/Api';
 
@@ -16,70 +17,33 @@ function HallConfig() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [seatsIsLoaded, setSeatsIsLoaded] = useState(false);
   const [isRedacting, setIsRedacting] = useState(false);
-  // const [seatTable, setSeatTable] = useState([]);
-
-  // useEffect(async () => {
-  //   setIsLoaded(false);
-  //   // setSeatsIsLoaded(false);
-  //   if (halls.length > 0) {
-  //     if (hallForRender.length === 0) {
-  //       // setHallForRender(halls.find(item => item.id == activeHall));
-  //       setActiveHall(halls[0].id);
-  //       setHallForRender(halls[0]);
-  //     } else {
-  //       console.log('trouble');
-  //       setSeats(await Api.getShow('seats', hallForRender.id));
-  //       // setSeatsIsLoaded(true);
-  //       setRows(hallForRender.row);
-  //       setSeatsInRow(hallForRender.seats);
-  //       setIsLoaded(true);
-  //     }
-  //       // setIsLoaded(true);
-  //   }
-  // }, [halls, hallForRender]);
 
   useEffect(async () => {
     setIsLoaded(false);
-    // setSeatsIsLoaded(false);
     if (halls.length > 0) {
-      // if (hallForRender.length === 0) {
-        // setHallForRender(halls.find(item => item.id == activeHall));
+      if (hallForRender.length === 0) {
         setActiveHall(halls[0].id);
         setHallForRender(halls[0]);
-      // } else {
-        console.log('trouble');
-        setSeats(await Api.getShow('seats', halls[0].id));
-        // setSeatsIsLoaded(true);
-        setRows(halls[0].row);
-        setSeatsInRow(halls[0].seats);
-        setIsLoaded(true);
-      // }
-        // setIsLoaded(true);
-    }
-  }, [halls]);
-
-  useEffect(async () => {
-    setIsLoaded(false);
-    // setSeatsIsLoaded(false);
-      // if (hallForRender.length === 0) {
-        // setHallForRender(halls.find(item => item.id == activeHall));
-        // setActiveHall(halls[0].id);
-        setHallForRender(halls[activeHall]);
-      // } else {
+      } else {
         setSeats(await Api.getShow('seats', hallForRender.id));
-        // setSeatsIsLoaded(true);
         setRows(hallForRender.row);
         setSeatsInRow(hallForRender.seats);
         setIsLoaded(true);
-      // }
-        // setIsLoaded(true);
+      }
+    }      
+  }, [halls, hallForRender]);
+
+  useEffect(async () => {
+    setIsLoaded(false);
+    setSeats(await Api.getShow('seats', hallForRender.id));
+    setRows(hallForRender.row);
+    setSeatsInRow(hallForRender.seats);
+    setIsLoaded(true);
   }, [activeHall]);
 
 
 
   useEffect(() => {
-    setSeatsIsLoaded(false);
-    // console.log('work use effect seats');
     if (isRedacting) {
       console.log('work Redacting');
       if (rows <= 0) {
@@ -96,29 +60,13 @@ function HallConfig() {
           seat_number: i,
           status: 1
         };
-        // console.log('counter');
-        // console.log(newObj);
         seatsArr.push(newObj);
         setSeats(seatsArr);
         setIsRedacting(false);
-        setSeatsIsLoaded(true);
       }
-    }
-    // if(seats.length !== 0 && !isRedacting) {
-    //   console.log('work for cycle for tableseat in use effect');
-    //   const tableSeat = [];
-    //   let counter = 0;
-    //   for (let i = 1; i <= rows; i += 1) {
-    //     let row = [];
-    //     for (let y = 1; y <= seatsInRow; y += 1) {
-    //       row.push(seats[counter]);
-    //       counter += 1;
-    //     }
-    //       tableSeat.push(row);
-    //   }
-      // setSeatTable(tableSeat);
       setSeatsIsLoaded(true);
-    // }
+    }
+      setSeatsIsLoaded(true);
   },[seats, rows, seatsInRow]); 
 
   const handleLabelChange = (e) => {
@@ -147,16 +95,24 @@ function HallConfig() {
   }
 
   const resetChanges = async () => {
-    setSeats(await Api.getShow('seats', hallForRender.id));
+    setIsLoaded(false);
+    setSeatsIsLoaded(false);
+    setRows(hallForRender.row);
+    setSeatsInRow(hallForRender.seats);
+    setSeats([]);
+    const seats = await Api.getShow('seats', hallForRender.id);
+    setSeats(seats);
+    setIsLoaded(true);
   }
 
 
     return (
 
             <div className="conf-step__wrapper">        
-            <p className="conf-step__paragraph">Выберите зал для конфигурации:</p>
+            <p className="conf-step__paragraph" onClick={() => console.log(hallForRender)}>Выберите зал для конфигурации:</p>
             <HallBtnContainer active={activeHall} setActive={setActiveHall} setHallForRender={setHallForRender} />
             <p className="conf-step__paragraph">Укажите количество рядов и максимальное количество кресел в ряду:</p>
+            {!isLoaded && <Preloader />}
             {isLoaded && <div className="conf-step__legend">
               <label className="conf-step__label">Рядов, шт<input type="text" className="conf-step__input" placeholder="10" name="rows" value={rows} onChange={(e) => handleLabelChange(e)}/></label>
               <span className="multiplier">x</span>
@@ -168,8 +124,8 @@ function HallConfig() {
               <span className="conf-step__chair conf-step__chair_vip"></span> — VIP кресла
               <span className="conf-step__chair conf-step__chair_disabled"></span> — заблокированные (нет кресла)
               <p className="conf-step__hint">Чтобы изменить вид кресла, нажмите по нему левой кнопкой мыши</p>
-            </div>  
-            
+            </div>
+            {(!isLoaded || !seatsIsLoaded ) && <Preloader />}
             {isLoaded && seatsIsLoaded && seats.length > 0 && activeHall !== 0 && <ConfStepHall activeHall={activeHall} seats={seats} rows={rows} setHallForRender={setHallForRender} seatsInRow={seatsInRow} resetChanges={resetChanges} />}
 
         </div>

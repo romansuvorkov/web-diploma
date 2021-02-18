@@ -75,6 +75,7 @@ function ConfStepHall(props) {
     const seatStatus = ['chair_disabled', 'chair_standart', 'chair_vip']
 
     return (
+        
         isLoaded && <>
             <div className="conf-step__hall" onClick={() => console.log(seatTable)}>
               <div className="conf-step__hall-wrapper">
@@ -88,6 +89,7 @@ function ConfStepHall(props) {
               </div>
             </div>
             <InterfaceBtnContainer reset={resetChanges} accept={submitChanges}/>
+      
         </>
     )
 

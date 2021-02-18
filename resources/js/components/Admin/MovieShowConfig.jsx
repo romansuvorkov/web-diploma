@@ -208,7 +208,7 @@ function  MovieShowConfig() {
             <div className="conf-step__wrapper">
               {isAddPopup && <AddFilmPopup handleClose={setIsAddPopup} handleSubmit={handleAddFilmSubmit}/>}
               {isAddMovieShow && activeHall && <AddMovieShowPopup error={addMovieShowErr} film={draggedFilm} hall={activeHall} handleClose={setIsAddMovieShow} handleSubmit={handleAddMovieShow}/>}
-              {isDeletePopup && <ConfirmPopup reset={handleDeleteReset} submit={handleDelete} data={deleteState} actionName={'Снятие с сеанса'} question={'Вы действительно хотите снять с сеанса фильм '}/>}
+              {isDeletePopup && <ConfirmPopup reset={handleDeleteReset} submit={handleDelete} name={deleteState.film_name} data={deleteState} actionName={'Снятие с сеанса'} question={'Вы действительно хотите снять с сеанса фильм '}/>}
             <p className="conf-step__paragraph">
               <button className="conf-step__button conf-step__button-accent" onClick={() => {console.log(deletedMoviesShow);console.log(newMovieShows);}}>Добавить сеанс</button>
               <button className="conf-step__button conf-step__button-accent" onClick={() => setIsAddPopup(true)}>Добавить фильм</button>
@@ -239,7 +239,7 @@ function  MovieShowConfig() {
                       {newMovieShows && newMovieShows.map((movie) => (
                       movie.hall_id === hall.id && <div key={movie.id} onClick={() => hadleMovieShowClick(movie)} className="conf-step__seances-movie" style={{width: 100*movie.movie_show_duration/1440 + '%', backgroundColor: 'rgb(202, 255, 133)', left: 100*movie.start_time/1440 + '%'}}>
                         <p className="conf-step__seances-movie-title">{movie.film_name}</p>
-                        <p className="conf-step__seances-movie-start">{movie.start_time}</p>
+                        <p className="conf-step__seances-movie-start">{parseInt(movie.start_time / 60)}:{movie.start_time % 60}</p>
                       </div>))}
                     </div>
                   </div>

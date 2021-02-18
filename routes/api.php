@@ -24,3 +24,4 @@ Route::apiResource('hall', 'App\Http\Controllers\HallController');
 Route::apiResource('film', 'App\Http\Controllers\FilmController');
 Route::apiResource('seats', 'App\Http\Controllers\SeatsController');
 Route::apiResource('movie', 'App\Http\Controllers\MovieShowController');
+Route::apiResource('movie_hall', 'App\Http\Controllers\UserMovieShowController');

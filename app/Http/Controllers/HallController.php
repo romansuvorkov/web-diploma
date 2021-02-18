@@ -29,7 +29,28 @@ class HallController extends Controller
      */
     public function create()
     {
-        //
+        // $newHall = new Hall([
+        //   'name'=> $request->name,
+        //   'row' => 7,
+        //   'seats' => 7,
+        //   'price' => 200,
+        //   'vip_price' => 300,
+        //   'is_active' => false
+        // ]);
+        // $newHall->save();
+
+        // $i = 1;
+        // do {
+        //   $seat = new Seat([
+        //   'hall_id' =>  $newHall->id,
+        //   'seat_number' => $i,
+        //   'status' => 1,
+        //   ]);
+        //     $seat->save();
+        //     $i += 1;
+        // } while ($i <= 49);
+
+        // return "Hall created";
     }
 
     /**
@@ -40,7 +61,28 @@ class HallController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newHall = new Hall([
+            'name'=> $request->name,
+            'row' => 7,
+            'seats' => 7,
+            'price' => 200,
+            'vip_price' => 300,
+            'is_active' => false
+          ]);
+          $newHall->save();
+  
+          $i = 1;
+          do {
+            $seat = new Seat([
+            'hall_id' =>  $newHall->id,
+            'seat_number' => $i,
+            'status' => 1,
+            ]);
+              $seat->save();
+              $i += 1;
+          } while ($i <= 49);
+  
+          return "Hall created";
     }
 
     /**
@@ -74,11 +116,18 @@ class HallController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if ($request->price) {
+            $hall = Hall::findOrFail($id);
+            $hall->price = $request->price;
+            $hall->vip_price = $request->vip_price;
+            $hall->save();
+            return "Update successful";            
+        }
+
         $hall = Hall::findOrFail($id);
-        $hall->price = $request->price;
-        $hall->vip_price = $request->vip_price;
+        $hall->is_active = $request->status;
         $hall->save();
-        return "Update successful";
+        return "Status update successful";  
     }
 
     /**
