@@ -17,9 +17,10 @@ function Application() {
         <Route path="/admin" exact>
           <AdminPanel />
         </Route>
-        <Route path="/hall" exact>
-          <MovieShowHall />
-        </Route>
+        <Route path="/hall/:id" component={MovieShowHall} exact/>
+        {/* <Route path="/hall/:id" exact> */}
+          {/* <MovieShowHall /> */}
+        {/* </Route> */}
       </Switch>
     </Router>
 

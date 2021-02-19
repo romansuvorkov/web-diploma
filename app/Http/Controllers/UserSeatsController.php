@@ -7,9 +7,9 @@ use App\Http\Resources\Post;
 use App\Models\MovieShow;
 use App\Models\Hall;
 use App\Models\Film;
-use DateTime;
+use App\Models\Seat;
 
-class UserMovieShowController extends Controller
+class UserSeatsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -50,38 +50,17 @@ class UserMovieShowController extends Controller
      */
     public function show($id)
     {
-        // return Post::collection(MovieShow::all()->where('start_day', $id));
-        $halls = Hall::all();
-        $films = Film::all();
-        $movieShow = MovieShow::all()->where('start_day', $id);
-        $output = [];
-        foreach ($films as $film) {
-            $newArr = ['film_id'=> $film['id'],'name'=> $film['name'], 'country'=> $film['country'], 'duration'=> $film['duration'],'poster'=> $film['poster'], 'halls'=> []];
-            foreach ($halls as $hall) {
-                $newHall = ['hall_id'=> $hall['id'],'name'=> $hall['name'], 'row'=> $hall['row'], 'row'=> $hall['row'], 'seats'=> $hall['seats'], 'price'=> $hall['price'], 'vip_price'=> $hall['vip_price'], 'seances'=> []];
-                // $newArr['halls'][] = $newHall;
-                foreach ($movieShow as $movie) {
-                if ($movie['hall_id'] === $newHall['hall_id']) {
-                    if ($movie['film_id'] === $film['id']) {
-                        $newHall['seances'][] = $movie;
-                    }
-                }
-                }
-                $newArr['halls'][] = $newHall;
-            }
-            $output[] = $newArr;
-        }
-
-        // 'hall_id',
-        // 'film_id',
-        // 'start_time',
-        // 'movie_show_duration',
-        // 'film_name',
-        // 'start_day'
+        $movieShow = MovieShow::findOrFail($id);
+        $seatsArr = Seat::all()->where('hall_id', $movieShow['hall_id']);
+        $hall = Hall::findOrFail($movieShow->hall_id);
+        $output = [
+            'hall' => $hall,
+            'seats' => $seatsArr,
+            'movieShow' => $movieShow
+        ];
         return new Post($output);
         // return $output;
-
-
+        // return new Post(MovieShow::findOrFail($id));
     }
 
     /**

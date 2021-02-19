@@ -2,16 +2,17 @@ import React, { useEffect, useContext } from 'react';
 import UserContext from './UserContext';
 import { v4 as uuidv4 } from 'uuid';
 import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
+import Api from '../../functions/Api';
 
 function UserMoviesList() {
 
     const { movieShows } = useContext(UserContext);
 
-    // const onClick = (event) => {
-    //     // console.log(halls);
-    //     event.currentTarget.classList.toggle('conf-step__header_closed');
-    //     event.currentTarget.classList.toggle('conf-step__header_opened');
-    // };
+    const onClick = async () => {
+        // console.log(halls);
+        const test = await Api.getMovie('movie_seats', 1);
+        console.log(test);
+    };
 
     useEffect(async () => {
       console.log(movieShows);
@@ -23,7 +24,7 @@ function UserMoviesList() {
         <section className="movie" key={uuidv4()}>
           <div className="movie__info">
             <div className="movie__poster">
-              <img className="movie__poster-image" alt="Звёздные войны постер" src={film.poster} />
+              <img className="movie__poster-image" alt="Звёздные войны постер" onClick={onClick} src={film.poster} />
             </div>
             <div className="movie__description">
               <h2 className="movie__title">{film.name}</h2>
@@ -40,7 +41,7 @@ function UserMoviesList() {
               <h3 className="movie-seances__hall-title">{hall.name}</h3>
               <ul className="movie-seances__list">
                 { hall.seances.map((seance) => (
-                  <li key={uuidv4()} className="movie-seances__time-block"><Link className="movie-seances__time" to={`/hall`}>{parseInt(seance.start_time / 60)}:{seance.start_time % 60}</Link></li>
+                  <li key={uuidv4()} className="movie-seances__time-block"><Link className="movie-seances__time" to={`/hall/${seance.id}`}>{parseInt(seance.start_time / 60)}:{seance.start_time % 60}</Link></li>
                 ))}            
               </ul>
             </div>
