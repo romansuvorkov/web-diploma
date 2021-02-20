@@ -4,7 +4,7 @@ import Api from '../../functions/Api';
 
 function DateNavigation() {
 
-  const { setMovieShows, movieShows } = useContext(UserContext);
+  const { setMovieShows } = useContext(UserContext);
 
   const now = new Date();
   const day = ("0" + now.getDate()).slice(-2);

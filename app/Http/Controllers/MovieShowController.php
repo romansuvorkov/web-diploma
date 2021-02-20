@@ -63,6 +63,7 @@ class MovieShowController extends Controller
             'movie_show_duration' => $request->movie_show_duration,
             'start_day' => $request->start_day,
             'film_name' => $request->name,
+            'ordered' => '[]' 
         ]);
 
         $newMovie->save();
@@ -130,6 +131,7 @@ class MovieShowController extends Controller
                     'movie_show_duration' => $newMovieShow->movie_show_duration,
                     'start_day' => $newMovieShow->start_day,
                     'film_name' => $newMovieShow->film_name,
+                    'ordered' => '[]' 
                 ]);
                 $newMovie->save();
             }

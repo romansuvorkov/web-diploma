@@ -4,6 +4,7 @@ import UserContext from './UserContext';
 export default function UserProvider(props) {
     
     const [movieShows, setMovieShows] = useState([]);
+    const [orderData, setOrderData] = useState({});
     // const [activeHall, setActiveHall] = useState('');
     // const [films, setFilms] = useState([]);
 
@@ -24,7 +25,7 @@ export default function UserProvider(props) {
     
 
     return (
-        <UserContext.Provider value={{setMovieShows, movieShows}}>
+        <UserContext.Provider value={{setMovieShows, movieShows, setOrderData, orderData}}>
             {props.children}
         </UserContext.Provider>
     )

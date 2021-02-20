@@ -11,7 +11,12 @@ class Ticket extends Model
     
     protected $fillable = [
         'show_id',
-        'seats'
+        'seats',
+        'price',
+        'start_day',
+        'start_time',
+        'hall_name',
+        'film'
     ];
 
     protected $table = 'tickets';

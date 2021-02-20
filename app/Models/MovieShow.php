@@ -15,7 +15,8 @@ class MovieShow extends Model
         'start_time',
         'movie_show_duration',
         'film_name',
-        'start_day'
+        'start_day',
+        'ordered'
     ];
  
     protected $table = 'movie_show';

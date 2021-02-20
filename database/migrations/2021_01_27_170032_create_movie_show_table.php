@@ -21,6 +21,7 @@ class CreateMovieShowTable extends Migration
             $table->string('film_name');
             $table->string('start_day');
             $table->string('start_time');
+            $table->json('ordered'); 
             $table->timestamps();         
 
             $table->foreign('hall_id')->references('id')->on('hall');

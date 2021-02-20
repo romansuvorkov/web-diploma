@@ -1936,11 +1936,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _components_Admin_AdminPanel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Admin/AdminPanel */ "./resources/js/components/Admin/AdminPanel.jsx");
 /* harmony import */ var _components_User_UserPanel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/User/UserPanel */ "./resources/js/components/User/UserPanel.jsx");
-/* harmony import */ var _components_User_MovieShowHall__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/User/MovieShowHall */ "./resources/js/components/User/MovieShowHall.jsx");
+/* harmony import */ var _components_User_Payment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/User/Payment */ "./resources/js/components/User/Payment.jsx");
+/* harmony import */ var _components_User_MovieShowHall__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/User/MovieShowHall */ "./resources/js/components/User/MovieShowHall.jsx");
+/* harmony import */ var _components_User_UserContext__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/User/UserContext */ "./resources/js/components/User/UserContext.jsx");
+/* harmony import */ var _components_User_UserProvider__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/User/UserProvider */ "./resources/js/components/User/UserProvider.jsx");
+
+
+
 
 
 
@@ -1950,21 +1956,27 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Application() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.BrowserRouter, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Switch, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
-        path: "/",
-        exact: true,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_User_UserPanel__WEBPACK_IMPORTED_MODULE_3__.default, {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
-        path: "/admin",
-        exact: true,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Admin_AdminPanel__WEBPACK_IMPORTED_MODULE_2__.default, {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
-        path: "/hall/:id",
-        component: _components_User_MovieShowHall__WEBPACK_IMPORTED_MODULE_4__.default,
-        exact: true
-      })]
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.BrowserRouter, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_User_UserProvider__WEBPACK_IMPORTED_MODULE_7__.default, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Switch, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+          path: "/",
+          exact: true,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_User_UserPanel__WEBPACK_IMPORTED_MODULE_3__.default, {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+          path: "/admin",
+          exact: true,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Admin_AdminPanel__WEBPACK_IMPORTED_MODULE_2__.default, {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+          path: "/hall/:id",
+          component: _components_User_MovieShowHall__WEBPACK_IMPORTED_MODULE_5__.default,
+          exact: true
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+          path: "/payment",
+          exact: true,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_User_Payment__WEBPACK_IMPORTED_MODULE_4__.default, {})
+        })]
+      })
     })
   });
 }
@@ -4750,8 +4762,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function DateNavigation() {
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_2__.useContext)(_UserContext__WEBPACK_IMPORTED_MODULE_3__.default),
-      setMovieShows = _useContext.setMovieShows,
-      movieShows = _useContext.movieShows;
+      setMovieShows = _useContext.setMovieShows;
 
   var now = new Date();
   var day = ("0" + now.getDate()).slice(-2);
@@ -4955,6 +4966,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -4980,6 +5005,9 @@ function MovieShowHall(_ref) {
   var match = _ref.match,
       history = _ref.history;
 
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_2__.useContext)(_UserContext__WEBPACK_IMPORTED_MODULE_3__.default),
+      setOrderData = _useContext.setOrderData;
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       seats = _useState2[0],
@@ -4987,21 +5015,33 @@ function MovieShowHall(_ref) {
 
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
       _useState4 = _slicedToArray(_useState3, 2),
-      data = _useState4[0],
-      setData = _useState4[1];
+      seatsSource = _useState4[0],
+      setSeatsSoucre = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
       _useState6 = _slicedToArray(_useState5, 2),
-      isLoaded = _useState6[0],
-      setIsLoaded = _useState6[1];
+      data = _useState6[0],
+      setData = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
       _useState8 = _slicedToArray(_useState7, 2),
-      orderSum = _useState8[0],
-      setOrderSum = _useState8[1];
+      isLoaded = _useState8[0],
+      setIsLoaded = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0),
+      _useState10 = _slicedToArray(_useState9, 2),
+      orderSum = _useState10[0],
+      setOrderSum = _useState10[1];
+
+  var occupied = [3, 4, 5];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
+      _useState12 = _slicedToArray(_useState11, 2),
+      order = _useState12[0],
+      setOrder = _useState12[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
-    var data, tableSeat, counter, i, row, y;
+    var data, newArray, tableSeat, counter, i, row, y, seatData;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -5011,12 +5051,12 @@ function MovieShowHall(_ref) {
 
           case 2:
             data = _context.sent;
+            console.log(data);
             setData(data);
-            console.log('data');
-            console.log(data); // console.log(match);
-            // const movies = await Api.getMovie('movie', today);
-            // calendarLoad();
-
+            newArray = data.seats.map(function (a) {
+              return _objectSpread({}, a);
+            });
+            setSeatsSoucre(newArray);
             tableSeat = [];
             counter = 0;
 
@@ -5024,7 +5064,13 @@ function MovieShowHall(_ref) {
               row = [];
 
               for (y = 1; y <= data.hall.seats; y += 1) {
-                row.push(data.seats[counter]);
+                seatData = data.seats[counter];
+
+                if (occupied.indexOf(seatData.seat_number) !== -1) {
+                  seatData.status = 3;
+                }
+
+                row.push(seatData);
                 counter += 1;
               }
 
@@ -5034,13 +5080,108 @@ function MovieShowHall(_ref) {
             setSeats(tableSeat);
             setIsLoaded(true);
 
-          case 11:
+          case 12:
           case "end":
             return _context.stop();
         }
       }
     }, _callee);
   })), []);
+
+  var handleClick = function handleClick(status, seatNumb) {
+    if (status === 3) {
+      return;
+    }
+
+    if (status === 0) {
+      return;
+    }
+
+    var index = order.indexOf(seatNumb);
+
+    if (index === -1) {
+      setOrder(function (prevState) {
+        return [].concat(_toConsumableArray(prevState), [seatNumb]);
+      }); // const newArray = seatsSource.map(a => ({...a}));
+
+      var newArr = _toConsumableArray(seatsSource);
+
+      console.log(newArr);
+      newArr[seatNumb - 1].status = 4;
+      setIsLoaded(false);
+      var tableSeat = [];
+      var counter = 0;
+
+      for (var i = 1; i <= data.hall.row; i += 1) {
+        var row = [];
+
+        for (var y = 1; y <= data.hall.seats; y += 1) {
+          var seatData = newArr[counter];
+
+          if (occupied.indexOf(seatData.seat_number) !== -1) {
+            seatData.status = 3;
+          }
+
+          if (order.indexOf(seatData.seat_number) !== -1) {
+            seatData.status = 4;
+          }
+
+          row.push(seatData);
+          counter += 1;
+        }
+
+        tableSeat.push(row);
+      }
+
+      setSeats(tableSeat); // seats = tableSeat;
+
+      setIsLoaded(true);
+
+      if (status === 2) {
+        var sum = orderSum + data.hall.vip_price;
+        setOrderSum(sum);
+      } else if (status === 1) {
+        var _sum = orderSum + data.hall.price;
+
+        setOrderSum(_sum);
+      }
+    } else {
+      var reducedOrder = _toConsumableArray(order);
+
+      reducedOrder.splice(index, 1);
+      setOrder(reducedOrder); // console.log(data.seats[seatNumb - 1].status);
+
+      if (data.seats[seatNumb - 1].status === 2) {
+        seatsSource[seatNumb - 1].status = 2;
+
+        var _sum2 = orderSum - data.hall.vip_price;
+
+        setOrderSum(_sum2);
+      } else if (data.seats[seatNumb - 1].status === 1) {
+        seatsSource[seatNumb - 1].status = 1;
+
+        var _sum3 = orderSum - data.hall.price;
+
+        setOrderSum(_sum3);
+      }
+    }
+  };
+
+  var handleSubmit = function handleSubmit() {
+    var output = {
+      film: data.movieShow.film_name,
+      seats: order,
+      hall: data.hall.name,
+      hallId: data.hall.name,
+      movieShowId: data.movieShow.film_name,
+      startDay: data.movieShow.start_day,
+      startTime: data.movieShow.start_time,
+      orderSum: orderSum
+    };
+    setOrderData(output);
+    history.push("/payment");
+  };
+
   return isLoaded && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
     className: "buying",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
@@ -5050,7 +5191,7 @@ function MovieShowHall(_ref) {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
           className: "buying__info-title",
           onClick: function onClick() {
-            return console.log(seats);
+            return console.log(data.seats);
           },
           children: data.movieShow.film_name
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
@@ -5074,9 +5215,13 @@ function MovieShowHall(_ref) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
             className: "buying-scheme__row",
             children: row.map(function (o) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+              var _jsx2;
+
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", (_jsx2 = {
                 className: "buying-scheme__chair buying-scheme__chair_standart"
-              }, (0,uuid__WEBPACK_IMPORTED_MODULE_5__.default)());
+              }, _defineProperty(_jsx2, "className", "buying-scheme__chair\n                      ".concat(o.status === 1 ? 'buying-scheme__chair_standart' : 'page-nav__day', " \n                      ").concat(o.status === 0 ? 'buying-scheme__chair_disabled' : '', " \n                      ").concat(o.status === 2 ? 'buying-scheme__chair_vip' : '', "\n                      ").concat(o.status === 3 ? 'buying-scheme__chair_taken' : '', "\n                      ").concat(o.status === 4 ? 'buying-scheme__chair_selected' : '', "\n                      ")), _defineProperty(_jsx2, "onClick", function onClick() {
+                handleClick(o.status, o.seat_number);
+              }), _jsx2), (0,uuid__WEBPACK_IMPORTED_MODULE_5__.default)());
             })
           }, (0,uuid__WEBPACK_IMPORTED_MODULE_5__.default)());
         })
@@ -5118,12 +5263,100 @@ function MovieShowHall(_ref) {
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
       className: "acceptin-button",
+      onClick: handleSubmit,
       children: "\u0417\u0430\u0431\u0440\u043E\u043D\u0438\u0440\u043E\u0432\u0430\u0442\u044C"
     })]
   });
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MovieShowHall);
+
+/***/ }),
+
+/***/ "./resources/js/components/User/Payment.jsx":
+/*!**************************************************!*\
+  !*** ./resources/js/components/User/Payment.jsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _UserContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./UserContext */ "./resources/js/components/User/UserContext.jsx");
+/* harmony import */ var _functions_Api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../functions/Api */ "./resources/js/functions/Api.js");
+
+
+
+
+
+
+function DateNavigation() {
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_UserContext__WEBPACK_IMPORTED_MODULE_2__.default),
+      orderData = _useContext.orderData;
+
+  var handleSubmit = function handleSubmit() {};
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
+    className: "ticket",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("header", {
+      className: "tichet__check",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
+        className: "ticket__check-title",
+        children: "\u0412\u044B \u0432\u044B\u0431\u0440\u0430\u043B\u0438 \u0431\u0438\u043B\u0435\u0442\u044B:"
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "ticket__info-wrapper",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
+        className: "ticket__info",
+        children: ["\u041D\u0430 \u0444\u0438\u043B\u044C\u043C: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+          className: "ticket__details ticket__title",
+          children: orderData.film
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
+        className: "ticket__info",
+        children: ["\u041C\u0435\u0441\u0442\u0430: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+          className: "ticket__details ticket__chairs",
+          children: orderData.seats.map(function (o) {
+            return "".concat(o, ", ");
+          })
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
+        className: "ticket__info",
+        children: ["\u0412 \u0437\u0430\u043B\u0435: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+          className: "ticket__details ticket__hall",
+          children: orderData.hall
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
+        className: "ticket__info",
+        children: ["\u041D\u0430\u0447\u0430\u043B\u043E \u0441\u0435\u0430\u043D\u0441\u0430: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
+          className: "ticket__details ticket__start",
+          children: [parseInt(orderData.startTime / 60), ":", orderData.startTime % 60 < 10 ? '0' + orderData.startTime % 60 : orderData.startTime % 60]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
+        className: "ticket__info",
+        children: ["\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+          className: "ticket__details ticket__cost",
+          children: orderData.orderSum
+        }), " \u0440\u0443\u0431\u043B\u0435\u0439"]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
+        className: "acceptin-button",
+        children: "\u041F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u043A\u043E\u0434 \u0431\u0440\u043E\u043D\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+        className: "ticket__hint",
+        children: "\u041F\u043E\u0441\u043B\u0435 \u043E\u043F\u043B\u0430\u0442\u044B \u0431\u0438\u043B\u0435\u0442 \u0431\u0443\u0434\u0435\u0442 \u0434\u043E\u0441\u0442\u0443\u043F\u0435\u043D \u0432 \u044D\u0442\u043E\u043C \u043E\u043A\u043D\u0435, \u0430 \u0442\u0430\u043A\u0436\u0435 \u043F\u0440\u0438\u0434\u0451\u0442 \u0432\u0430\u043C \u043D\u0430 \u043F\u043E\u0447\u0442\u0443. \u041F\u043E\u043A\u0430\u0436\u0438\u0442\u0435 QR-\u043A\u043E\u0434 \u043D\u0430\u0448\u0435\u043C\u0443 \u043A\u043E\u043D\u0442\u0440\u043E\u043B\u043B\u0451\u0440\u0443 \u0443 \u0432\u0445\u043E\u0434\u0430 \u0432 \u0437\u0430\u043B."
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+        className: "ticket__hint",
+        children: "\u041F\u0440\u0438\u044F\u0442\u043D\u043E\u0433\u043E \u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\u0430!"
+      })]
+    })]
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DateNavigation);
 
 /***/ }),
 
@@ -5318,9 +5551,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 function UserPanel() {
   var backgroundImageStyle = "\n      background-image: url(".concat(_images_background_jpg__WEBPACK_IMPORTED_MODULE_5__.default, ");\n      background-size: cover;\n      background-attachment: fixed;\n      background-position: right;\n    ");
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_UserProvider__WEBPACK_IMPORTED_MODULE_7__.default, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("header", {
       className: "page-header",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h1", {
@@ -5373,7 +5607,12 @@ function UserProvider(props) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       movieShows = _useState2[0],
-      setMovieShows = _useState2[1]; // const [activeHall, setActiveHall] = useState('');
+      setMovieShows = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
+      _useState4 = _slicedToArray(_useState3, 2),
+      orderData = _useState4[0],
+      setOrderData = _useState4[1]; // const [activeHall, setActiveHall] = useState('');
   // const [films, setFilms] = useState([]);
   // const loadMovies = async () => {
   //     const movies = await Api.getItems('movie_hall');
@@ -5390,7 +5629,9 @@ function UserProvider(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_UserContext__WEBPACK_IMPORTED_MODULE_2__.default.Provider, {
     value: {
       setMovieShows: setMovieShows,
-      movieShows: movieShows
+      movieShows: movieShows,
+      setOrderData: setOrderData,
+      orderData: orderData
     },
     children: props.children
   });

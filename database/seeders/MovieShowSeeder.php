@@ -45,7 +45,8 @@ class MovieShowSeeder extends Seeder
             'film_name' => 'Звёздные войны XXIII: Атака клонированных клонов',
             'start_day' => $date1,
             'start_time' => $minuteStart1,
-            'movie_show_duration' => 130
+            'movie_show_duration' => 130,
+            'ordered' => '[]' 
         ]);
 
         DB::table('movie_show')->insert([
@@ -54,7 +55,8 @@ class MovieShowSeeder extends Seeder
             'film_name' => 'Альфа',
             'start_day' => $date2,
             'start_time' => $minuteStart2,
-            'movie_show_duration' => 96
+            'movie_show_duration' => 96,
+            'ordered' => '[]' 
         ]);
 
         DB::table('movie_show')->insert([
@@ -63,7 +65,8 @@ class MovieShowSeeder extends Seeder
             'film_name' => 'Альфа',
             'start_day' => $date3,
             'start_time' => $minuteStart3,
-            'movie_show_duration' => 96
+            'movie_show_duration' => 96,
+            'ordered' => '[]' 
         ]);
     }
 }

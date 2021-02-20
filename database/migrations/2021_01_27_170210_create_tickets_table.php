@@ -16,7 +16,13 @@ class CreateTicketsTable extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('show_id');
-            $table->json('seats');   
+            $table->unsignedBigInteger('start_time');
+            $table->json('seats');
+            $table->string('hall_name');
+            $table->string('start_day');
+            $table->unsignedBigInteger('price');
+            $table->string('film');
+
 
             $table->foreign('show_id')->references('id')->on('movie_show');
 
