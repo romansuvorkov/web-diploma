@@ -16,7 +16,7 @@ class Ticket extends Model
         'start_day',
         'start_time',
         'hall_name',
-        'film'
+        'film',
     ];
 
     protected $table = 'tickets';

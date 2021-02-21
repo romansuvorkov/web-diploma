@@ -7,7 +7,6 @@ import Api from '../../functions/Api';
 function AddFilmPopup(props) {
 
     const { handleClose, handleSubmit } = props;
-    // const { loadFilmsFromServer } = useContext(AdminContext);
     const [newFilm, setNewFilm] = useState({
         name: '',
         description: '',
@@ -17,28 +16,14 @@ function AddFilmPopup(props) {
 
     const fileRef = useRef();
 
-    // const handleSubmit = async(e) => {
-    //     e.preventDefault();
-    //     // console.dir(fileRef.current.files[0]);
-    //     // console.log(fileRef.current.files[0]);
-    //     let response = await Api.storeFilm('film', newFilm, fileRef.current.files[0]);
-    //     // console.log(test);
-    //     if(response === 'New film added') {
-    //         handleClose(false);
-    //         loadFilmsFromServer();
-    //     }
-    // }
-
     const handleChange = (e) => {
         const {name, value} = e.target;
         setNewFilm(prevState => ({
             ...prevState,
             [name]: value
         }));
-        // console.log(newFilm);
     }
         
-
     return (
 
         <div className="popup active">

@@ -26,3 +26,5 @@ Route::apiResource('seats', 'App\Http\Controllers\SeatsController');
 Route::apiResource('movie', 'App\Http\Controllers\MovieShowController');
 Route::apiResource('movie_hall', 'App\Http\Controllers\UserMovieShowController');
 Route::apiResource('movie_seats', 'App\Http\Controllers\UserSeatsController');
+Route::apiResource('ticket', 'App\Http\Controllers\TicketController');
+Route::apiResource('user', 'App\Http\Controllers\UserController');

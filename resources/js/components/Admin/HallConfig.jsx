@@ -25,7 +25,8 @@ function HallConfig() {
         setActiveHall(halls[0].id);
         setHallForRender(halls[0]);
       } else {
-        setSeats(await Api.getShow('seats', hallForRender.id));
+        const seatsFromServer = await Api.getShow('seats', hallForRender.id);
+        setSeats(seatsFromServer);
         setRows(hallForRender.row);
         setSeatsInRow(hallForRender.seats);
         setIsLoaded(true);
@@ -35,7 +36,8 @@ function HallConfig() {
 
   useEffect(async () => {
     setIsLoaded(false);
-    setSeats(await Api.getShow('seats', hallForRender.id));
+    const seatsFromServer = await Api.getShow('seats', hallForRender.id);
+    setSeats(seatsFromServer);
     setRows(hallForRender.row);
     setSeatsInRow(hallForRender.seats);
     setIsLoaded(true);
@@ -114,9 +116,9 @@ function HallConfig() {
             <p className="conf-step__paragraph">Укажите количество рядов и максимальное количество кресел в ряду:</p>
             {!isLoaded && <Preloader />}
             {isLoaded && <div className="conf-step__legend">
-              <label className="conf-step__label">Рядов, шт<input type="text" className="conf-step__input" placeholder="10" name="rows" value={rows} onChange={(e) => handleLabelChange(e)}/></label>
+              {rows && <label className="conf-step__label">Рядов, шт<input type="text" className="conf-step__input" placeholder="10" name="rows" value={rows} onChange={(e) => handleLabelChange(e)}/></label>}
               <span className="multiplier">x</span>
-              <label className="conf-step__label">Мест, шт<input type="text" className="conf-step__input" placeholder="10" name="seats"value={seatsInRow} onChange={(e) => handleLabelChange(e)}/></label>
+              {seatsInRow && <label className="conf-step__label">Мест, шт<input type="text" className="conf-step__input" placeholder="10" name="seats"value={seatsInRow} onChange={(e) => handleLabelChange(e)}/></label>}
             </div>}
             <p className="conf-step__paragraph">Теперь вы можете указать типы кресел на схеме зала:</p>
             <div className="conf-step__legend">

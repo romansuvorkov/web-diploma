@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useContext } from 'react';
 import AdminContext from './AdminContext';
-import HallSeat from './HallSeat';
 import InterfaceBtnContainer from './InterfaceBtnContainer';
 
 import Api from '../../functions/Api';

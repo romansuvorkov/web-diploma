@@ -5,8 +5,9 @@ import backgroundImage from '../../../images/admin/background-admin.jpg';
 import HallManagement from './HallManagment';
 import HallConfig from './HallConfig';
 import PriceConfig from './PriceConfig';
+import Login from './Login';
 import HallSaleManagement from './HallSaleManagement';
-import API from '../../functions/Api';
+import Api from '../../functions/Api';
 import AdminContext from './AdminContext';
 import AdminProvider from './AdminProvider';
 import MovieShowConfig from './MovieShowConfig';
@@ -26,11 +27,15 @@ function AdminPanel() {
 
     document.body.style  = backgroundImageStyle;
 
-    // const [isAddPopup, setIsAddPopup] = useState(false);
+    const [isLogged, setIsLogged] = useState(false);
 
-    // const handleOnAddClick = () => {
-    //   setIsAddPopup(true);
-    // }
+    const handleLogin = async (evt, address, login, password) => {
+      evt.preventDefault();
+      const response = await Api.userLogin(address, login, password);
+      if (response === 'Logged succesful') {
+        setIsLogged(true);
+      }
+    }
 
     return (
         <AdminProvider>
@@ -40,35 +45,32 @@ function AdminPanel() {
       </header>
       
       <main className="conf-steps">
-        <section className="conf-step">
+
+        {!isLogged &&<Login handleClick={handleLogin}/>}
+        {isLogged && <section className="conf-step">
           <SectionHeader title="Управление залами" />
           <HallManagement />
-        </section>
+        </section>}
         
-        <section className="conf-step">
+        {isLogged &&<section className="conf-step">
           <SectionHeader title="Конфигурация залов" />
           <HallConfig />
-        </section>
+        </section>}
         
-        <section className="conf-step">
+        {isLogged &&<section className="conf-step">
           <SectionHeader title="Конфигурация цен" />
           <PriceConfig />
-        </section>
+        </section>}
         
-        <section className="conf-step">
+        {isLogged &&<section className="conf-step">
           <SectionHeader title="Сетка сеансов" />
           <MovieShowConfig/>
-        </section>
+        </section>}
         
-        <section className="conf-step">
+        {isLogged &&<section className="conf-step">
           <SectionHeader title="Открыть продажи" />
           <HallSaleManagement />
-          
-          {/* <div className="conf-step__wrapper text-center">
-            <p className="conf-step__paragraph">Всё готово, теперь можно:</p>
-            <button className="conf-step__button conf-step__button-accent">Открыть продажу билетов</button>
-          </div> */}
-        </section>    
+        </section>} 
       </main>
   </AdminProvider>
     );

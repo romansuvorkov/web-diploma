@@ -110,6 +110,24 @@ export default class Api {
       });
     }
 
+    static async userLogin(address, login, password) {
+      return new Promise((resolve, reject) => {
+        const params = new URLSearchParams();
+        params.append('login', login);
+        params.append('password', password);
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', `http://localhost:8000/api/${address}`);
+        xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
+        xhr.addEventListener('load', () => {
+          if (xhr.status === 200) {
+            return resolve(xhr.responseText);
+          }
+          return reject(xhr.responseText);
+        });
+        xhr.send(params);
+      });
+    }
+
     static async updateHallPrice(address, id, price, vipPrice) {
       return new Promise((resolve, reject) => {
         const params = new URLSearchParams();
@@ -155,6 +173,41 @@ export default class Api {
           return reject(xhr.responseText);
         });
         xhr.send(formData);
+      });
+    }
+
+    static async storeTicket(address, object) {
+      // const formData = new FormData();
+      // formData.append('name', object.name);
+      // formData.append('description', object.description);
+      // formData.append('duration', object.duration);
+      // formData.append('country', object.country);
+      // formData.append('poster', poster);
+    //   for (var value of formData.values()) {
+    //     console.log(value);
+    //  }
+      return new Promise((resolve, reject) => {
+        const params = new URLSearchParams();
+        params.append('show_id', object.movieShowId);
+        const seats = JSON.stringify(object.seats);
+        params.append('seats', seats);
+        params.append('start_day', object.startDay);
+        params.append('start_time', object.startTime);
+        params.append('hall_name', object.hall);
+        params.append('film', object.film);
+        params.append('price', object.orderSum);
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', `http://localhost:8000/api/${address}`);
+        xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
+        xhr.addEventListener('load', () => {
+          if (xhr.status === 201) {
+            const data = JSON.parse(xhr.responseText);
+            // console.log(data.data);
+            return resolve(data.data);
+          }
+          return reject(xhr.responseText);
+        });
+        xhr.send(params);
       });
     }
 

@@ -13,13 +13,15 @@ function MovieShowHall({ match, history }) {
   const [data, setData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [orderSum, setOrderSum] = useState(0);
-  const occupied = [3, 4, 5];
+  const [occupied, setOccupied] = useState([]);
   const [order, setOrder] = useState([]);
 
     useEffect(async () => {
         const data = await Api.getMovie('movie_seats', match.params.id);
         console.log(data);
         setData(data);
+        const occupiedArr = JSON.parse(data.movieShow.ordered);
+        setOccupied(occupiedArr);
         const newArray = data.seats.map(a => ({...a}));
         setSeatsSoucre(newArray);
           const tableSeat = [];
@@ -28,7 +30,7 @@ function MovieShowHall({ match, history }) {
               let row = [];
               for (let y = 1; y <= data.hall.seats; y += 1) {
                 const seatData = data.seats[counter];
-                if (occupied.indexOf(seatData.seat_number) !== -1) {
+                if (occupiedArr.indexOf(seatData.seat_number) !== -1) {
                   seatData.status = 3;
                 }
                 row.push(seatData);
@@ -112,8 +114,8 @@ function MovieShowHall({ match, history }) {
         film: data.movieShow.film_name,
         seats: order,
         hall: data.hall.name,
-        hallId: data.hall.name,
-        movieShowId: data.movieShow.film_name,
+        hallId: data.hall.id,
+        movieShowId: data.movieShow.id,
         startDay: data.movieShow.start_day,
         startTime: data.movieShow.start_time,
         orderSum: orderSum

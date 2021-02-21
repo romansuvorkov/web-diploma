@@ -7,13 +7,12 @@ import Api from '../../functions/Api';
 function HallAddPopup(props) {
 
     const { handleClose, handleSubmit } = props;
-    // const { loadFilmsFromServer } = useContext(AdminContext);
+
     const [name, setName] = useState('');
 
     const handleChange = (e) => {
         const {value} = e.target;
         setName(value);
-        // console.log(newFilm);
     }
         
     return (

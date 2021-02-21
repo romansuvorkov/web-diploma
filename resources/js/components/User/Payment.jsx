@@ -1,14 +1,16 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useRef } from 'react';
 import UserContext from './UserContext';
 import Api from '../../functions/Api';
 
-function DateNavigation() {
+function Payment({ history }) {
 
   const { orderData } = useContext(UserContext);
 
-
-  const handleSubmit = () => {
-      
+  const handleSubmit = async (e) => {
+      e.preventDefault();
+      const response = await Api.storeTicket('ticket', orderData);
+      // console.log(response);
+      history.push(`/ticket/${response.id}`);
   }
 
     return (
@@ -25,8 +27,7 @@ function DateNavigation() {
           <p className="ticket__info">Начало сеанса: <span className="ticket__details ticket__start">{parseInt(orderData.startTime / 60)}:{(orderData.startTime % 60) < 10 ? ('0' + orderData.startTime % 60) : (orderData.startTime % 60)}</span></p>
           <p className="ticket__info">Стоимость: <span className="ticket__details ticket__cost">{orderData.orderSum}</span> рублей</p>
   
-          <button className="acceptin-button" >Получить код бронирования</button>
-  
+          <button className="acceptin-button" onClick={(e) => handleSubmit(e)}>Получить код бронирования</button>
           <p className="ticket__hint">После оплаты билет будет доступен в этом окне, а также придёт вам на почту. Покажите QR-код нашему контроллёру у входа в зал.</p>
           <p className="ticket__hint">Приятного просмотра!</p>
         </div>
@@ -34,4 +35,4 @@ function DateNavigation() {
     );
   }
   
-  export default DateNavigation;
+  export default Payment;

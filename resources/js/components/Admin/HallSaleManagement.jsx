@@ -14,7 +14,6 @@ function HallSaleManagement() {
 
 
     const handleOpenSale = async () => {
-        // console.log(hallForRender.is_active);
         let status = hallForRender.is_active === 1 ? 0 : 1;
         const response = Api.openSales('hall', status, activeHall);
         if (response === 'Status update successful') {
@@ -42,7 +41,6 @@ function HallSaleManagement() {
             <div className="conf-step__wrapper text-center">
                 <p className="conf-step__paragraph">Всё готово, теперь можно:</p>
                 <button className="conf-step__button conf-step__button-accent" onClick={handleOpenSale}>{hallForRender.is_active === 1 ? 'Закрыть продажу билетов' : 'Открыть продажу билетов'}</button>
-                {/* {hallForRender.is_active === 1 ? <button className="conf-step__button conf-step__button-accent" onClick={handleOpenSale}>Закрыть продажу билетов</button> : <button className="conf-step__button conf-step__button-accent" onClick={handleOpenSale}>Открыть продажу билетов</button>} */}
             </div>
         </div>
     )

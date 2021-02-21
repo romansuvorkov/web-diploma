@@ -51,7 +51,11 @@ class UserSeatsController extends Controller
     public function show($id)
     {
         $movieShow = MovieShow::findOrFail($id);
-        $seatsArr = Seat::all()->where('hall_id', $movieShow['hall_id']);
+        $seats = Seat::all()->where('hall_id', $movieShow['hall_id']);
+        $seatsArr = [];
+        foreach ($seats as $seat) {
+            $seatsArr[] = $seat;
+        }
         $hall = Hall::findOrFail($movieShow->hall_id);
         $output = [
             'hall' => $hall,

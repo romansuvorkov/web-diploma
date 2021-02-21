@@ -11,7 +11,7 @@ function UserMoviesList() {
     const onClick = async () => {
         // console.log(halls);
         const test = await Api.getMovie('movie_seats', 1);
-        console.log(test);
+        // console.log(test);
     };
 
     useEffect(async () => {
@@ -41,7 +41,7 @@ function UserMoviesList() {
               <h3 className="movie-seances__hall-title">{hall.name}</h3>
               <ul className="movie-seances__list">
                 { hall.seances.map((seance) => (
-                  <li key={uuidv4()} className="movie-seances__time-block"><Link className="movie-seances__time" to={`/hall/${seance.id}`}>{parseInt(seance.start_time / 60)}:{seance.start_time % 60}</Link></li>
+                  <li key={uuidv4()} className="movie-seances__time-block"><Link className="movie-seances__time" to={`/hall/${seance.id}`}>{parseInt(seance.start_time / 60)}:{(seance.start_time % 60) < 10 ? ('0' + seance.start_time % 60) : (seance.start_time % 60)}</Link></li>
                 ))}            
               </ul>
             </div>

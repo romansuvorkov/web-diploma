@@ -9,9 +9,6 @@ import AddMovieShowPopup from './AddMovieShowPopup';
 import ConfirmPopup from './ConfirmPopup';
 import { v4 as uuidv4 } from 'uuid';
 
-
-
-
 function  MovieShowConfig() {
 
     const { halls } = useContext(AdminContext);
@@ -75,16 +72,6 @@ function  MovieShowConfig() {
             setAddMovieShowErr(`Сеанс пересекается по веремени с сеансом ${item.id}`);
             return;
           }
-
-// *************************************
-// ********Сохранение на сервер***********
-// *************************************
-          // let response = await Api.storeMovie('movie', film.id, hallId, movieShowStart, film.duration, activeDate, film.name);
-          // // console.log(test);
-          // if(response === 'New movie show added') {
-          //     setIsAddMovieShow(false);
-          //     setMovieShows(await Api.getMovie('movie', activeDate));
-          // }
         }
       }
       setAddMovieShowErr('');
@@ -104,9 +91,7 @@ function  MovieShowConfig() {
     }
 
     const handleSumbitMovieShow = async () => {
-      // let response = await Api.storeMovie('movie', film.id, hallId, movieShowStart, film.duration, activeDate, film.name);
       let response = await Api.patchMovie('movie', activeDate, addedMoviesShow, deletedMoviesShow);
-          // console.log(test);
       if(response === 'Update successful') {
         const movies = await Api.getMovie('movie', activeDate);
         setMovieShows([...movies]);
@@ -197,20 +182,12 @@ function  MovieShowConfig() {
       setIsDeletePopup(false);
     }
 
-  
-    // const handleOnAddClick = () => {
-    //   setIsAddPopup(true);
-    // }
-
-
-
     return (
             <div className="conf-step__wrapper">
               {isAddPopup && <AddFilmPopup handleClose={setIsAddPopup} handleSubmit={handleAddFilmSubmit}/>}
               {isAddMovieShow && activeHall && <AddMovieShowPopup error={addMovieShowErr} film={draggedFilm} hall={activeHall} handleClose={setIsAddMovieShow} handleSubmit={handleAddMovieShow}/>}
               {isDeletePopup && <ConfirmPopup reset={handleDeleteReset} submit={handleDelete} name={deleteState.film_name} data={deleteState} actionName={'Снятие с сеанса'} question={'Вы действительно хотите снять с сеанса фильм '}/>}
             <p className="conf-step__paragraph">
-              <button className="conf-step__button conf-step__button-accent" onClick={() => {console.log(deletedMoviesShow);console.log(newMovieShows);}}>Добавить сеанс</button>
               <button className="conf-step__button conf-step__button-accent" onClick={() => setIsAddPopup(true)}>Добавить фильм</button>
               <button className="conf-step__button conf-step__button-accent" onClick={handleDate}>Выбрать дату</button>
               {activeDate && <input type="date" name="date" value={activeDate} min={today} onChange={(e) => handleDateChange(e)}></input>}
