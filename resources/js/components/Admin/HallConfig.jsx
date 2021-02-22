@@ -31,7 +31,7 @@ function HallConfig() {
         setSeatsInRow(hallForRender.seats);
         setIsLoaded(true);
       }
-    }      
+    }     
   }, [halls, hallForRender]);
 
   useEffect(async () => {
@@ -47,12 +47,13 @@ function HallConfig() {
 
   useEffect(() => {
     if (isRedacting) {
-      console.log('work Redacting');
-      if (rows <= 0) {
-        return;
-      } else if (seatsInRow <= 0) {
-        return;
-      }
+      // if (rows <= 1) {
+      //   // setIsRedacting(false);
+      //   return;
+      // } else if (seatsInRow <= 1) {
+      //   // setIsRedacting(false);
+      //   return;
+      // }
       const arrLength = rows * seatsInRow;
       let seatsArr = [];
       for (let i = 1; i <= arrLength; i += 1) {
@@ -63,9 +64,10 @@ function HallConfig() {
           status: 1
         };
         seatsArr.push(newObj);
-        setSeats(seatsArr);
+        // setSeats(seatsArr);
         setIsRedacting(false);
       }
+      setSeats(seatsArr);
       setSeatsIsLoaded(true);
     }
       setSeatsIsLoaded(true);
@@ -74,14 +76,30 @@ function HallConfig() {
   const handleLabelChange = (e) => {
     setSeatsIsLoaded(false);
     const { name, value } = e.target;
+
     if (value === '') {
       if (name === 'rows') {
-        setRows(0);
+        if (rows == 1) {
+          setSeatsIsLoaded(true);
+          return;
+        }
+        setRows(1);
+        // setIsRedacting(false);
       } else if (name === 'seats') {
-        setSeatsInRow(0);
+        if (seatsInRow == 1) {
+          setSeatsIsLoaded(true);
+          return;
+        }
+        setSeatsInRow(1);
+        // setIsRedacting(false);
       }
       return;
-    }
+    } 
+    // else if (rows === 1) {
+    //   setSeatsIsLoaded(true);
+    // } else if (seatsInRow === 1) {
+    //   setSeatsIsLoaded(true);
+    // }
     let number;
     try { 
       number = Number.parseInt(value, 10); 
@@ -109,11 +127,10 @@ function HallConfig() {
 
 
     return (
-
-            <div className="conf-step__wrapper">        
+          <div className="conf-step__wrapper">        
             <p className="conf-step__paragraph" onClick={() => console.log(hallForRender)}>Выберите зал для конфигурации:</p>
             <HallBtnContainer active={activeHall} setActive={setActiveHall} setHallForRender={setHallForRender} />
-            <p className="conf-step__paragraph">Укажите количество рядов и максимальное количество кресел в ряду:</p>
+            <p className="conf-step__paragraph" onClick={() => console.log(seatsIsLoaded)}>Укажите количество рядов и максимальное количество кресел в ряду:</p>
             {!isLoaded && <Preloader />}
             {isLoaded && <div className="conf-step__legend">
               {rows && <label className="conf-step__label">Рядов, шт<input type="text" className="conf-step__input" placeholder="10" name="rows" value={rows} onChange={(e) => handleLabelChange(e)}/></label>}

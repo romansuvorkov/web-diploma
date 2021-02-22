@@ -27,13 +27,17 @@ function AdminPanel() {
 
     document.body.style  = backgroundImageStyle;
 
-    const [isLogged, setIsLogged] = useState(false);
+    const [isLogged, setIsLogged] = useState(true);
+    const [loginError, setLoginError] = useState(false);
 
     const handleLogin = async (evt, address, login, password) => {
       evt.preventDefault();
       const response = await Api.userLogin(address, login, password);
       if (response === 'Logged succesful') {
         setIsLogged(true);
+        setLoginError(false);
+      } else {
+        setLoginError(true);
       }
     }
 
@@ -46,7 +50,7 @@ function AdminPanel() {
       
       <main className="conf-steps">
 
-        {!isLogged &&<Login handleClick={handleLogin}/>}
+        {!isLogged &&<Login handleClick={handleLogin} loginError={loginError}/>}
         {isLogged && <section className="conf-step">
           <SectionHeader title="Управление залами" />
           <HallManagement />

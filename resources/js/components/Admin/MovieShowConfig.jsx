@@ -1,8 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useContext } from 'react';
 import AdminContext from './AdminContext';
-import poster from '../../../images/poster1.jpg';
-import poster1 from '../../../images/poster2.jpg';
 import Api from '../../functions/Api';
 import AddFilmPopup from './AddFilmPopup';
 import AddMovieShowPopup from './AddMovieShowPopup';
@@ -206,13 +204,13 @@ function  MovieShowConfig() {
             
             <div className="conf-step__seances">
               {halls.length > 0 && halls.map((hall) => (
-                    <div key={hall.id} className="conf-step__seances-hall">
-                    <h3 className="conf-step__seances-title">{hall.name}</h3>
-                    <div className="conf-step__seances-timeline" 
-                      onDragOver={(e) => handleDragOver(e)}
-                      onDragLeave={(e) => handleDragLeave(e)}
-                      onDrop={(e) => handleDragEnd(e, hall)}
-                    >
+                  <div key={hall.id} className="conf-step__seances-hall">
+                      <h3 className="conf-step__seances-title">{hall.name}</h3>
+                      <div className="conf-step__seances-timeline" 
+                        onDragOver={(e) => handleDragOver(e)}
+                        onDragLeave={(e) => handleDragLeave(e)}
+                        onDrop={(e) => handleDragEnd(e, hall)}
+                      >
                       {newMovieShows && newMovieShows.map((movie) => (
                       movie.hall_id === hall.id && <div key={movie.id} onClick={() => hadleMovieShowClick(movie)} className="conf-step__seances-movie" style={{width: 100*movie.movie_show_duration/1440 + '%', backgroundColor: 'rgb(202, 255, 133)', left: 100*movie.start_time/1440 + '%'}}>
                         <p className="conf-step__seances-movie-title">{movie.film_name}</p>
@@ -220,6 +218,7 @@ function  MovieShowConfig() {
                       </div>))}
                     </div>
                   </div>
+                    
               ))}
               {/* <div className="conf-step__seances-hall">
                 <h3 className="conf-step__seances-title">Зал 1</h3>

@@ -15,22 +15,22 @@ function PriceConfig() {
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        setIsLoaded(false);
-        if (halls.length === 0) {
-            return;
-        }
-        if(hallForRender.length === 0) {
-            setVipPrice(halls[0].vip_price);
-            setPrice(halls[0].price);
-            setActiveHall(halls[0].id);
-            setHallForRender(halls[0]); 
-        } else {
-            setVipPrice(hallForRender.vip_price);
-            setPrice(hallForRender.price);
-        }
-        setIsLoaded(true);
+      setIsLoaded(false);
+      if (halls.length === 0) {
+          return;
+      }
+      if(hallForRender.length === 0) {
+          setVipPrice(halls[0].vip_price);
+          setPrice(halls[0].price);
+          setActiveHall(halls[0].id);
+          setHallForRender(halls[0]); 
+      } else {
+          setVipPrice(hallForRender.vip_price);
+          setPrice(hallForRender.price);
+      }
+      setIsLoaded(true);
 
-    },[halls, activeHall]); 
+  },[halls, activeHall]); 
 
     const handleLabelChange = (e) => {
         const { name, value } = e.target;
@@ -61,11 +61,7 @@ function PriceConfig() {
     }
 
     const submitChanges = () => {
-        try {
-           Api.updateHallPrice('hall', activeHall, price, vipPrice); 
-        } catch (e) {
-            console.log(e);
-        }
+        Api.updateHallPrice('hall', activeHall, price, vipPrice); 
         setIsLoaded(false);
         setHallForRender([]);
         loadFromServer();
@@ -87,7 +83,7 @@ function PriceConfig() {
                 за <span className="conf-step__chair conf-step__chair_vip"></span> VIP кресла
               </div>}
             
-              <InterfaceBtnContainer reset={resetChanges} accept={submitChanges} />
+              {hallForRender.is_active ? <p className="conf-step__paragraph">Нельзя менять цены в зале с открытой продажей билетов, сначала закройте продажу билетов</p> : <InterfaceBtnContainer reset={resetChanges} accept={submitChanges} />}
           </div>
     )
 

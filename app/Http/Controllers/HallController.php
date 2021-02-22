@@ -7,6 +7,7 @@ use App\Http\Resources\Post;
 use App\Models\Hall;
 use App\Models\Seat;
 use App\Models\MovieShow;
+use App\Models\Ticket;
 
 class HallController extends Controller
 {
@@ -147,8 +148,15 @@ class HallController extends Controller
 
             $movieShowArr = MovieShow::all()->where('hall_id', $id);
             foreach($movieShowArr as $movie) {
+                $tickets = Ticket::all()->where('show_id', $movie->id);
+                foreach($tickets as $ticket) {
+                    $ticket->delete();
+                }
                 $movie->delete();
-            } 
+            }
+
+
+
             $hall->delete(); 
         }
 

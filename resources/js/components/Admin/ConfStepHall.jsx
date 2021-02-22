@@ -14,6 +14,8 @@ function ConfStepHall(props) {
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
+      console.log(activeHall);
+      console.log('activeHall');
         setIsLoaded(false);
         const tableSeat = [];
         let counter = 0;

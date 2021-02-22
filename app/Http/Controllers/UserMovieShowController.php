@@ -51,7 +51,7 @@ class UserMovieShowController extends Controller
     public function show($id)
     {
         // return Post::collection(MovieShow::all()->where('start_day', $id));
-        $halls = Hall::all();
+        $halls = Hall::all()->where('is_active', 1);
         $films = Film::all();
         $movieShow = MovieShow::all()->where('start_day', $id);
         $output = [];

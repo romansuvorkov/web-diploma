@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Resources\Post;
+use App\Models\Ticket;
 use App\Models\MovieShow;
 use DateTime;
 
@@ -118,6 +119,10 @@ class MovieShowController extends Controller
             // $arrForDelete = MovieShow::all()->where('start_day', $id);
             foreach($deleted as $item) {
                 $targetItem = MovieShow::findOrFail($item);
+                $tickets = Ticket::all()->where('show_id', $item);
+                foreach($tickets as $ticket) {
+                    $ticket->delete();
+                }
                 $targetItem->delete();
             }
         }

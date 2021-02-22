@@ -4,7 +4,7 @@ import AdminContext from './AdminContext';
 
 function Login(props) {
 
-    const { handleClick } = props;
+    const { handleClick, loginError } = props;
     
     const [user, setUser] = useState({
         login: '',
@@ -35,8 +35,9 @@ function Login(props) {
                 <input className="login__input" type="password" placeholder="" name="password" onChange={(e) => handleChange(e)} required />
             </label>
             <div className="text-center">
-                <input value="Авторизоваться" type="submit" className="login__button" />
+            {loginError ?  <input value="Неверный логин или пароль" type="submit" className="login__button" /> : <input value="Авторизоваться" type="submit" className="login__button" />}
             </div>
+            {/* {loginError && <p className="conf-step__paragraph">Ошибка авторизации. Проверьте логин и пароль</p>} */}
             </form>
         </div>
         </section>

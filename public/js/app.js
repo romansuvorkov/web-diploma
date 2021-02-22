@@ -2456,10 +2456,15 @@ function AdminPanel() {
   var backgroundImageStyle = "\n        background-image: url(".concat(_images_admin_background_admin_jpg__WEBPACK_IMPORTED_MODULE_5__.default, ");\n        background-color: rgba(0, 0, 0, 0.5);\n        background-blend-mode: multiply;\n        background-size: cover;\n        background-attachment: fixed;\n        counter-reset: num;\n    ");
   document.body.style = backgroundImageStyle;
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(true),
       _useState2 = _slicedToArray(_useState, 2),
       isLogged = _useState2[0],
       setIsLogged = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      loginError = _useState4[0],
+      setLoginError = _useState4[1];
 
   var handleLogin = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(evt, address, login, password) {
@@ -2477,6 +2482,9 @@ function AdminPanel() {
 
               if (response === 'Logged succesful') {
                 setIsLogged(true);
+                setLoginError(false);
+              } else {
+                setLoginError(true);
               }
 
             case 5:
@@ -2507,7 +2515,8 @@ function AdminPanel() {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("main", {
       className: "conf-steps",
       children: [!isLogged && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Login__WEBPACK_IMPORTED_MODULE_9__.default, {
-        handleClick: handleLogin
+        handleClick: handleLogin,
+        loginError: loginError
       }), isLogged && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
         className: "conf-step",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SectionHeader__WEBPACK_IMPORTED_MODULE_4__.default, {
@@ -2712,6 +2721,8 @@ function ConfStepHall(props) {
       setIsLoaded = _useState6[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    console.log(activeHall);
+    console.log('activeHall');
     setIsLoaded(false);
     var tableSeat = [];
     var counter = 0;
@@ -3280,14 +3291,13 @@ function HallConfig() {
   })), [activeHall]);
   (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
     if (isRedacting) {
-      console.log('work Redacting');
-
-      if (rows <= 0) {
-        return;
-      } else if (seatsInRow <= 0) {
-        return;
-      }
-
+      // if (rows <= 1) {
+      //   // setIsRedacting(false);
+      //   return;
+      // } else if (seatsInRow <= 1) {
+      //   // setIsRedacting(false);
+      //   return;
+      // }
       var arrLength = rows * seatsInRow;
       var seatsArr = [];
 
@@ -3298,11 +3308,12 @@ function HallConfig() {
           seat_number: i,
           status: 1
         };
-        seatsArr.push(newObj);
-        setSeats(seatsArr);
+        seatsArr.push(newObj); // setSeats(seatsArr);
+
         setIsRedacting(false);
       }
 
+      setSeats(seatsArr);
       setSeatsIsLoaded(true);
     }
 
@@ -3317,13 +3328,28 @@ function HallConfig() {
 
     if (value === '') {
       if (name === 'rows') {
-        setRows(0);
+        if (rows == 1) {
+          setSeatsIsLoaded(true);
+          return;
+        }
+
+        setRows(1); // setIsRedacting(false);
       } else if (name === 'seats') {
-        setSeatsInRow(0);
+        if (seatsInRow == 1) {
+          setSeatsIsLoaded(true);
+          return;
+        }
+
+        setSeatsInRow(1); // setIsRedacting(false);
       }
 
       return;
-    }
+    } // else if (rows === 1) {
+    //   setSeatsIsLoaded(true);
+    // } else if (seatsInRow === 1) {
+    //   setSeatsIsLoaded(true);
+    // }
+
 
     var number;
 
@@ -3389,6 +3415,9 @@ function HallConfig() {
       setHallForRender: setHallForRender
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
       className: "conf-step__paragraph",
+      onClick: function onClick() {
+        return console.log(seatsIsLoaded);
+      },
       children: "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0440\u044F\u0434\u043E\u0432 \u0438 \u043C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435 \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043A\u0440\u0435\u0441\u0435\u043B \u0432 \u0440\u044F\u0434\u0443:"
     }), !isLoaded && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Preloader__WEBPACK_IMPORTED_MODULE_5__.default, {}), isLoaded && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
       className: "conf-step__legend",
@@ -3731,12 +3760,8 @@ function HallSaleManagement() {
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
       _useState4 = _slicedToArray(_useState3, 2),
       hallForRender = _useState4[0],
-      setHallForRender = _useState4[1];
+      setHallForRender = _useState4[1]; // const [isLoaded, setIsLoaded] = useState(false);
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
-      _useState6 = _slicedToArray(_useState5, 2),
-      isLoaded = _useState6[0],
-      setIsLoaded = _useState6[1];
 
   var handleOpenSale = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
@@ -3746,13 +3771,18 @@ function HallSaleManagement() {
           switch (_context.prev = _context.next) {
             case 0:
               status = hallForRender.is_active === 1 ? 0 : 1;
-              response = _functions_Api__WEBPACK_IMPORTED_MODULE_5__.default.openSales('hall', status, activeHall);
+              _context.next = 3;
+              return _functions_Api__WEBPACK_IMPORTED_MODULE_5__.default.openSales('hall', status, activeHall);
+
+            case 3:
+              response = _context.sent;
+              console.log(response);
 
               if (response === 'Status update successful') {
                 loadFromServer();
               }
 
-            case 3:
+            case 6:
             case "end":
               return _context.stop();
           }
@@ -3766,15 +3796,13 @@ function HallSaleManagement() {
   }();
 
   (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
-    setIsLoaded(false);
-
+    // setIsLoaded(false);
     if (halls.length === 0) {
       return;
     }
 
     setHallForRender(halls[0]);
-    setActiveHall(halls[0].id);
-    setIsLoaded(true);
+    setActiveHall(halls[0].id); // setIsLoaded(true);
   }, [halls]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
     className: "conf-step__wrapper",
@@ -3882,7 +3910,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Login(props) {
-  var handleClick = props.handleClick;
+  var handleClick = props.handleClick,
+      loginError = props.loginError;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
     login: '',
@@ -3945,7 +3974,11 @@ function Login(props) {
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
           className: "text-center",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+          children: loginError ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+            value: "\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u043B\u043E\u0433\u0438\u043D \u0438\u043B\u0438 \u043F\u0430\u0440\u043E\u043B\u044C",
+            type: "submit",
+            className: "login__button"
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
             value: "\u0410\u0432\u0442\u043E\u0440\u0438\u0437\u043E\u0432\u0430\u0442\u044C\u0441\u044F",
             type: "submit",
             className: "login__button"
@@ -3976,13 +4009,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _AdminContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AdminContext */ "./resources/js/components/Admin/AdminContext.jsx");
-/* harmony import */ var _images_poster1_jpg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../images/poster1.jpg */ "./resources/images/poster1.jpg");
-/* harmony import */ var _images_poster2_jpg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../images/poster2.jpg */ "./resources/images/poster2.jpg");
-/* harmony import */ var _functions_Api__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../functions/Api */ "./resources/js/functions/Api.js");
-/* harmony import */ var _AddFilmPopup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./AddFilmPopup */ "./resources/js/components/Admin/AddFilmPopup.jsx");
-/* harmony import */ var _AddMovieShowPopup__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./AddMovieShowPopup */ "./resources/js/components/Admin/AddMovieShowPopup.jsx");
-/* harmony import */ var _ConfirmPopup__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ConfirmPopup */ "./resources/js/components/Admin/ConfirmPopup.jsx");
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
+/* harmony import */ var _functions_Api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../functions/Api */ "./resources/js/functions/Api.js");
+/* harmony import */ var _AddFilmPopup__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AddFilmPopup */ "./resources/js/components/Admin/AddFilmPopup.jsx");
+/* harmony import */ var _AddMovieShowPopup__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./AddMovieShowPopup */ "./resources/js/components/Admin/AddMovieShowPopup.jsx");
+/* harmony import */ var _ConfirmPopup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ConfirmPopup */ "./resources/js/components/Admin/ConfirmPopup.jsx");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
 
 
 
@@ -4012,8 +4043,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
 
 
 
@@ -4105,7 +4134,7 @@ function MovieShowConfig() {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return _functions_Api__WEBPACK_IMPORTED_MODULE_6__.default.getMovie('movie', today);
+            return _functions_Api__WEBPACK_IMPORTED_MODULE_4__.default.getMovie('movie', today);
 
           case 2:
             movies = _context.sent;
@@ -4113,7 +4142,7 @@ function MovieShowConfig() {
             setNewMovieShows(_toConsumableArray(movies));
             _context.t0 = setFilms;
             _context.next = 8;
-            return _functions_Api__WEBPACK_IMPORTED_MODULE_6__.default.getItems('film');
+            return _functions_Api__WEBPACK_IMPORTED_MODULE_4__.default.getItems('film');
 
           case 8:
             _context.t1 = _context.sent;
@@ -4136,7 +4165,7 @@ function MovieShowConfig() {
             case 0:
               e.preventDefault();
               _context2.next = 3;
-              return _functions_Api__WEBPACK_IMPORTED_MODULE_6__.default.storeFilm('film', film, file);
+              return _functions_Api__WEBPACK_IMPORTED_MODULE_4__.default.storeFilm('film', film, file);
 
             case 3:
               response = _context2.sent;
@@ -4149,7 +4178,7 @@ function MovieShowConfig() {
               setIsAddPopup(false);
               _context2.t0 = setFilms;
               _context2.next = 9;
-              return _functions_Api__WEBPACK_IMPORTED_MODULE_6__.default.getItems('film');
+              return _functions_Api__WEBPACK_IMPORTED_MODULE_4__.default.getItems('film');
 
             case 9:
               _context2.t1 = _context2.sent;
@@ -4258,7 +4287,7 @@ function MovieShowConfig() {
                 movie_show_duration: film.duration,
                 start_day: activeDate,
                 film_name: film.name,
-                id: (0,uuid__WEBPACK_IMPORTED_MODULE_10__.default)(),
+                id: (0,uuid__WEBPACK_IMPORTED_MODULE_8__.default)(),
                 newItem: true
               };
               setNewMovieShows(function (prevState) {
@@ -4290,7 +4319,7 @@ function MovieShowConfig() {
           switch (_context4.prev = _context4.next) {
             case 0:
               _context4.next = 2;
-              return _functions_Api__WEBPACK_IMPORTED_MODULE_6__.default.patchMovie('movie', activeDate, addedMoviesShow, deletedMoviesShow);
+              return _functions_Api__WEBPACK_IMPORTED_MODULE_4__.default.patchMovie('movie', activeDate, addedMoviesShow, deletedMoviesShow);
 
             case 2:
               response = _context4.sent;
@@ -4301,7 +4330,7 @@ function MovieShowConfig() {
               }
 
               _context4.next = 6;
-              return _functions_Api__WEBPACK_IMPORTED_MODULE_6__.default.getMovie('movie', activeDate);
+              return _functions_Api__WEBPACK_IMPORTED_MODULE_4__.default.getMovie('movie', activeDate);
 
             case 6:
               movies = _context4.sent;
@@ -4345,7 +4374,7 @@ function MovieShowConfig() {
           switch (_context5.prev = _context5.next) {
             case 0:
               _context5.next = 2;
-              return _functions_Api__WEBPACK_IMPORTED_MODULE_6__.default.getMovie('movie', activeDate);
+              return _functions_Api__WEBPACK_IMPORTED_MODULE_4__.default.getMovie('movie', activeDate);
 
             case 2:
               movies = _context5.sent;
@@ -4441,16 +4470,16 @@ function MovieShowConfig() {
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
     className: "conf-step__wrapper",
-    children: [isAddPopup && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_AddFilmPopup__WEBPACK_IMPORTED_MODULE_7__.default, {
+    children: [isAddPopup && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_AddFilmPopup__WEBPACK_IMPORTED_MODULE_5__.default, {
       handleClose: setIsAddPopup,
       handleSubmit: handleAddFilmSubmit
-    }), isAddMovieShow && activeHall && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_AddMovieShowPopup__WEBPACK_IMPORTED_MODULE_8__.default, {
+    }), isAddMovieShow && activeHall && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_AddMovieShowPopup__WEBPACK_IMPORTED_MODULE_6__.default, {
       error: addMovieShowErr,
       film: draggedFilm,
       hall: activeHall,
       handleClose: setIsAddMovieShow,
       handleSubmit: handleAddMovieShow
-    }), isDeletePopup && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_ConfirmPopup__WEBPACK_IMPORTED_MODULE_9__.default, {
+    }), isDeletePopup && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_ConfirmPopup__WEBPACK_IMPORTED_MODULE_7__.default, {
       reset: handleDeleteReset,
       submit: handleDelete,
       name: deleteState.film_name,
@@ -4687,12 +4716,7 @@ function PriceConfig() {
   };
 
   var submitChanges = function submitChanges() {
-    try {
-      _functions_Api__WEBPACK_IMPORTED_MODULE_5__.default.updateHallPrice('hall', activeHall, price, vipPrice);
-    } catch (e) {
-      console.log(e);
-    }
-
+    _functions_Api__WEBPACK_IMPORTED_MODULE_5__.default.updateHallPrice('hall', activeHall, price, vipPrice);
     setIsLoaded(false);
     setHallForRender([]);
     loadFromServer();
@@ -4744,7 +4768,10 @@ function PriceConfig() {
       }), "\u0437\u0430 ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
         className: "conf-step__chair conf-step__chair_vip"
       }), " VIP \u043A\u0440\u0435\u0441\u043B\u0430"]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_InterfaceBtnContainer__WEBPACK_IMPORTED_MODULE_4__.default, {
+    }), hallForRender.is_active ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+      className: "conf-step__paragraph",
+      children: "\u041D\u0435\u043B\u044C\u0437\u044F \u043C\u0435\u043D\u044F\u0442\u044C \u0446\u0435\u043D\u044B \u0432 \u0437\u0430\u043B\u0435 \u0441 \u043E\u0442\u043A\u0440\u044B\u0442\u043E\u0439 \u043F\u0440\u043E\u0434\u0430\u0436\u0435\u0439 \u0431\u0438\u043B\u0435\u0442\u043E\u0432, \u0441\u043D\u0430\u0447\u0430\u043B\u0430 \u0437\u0430\u043A\u0440\u043E\u0439\u0442\u0435 \u043F\u0440\u043E\u0434\u0430\u0436\u0443 \u0431\u0438\u043B\u0435\u0442\u043E\u0432"
+    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_InterfaceBtnContainer__WEBPACK_IMPORTED_MODULE_4__.default, {
       reset: resetChanges,
       accept: submitChanges
     })]
@@ -6831,36 +6858,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/hint.png?5c5919f9c7e5bbf6e6beb4d5ae8073ff");
-
-/***/ }),
-
-/***/ "./resources/images/poster1.jpg":
-/*!**************************************!*\
-  !*** ./resources/images/poster1.jpg ***!
-  \**************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/poster1.jpg?7b508651539d9b8048d9ba51c2aba6c9");
-
-/***/ }),
-
-/***/ "./resources/images/poster2.jpg":
-/*!**************************************!*\
-  !*** ./resources/images/poster2.jpg ***!
-  \**************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/poster2.jpg?710d95643b8e85052c67f19b0e594c46");
 
 /***/ }),
 
