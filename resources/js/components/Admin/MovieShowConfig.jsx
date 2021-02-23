@@ -5,6 +5,7 @@ import Api from '../../functions/Api';
 import AddFilmPopup from './AddFilmPopup';
 import AddMovieShowPopup from './AddMovieShowPopup';
 import ConfirmPopup from './ConfirmPopup';
+import InfoPopup from './InfoPopup';
 import { v4 as uuidv4 } from 'uuid';
 
 function  MovieShowConfig() {
@@ -13,6 +14,7 @@ function  MovieShowConfig() {
 
     const [movieShows, setMovieShows] = useState(false);
     const [isAddPopup, setIsAddPopup] = useState(false);
+    const [isInfoPopup, setIsInfoPopup] = useState(false);
     const [isAddMovieShow, setIsAddMovieShow] = useState(false);
     const [isDeletePopup, setIsDeletePopup] = useState(false);
     const [films, setFilms] = useState([]);
@@ -128,6 +130,14 @@ function  MovieShowConfig() {
       if(target.classList.contains('conf-step__seances-timeline')) {
         target.style.backgroundColor = 'transparent';
       }
+      if (hall.is_active === 1) {
+        setIsInfoPopup(true);
+        return;
+      }
+      // const {target} = e;
+      // if(target.classList.contains('conf-step__seances-timeline')) {
+      //   target.style.backgroundColor = 'transparent';
+      // }
       setIsAddMovieShow(true);
       setActiveHall(hall);
     }
@@ -151,7 +161,11 @@ function  MovieShowConfig() {
       setIsDeletePopup(false);
     }
 
-    const hadleMovieShowClick = (o) => {
+    const hadleMovieShowClick = (o, closedSale) => {
+      if (closedSale === 1) {
+        setIsInfoPopup(true);
+        return;
+      }
       setDeleteState(o);
       setIsDeletePopup(true);
     }
@@ -183,6 +197,7 @@ function  MovieShowConfig() {
     return (
             <div className="conf-step__wrapper">
               {isAddPopup && <AddFilmPopup handleClose={setIsAddPopup} handleSubmit={handleAddFilmSubmit}/>}
+              {isInfoPopup && <InfoPopup handleClose={setIsInfoPopup} text={'Нельзя добавить или удалить сеанс в зале с открытыми продажами'}/>}
               {isAddMovieShow && activeHall && <AddMovieShowPopup error={addMovieShowErr} film={draggedFilm} hall={activeHall} handleClose={setIsAddMovieShow} handleSubmit={handleAddMovieShow}/>}
               {isDeletePopup && <ConfirmPopup reset={handleDeleteReset} submit={handleDelete} name={deleteState.film_name} data={deleteState} actionName={'Снятие с сеанса'} question={'Вы действительно хотите снять с сеанса фильм '}/>}
             <p className="conf-step__paragraph">
@@ -190,6 +205,7 @@ function  MovieShowConfig() {
               <button className="conf-step__button conf-step__button-accent" onClick={handleDate}>Выбрать дату</button>
               {activeDate && <input type="date" name="date" value={activeDate} min={today} onChange={(e) => handleDateChange(e)}></input>}
             </p>
+            <p className="conf-step__paragraph">Перетащите фильм для добавления сеанса</p>
             <div className="conf-step__movies">
             {films.length > 0 && films.map((film) => (
                   <div className="conf-step__movie" key={film.id} 
@@ -212,7 +228,7 @@ function  MovieShowConfig() {
                         onDrop={(e) => handleDragEnd(e, hall)}
                       >
                       {newMovieShows && newMovieShows.map((movie) => (
-                      movie.hall_id === hall.id && <div key={movie.id} onClick={() => hadleMovieShowClick(movie)} className="conf-step__seances-movie" style={{width: 100*movie.movie_show_duration/1440 + '%', backgroundColor: 'rgb(202, 255, 133)', left: 100*movie.start_time/1440 + '%'}}>
+                      movie.hall_id === hall.id && <div key={movie.id} onClick={() => hadleMovieShowClick(movie, hall.is_active)} className="conf-step__seances-movie" style={{width: 100*movie.movie_show_duration/1440 + '%', backgroundColor: 'rgb(202, 255, 133)', left: 100*movie.start_time/1440 + '%'}}>
                         <p className="conf-step__seances-movie-title">{movie.film_name}</p>
                         <p className="conf-step__seances-movie-start">{parseInt(movie.start_time / 60)}:{movie.start_time % 60}</p>
                       </div>))}

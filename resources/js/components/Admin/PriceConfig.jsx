@@ -9,7 +9,7 @@ function PriceConfig() {
 
     const { halls, loadFromServer } = useContext(AdminContext);
     const [activeHall, setActiveHall] = useState(0);
-    const [hallForRender, setHallForRender] = useState([]);
+    const [activeHallIndex, setActiveHallIndex] = useState(0);
     const [price, setPrice] = useState(0);
     const [vipPrice, setVipPrice] = useState(0);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -19,18 +19,12 @@ function PriceConfig() {
       if (halls.length === 0) {
           return;
       }
-      if(hallForRender.length === 0) {
-          setVipPrice(halls[0].vip_price);
-          setPrice(halls[0].price);
-          setActiveHall(halls[0].id);
-          setHallForRender(halls[0]); 
-      } else {
-          setVipPrice(hallForRender.vip_price);
-          setPrice(hallForRender.price);
-      }
+      setVipPrice(halls[0].vip_price);
+      setPrice(halls[0].price);
+      setActiveHall(halls[0].id);
+      setActiveHallIndex(0); 
       setIsLoaded(true);
-
-  },[halls, activeHall]); 
+  },[halls]); 
 
     const handleLabelChange = (e) => {
         const { name, value } = e.target;
@@ -56,22 +50,29 @@ function PriceConfig() {
     }
 
     const resetChanges = () => {
-        setVipPrice(hallForRender.vip_price);
-        setPrice(hallForRender.price);
+        setVipPrice(halls[activeHallIndex].vip_price);
+        setPrice(halls[activeHallIndex].price);
     }
 
     const submitChanges = () => {
         Api.updateHallPrice('hall', activeHall, price, vipPrice); 
         setIsLoaded(false);
-        setHallForRender([]);
         loadFromServer();
+    }
+
+    const handleSetActive = (hallId) => {
+      const index = halls.map(hall => hall.id).indexOf(hallId);
+      setVipPrice(halls[index].vip_price);
+      setPrice(halls[index].price);
+      setActiveHall(hallId);
+      setActiveHallIndex(index); 
     }
 
 
     return (
         <div className="conf-step__wrapper">
             <p className="conf-step__paragraph">Выберите зал для конфигурации:</p>
-            <HallBtnContainer active={activeHall} setActive={setActiveHall} setHallForRender={setHallForRender} />
+            <HallBtnContainer name={'price'} active={activeHall} setActive={handleSetActive} />
               
             <p className="conf-step__paragraph">Установите цены для типов кресел:</p>
               {isLoaded && <div className="conf-step__legend">
@@ -83,7 +84,7 @@ function PriceConfig() {
                 за <span className="conf-step__chair conf-step__chair_vip"></span> VIP кресла
               </div>}
             
-              {hallForRender.is_active ? <p className="conf-step__paragraph">Нельзя менять цены в зале с открытой продажей билетов, сначала закройте продажу билетов</p> : <InterfaceBtnContainer reset={resetChanges} accept={submitChanges} />}
+              {halls[activeHallIndex].is_active === 1 ? <p className="conf-step__paragraph">Нельзя менять цены в зале с открытой продажей билетов, сначала закройте продажу билетов</p> : <InterfaceBtnContainer reset={resetChanges} accept={submitChanges} />}
           </div>
     )
 

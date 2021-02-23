@@ -22,7 +22,7 @@ function HallAddPopup(props) {
                     <div className="popup__header">
                         <h2 className="popup__title">
                             Добавление зала
-                            <a className="popup__dismiss" href="#"><img src={closeImage} alt="Закрыть" /></a>
+                            <a className="popup__dismiss" href="#"><img src={closeImage} onClick={handleClose} alt="Закрыть" /></a>
                         </h2>
                     </div>
                     <div className="popup__wrapper">

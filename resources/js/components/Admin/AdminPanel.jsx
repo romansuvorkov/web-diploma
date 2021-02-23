@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './admin.css';
 import SectionHeader from './SectionHeader'
 import backgroundImage from '../../../images/admin/background-admin.jpg';
@@ -27,7 +27,9 @@ function AdminPanel() {
 
     document.body.style  = backgroundImageStyle;
 
-    const [isLogged, setIsLogged] = useState(true);
+    const { halls } = useContext(AdminContext);
+
+    const [isLogged, setIsLogged] = useState(false);
     const [loginError, setLoginError] = useState(false);
 
     const handleLogin = async (evt, address, login, password) => {
@@ -42,7 +44,7 @@ function AdminPanel() {
     }
 
     return (
-        <AdminProvider>
+        <>
     <header className="page-header">
         <h1 className="page-header__title">Идём<span>в</span>кино</h1>
         <span className="page-header__subtitle">Администраторррская</span>
@@ -50,33 +52,33 @@ function AdminPanel() {
       
       <main className="conf-steps">
 
-        {!isLogged &&<Login handleClick={handleLogin} loginError={loginError}/>}
+        {!isLogged && <Login handleClick={handleLogin} loginError={loginError}/>}
         {isLogged && <section className="conf-step">
           <SectionHeader title="Управление залами" />
           <HallManagement />
         </section>}
         
-        {isLogged &&<section className="conf-step">
+        {isLogged && halls.length > 0 && <section className="conf-step">
           <SectionHeader title="Конфигурация залов" />
           <HallConfig />
         </section>}
         
-        {isLogged &&<section className="conf-step">
+        {isLogged && halls.length > 0 && <section className="conf-step">
           <SectionHeader title="Конфигурация цен" />
           <PriceConfig />
         </section>}
         
-        {isLogged &&<section className="conf-step">
+        {isLogged && halls.length > 0 && <section className="conf-step">
           <SectionHeader title="Сетка сеансов" />
           <MovieShowConfig/>
         </section>}
         
-        {isLogged &&<section className="conf-step">
+        {isLogged && halls.length > 0 && <section className="conf-step">
           <SectionHeader title="Открыть продажи" />
           <HallSaleManagement />
         </section>} 
       </main>
-  </AdminProvider>
+  </>
     );
   }
   

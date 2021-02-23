@@ -6,17 +6,23 @@ import Api from '../../functions/Api';
 
 function HallSaleManagement() {
 
-    const { halls, setHalls, loadFromServer } = useContext(AdminContext);
+    const { halls, loadFromServer } = useContext(AdminContext);
 
     const [activeHall, setActiveHall] = useState(0);
-    const [hallForRender, setHallForRender] = useState([]);
+    const [activeHallIndex, setActiveHallIndex] = useState(0);
     // const [isLoaded, setIsLoaded] = useState(false);
+
+    const handleSetActive = (hallId) => {
+        const index = halls.map(hall => hall.id).indexOf(hallId);
+        setActiveHall(hallId);
+        setActiveHallIndex(index); 
+      }
 
 
     const handleOpenSale = async () => {
-        let status = hallForRender.is_active === 1 ? 0 : 1;
+        let status = halls[activeHallIndex].is_active === 1 ? 0 : 1;
         const response = await Api.openSales('hall', status, activeHall);
-        console.log(response);
+        // console.log(response);
         if (response === 'Status update successful') {
             loadFromServer();
         }
@@ -29,7 +35,6 @@ function HallSaleManagement() {
         if (halls.length === 0) {
             return;
         }
-        setHallForRender(halls[0]);
         setActiveHall(halls[0].id);
         // setIsLoaded(true);
     },[halls]);
@@ -38,11 +43,11 @@ function HallSaleManagement() {
     return (
         <div className="conf-step__wrapper">
             <p className="conf-step__paragraph">Выберите зал для конфигурации:</p>
-            <HallBtnContainer active={activeHall} setActive={setActiveHall} setHallForRender={setHallForRender} />
+            <HallBtnContainer name={'opensale'} active={activeHall} setActive={handleSetActive} />
             <div className="conf-step__wrapper text-center">
                 <p className="conf-step__paragraph">Всё готово, теперь можно:</p>
                 {/* {hallForRender.is_active === 1 ? <button className="conf-step__button conf-step__button-accent" onClick={handleOpenSale}>Закрыть продажу билетов</button> : <button className="conf-step__button conf-step__button-accent" onClick={handleOpenSale}>Открыть продажу билетов</button>} */}
-                <button className="conf-step__button conf-step__button-accent" onClick={handleOpenSale}>{hallForRender.is_active === 1 ? 'Закрыть продажу билетов' : 'Открыть продажу билетов'}</button>
+                {halls.length > 0 && <button className="conf-step__button conf-step__button-accent" onClick={handleOpenSale}>{halls[activeHallIndex].is_active === 1 ? 'Закрыть продажу билетов' : 'Открыть продажу билетов'}</button>}
             </div>
         </div>
     )

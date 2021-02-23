@@ -1936,8 +1936,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _components_Admin_AdminPanel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Admin/AdminPanel */ "./resources/js/components/Admin/AdminPanel.jsx");
 /* harmony import */ var _components_User_UserPanel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/User/UserPanel */ "./resources/js/components/User/UserPanel.jsx");
 /* harmony import */ var _components_User_Payment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/User/Payment */ "./resources/js/components/User/Payment.jsx");
@@ -1945,6 +1945,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_User_MovieShowHall__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/User/MovieShowHall */ "./resources/js/components/User/MovieShowHall.jsx");
 /* harmony import */ var _components_User_UserContext__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/User/UserContext */ "./resources/js/components/User/UserContext.jsx");
 /* harmony import */ var _components_User_UserProvider__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/User/UserProvider */ "./resources/js/components/User/UserProvider.jsx");
+/* harmony import */ var _components_Admin_AdminProvider__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Admin/AdminProvider */ "./resources/js/components/Admin/AdminProvider.jsx");
+
 
 
 
@@ -1958,30 +1960,32 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Application() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.BrowserRouter, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_User_UserProvider__WEBPACK_IMPORTED_MODULE_8__.default, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Switch, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
-          path: "/",
-          exact: true,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_User_UserPanel__WEBPACK_IMPORTED_MODULE_3__.default, {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
-          path: "/admin",
-          exact: true,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Admin_AdminPanel__WEBPACK_IMPORTED_MODULE_2__.default, {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
-          path: "/hall/:id",
-          component: _components_User_MovieShowHall__WEBPACK_IMPORTED_MODULE_6__.default,
-          exact: true
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
-          path: "/payment",
-          component: _components_User_Payment__WEBPACK_IMPORTED_MODULE_4__.default,
-          exact: true
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
-          path: "/ticket/:id",
-          component: _components_User_Ticket__WEBPACK_IMPORTED_MODULE_5__.default,
-          exact: true
-        })]
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.BrowserRouter, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Admin_AdminProvider__WEBPACK_IMPORTED_MODULE_9__.default, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_User_UserProvider__WEBPACK_IMPORTED_MODULE_8__.default, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Switch, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+            path: "/",
+            exact: true,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_User_UserPanel__WEBPACK_IMPORTED_MODULE_3__.default, {})
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+            path: "/admin",
+            exact: true,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_Admin_AdminPanel__WEBPACK_IMPORTED_MODULE_2__.default, {})
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+            path: "/hall/:id",
+            component: _components_User_MovieShowHall__WEBPACK_IMPORTED_MODULE_6__.default,
+            exact: true
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+            path: "/payment",
+            component: _components_User_Payment__WEBPACK_IMPORTED_MODULE_4__.default,
+            exact: true
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+            path: "/ticket/:id",
+            component: _components_User_Ticket__WEBPACK_IMPORTED_MODULE_5__.default,
+            exact: true
+          })]
+        })
       })
     })
   });
@@ -2421,6 +2425,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -2456,7 +2461,10 @@ function AdminPanel() {
   var backgroundImageStyle = "\n        background-image: url(".concat(_images_admin_background_admin_jpg__WEBPACK_IMPORTED_MODULE_5__.default, ");\n        background-color: rgba(0, 0, 0, 0.5);\n        background-blend-mode: multiply;\n        background-size: cover;\n        background-attachment: fixed;\n        counter-reset: num;\n    ");
   document.body.style = backgroundImageStyle;
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(true),
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_2__.useContext)(_AdminContext__WEBPACK_IMPORTED_MODULE_12__.default),
+      halls = _useContext.halls;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       isLogged = _useState2[0],
       setIsLogged = _useState2[1];
@@ -2500,7 +2508,7 @@ function AdminPanel() {
     };
   }();
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_AdminProvider__WEBPACK_IMPORTED_MODULE_13__.default, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("header", {
       className: "page-header",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h1", {
@@ -2522,22 +2530,22 @@ function AdminPanel() {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SectionHeader__WEBPACK_IMPORTED_MODULE_4__.default, {
           title: "\u0423\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u0435 \u0437\u0430\u043B\u0430\u043C\u0438"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_HallManagment__WEBPACK_IMPORTED_MODULE_6__.default, {})]
-      }), isLogged && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
+      }), isLogged && halls.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
         className: "conf-step",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SectionHeader__WEBPACK_IMPORTED_MODULE_4__.default, {
           title: "\u041A\u043E\u043D\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u044F \u0437\u0430\u043B\u043E\u0432"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_HallConfig__WEBPACK_IMPORTED_MODULE_7__.default, {})]
-      }), isLogged && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
+      }), isLogged && halls.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
         className: "conf-step",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SectionHeader__WEBPACK_IMPORTED_MODULE_4__.default, {
           title: "\u041A\u043E\u043D\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u044F \u0446\u0435\u043D"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_PriceConfig__WEBPACK_IMPORTED_MODULE_8__.default, {})]
-      }), isLogged && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
+      }), isLogged && halls.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
         className: "conf-step",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SectionHeader__WEBPACK_IMPORTED_MODULE_4__.default, {
           title: "\u0421\u0435\u0442\u043A\u0430 \u0441\u0435\u0430\u043D\u0441\u043E\u0432"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_MovieShowConfig__WEBPACK_IMPORTED_MODULE_14__.default, {})]
-      }), isLogged && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
+      }), isLogged && halls.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
         className: "conf-step",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_SectionHeader__WEBPACK_IMPORTED_MODULE_4__.default, {
           title: "\u041E\u0442\u043A\u0440\u044B\u0442\u044C \u043F\u0440\u043E\u0434\u0430\u0436\u0438"
@@ -2979,6 +2987,7 @@ function HallAddPopup(props) {
               href: "#",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
                 src: _images_admin_close_png__WEBPACK_IMPORTED_MODULE_3__.default,
+                onClick: handleClose,
                 alt: "\u0417\u0430\u043A\u0440\u044B\u0442\u044C"
               })
             })]
@@ -3050,23 +3059,44 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 function HallBtnContainer(props) {
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_AdminContext__WEBPACK_IMPORTED_MODULE_3__.default),
       halls = _useContext.halls;
 
   var active = props.active,
       setActive = props.setActive,
-      setHallForRender = props.setHallForRender;
+      name = props.name;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("ul", {
     className: "conf-step__selectors-box",
     children: halls.map(function (o) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_HallButton__WEBPACK_IMPORTED_MODULE_2__.default, {
-        name: o.name,
-        id: o.id,
-        active: active,
-        setActive: setActive,
-        setHallForRender: setHallForRender
-      }, o.id);
+      return (
+        /*#__PURE__*/
+        // <HallButton key={o.id} name={o.name} id={o.id} active={active} setActive={setActive} setHallForRender={setHallForRender}/>
+        (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("li", {
+          children: [o.id === active ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+            type: "radio",
+            className: "conf-step__radio",
+            name: name,
+            value: o.name,
+            onClick: function onClick() {
+              return setActive(o.id);
+            },
+            defaultChecked: true
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+            type: "radio",
+            className: "conf-step__radio",
+            name: name,
+            value: o.name,
+            onClick: function onClick() {
+              return setActive(o.id);
+            }
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+            className: "conf-step__selector",
+            children: o.name
+          })]
+        }, o.id)
+      );
     })
   });
 }
@@ -3152,9 +3182,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Preloader__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Preloader */ "./resources/js/components/Preloader.jsx");
 /* harmony import */ var _ConfStepHall__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ConfStepHall */ "./resources/js/components/Admin/ConfStepHall.jsx");
 /* harmony import */ var _functions_Api__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../functions/Api */ "./resources/js/functions/Api.js");
+/* harmony import */ var _InterfaceBtnContainer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./InterfaceBtnContainer */ "./resources/js/components/Admin/InterfaceBtnContainer.jsx");
 
 
 
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -3180,145 +3219,217 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function HallConfig() {
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_2__.useContext)(_AdminContext__WEBPACK_IMPORTED_MODULE_3__.default),
-      halls = _useContext.halls;
+      halls = _useContext.halls,
+      loadFromServer = _useContext.loadFromServer;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0),
       _useState2 = _slicedToArray(_useState, 2),
       activeHall = _useState2[0],
       setActiveHall = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0),
       _useState4 = _slicedToArray(_useState3, 2),
-      seats = _useState4[0],
-      setSeats = _useState4[1];
+      activeHallIndex = _useState4[0],
+      setActiveHallIndex = _useState4[1];
 
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
       _useState6 = _slicedToArray(_useState5, 2),
-      hallForRender = _useState6[0],
-      setHallForRender = _useState6[1];
+      seats = _useState6[0],
+      setSeats = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
       _useState8 = _slicedToArray(_useState7, 2),
-      rows = _useState8[0],
-      setRows = _useState8[1];
+      seatsTable = _useState8[0],
+      setSeatsTable = _useState8[1];
 
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0),
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
       _useState10 = _slicedToArray(_useState9, 2),
-      seatsInRow = _useState10[0],
-      setSeatsInRow = _useState10[1];
+      changedSeats = _useState10[0],
+      setChangedSeats = _useState10[1];
 
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0),
       _useState12 = _slicedToArray(_useState11, 2),
-      isLoaded = _useState12[0],
-      setIsLoaded = _useState12[1];
+      rows = _useState12[0],
+      setRows = _useState12[1];
 
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0),
       _useState14 = _slicedToArray(_useState13, 2),
-      seatsIsLoaded = _useState14[0],
-      setSeatsIsLoaded = _useState14[1];
+      seatsInRow = _useState14[0],
+      setSeatsInRow = _useState14[1];
 
   var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
       _useState16 = _slicedToArray(_useState15, 2),
-      isRedacting = _useState16[0],
-      setIsRedacting = _useState16[1];
+      isLoaded = _useState16[0],
+      setIsLoaded = _useState16[1];
+
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
+      _useState18 = _slicedToArray(_useState17, 2),
+      seatsIsLoaded = _useState18[0],
+      setSeatsIsLoaded = _useState18[1];
+
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
+      _useState20 = _slicedToArray(_useState19, 2),
+      isRedacting = _useState20[0],
+      setIsRedacting = _useState20[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
-    var seatsFromServer;
+    var seatsFromServer, tableSeat, counter, i, row, y;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             setIsLoaded(false);
 
-            if (!(halls.length > 0)) {
-              _context.next = 14;
+            if (!(halls.length === 0)) {
+              _context.next = 3;
               break;
             }
 
-            if (!(hallForRender.length === 0)) {
-              _context.next = 7;
-              break;
-            }
+            return _context.abrupt("return");
 
+          case 3:
             setActiveHall(halls[0].id);
-            setHallForRender(halls[0]);
-            _context.next = 14;
-            break;
+            setActiveHallIndex(0); // setSeats(halls[0].seats);
+
+            _context.next = 7;
+            return _functions_Api__WEBPACK_IMPORTED_MODULE_7__.default.getShow('seats', halls[0].id);
 
           case 7:
-            _context.next = 9;
-            return _functions_Api__WEBPACK_IMPORTED_MODULE_7__.default.getShow('seats', hallForRender.id);
-
-          case 9:
             seatsFromServer = _context.sent;
             setSeats(seatsFromServer);
-            setRows(hallForRender.row);
-            setSeatsInRow(hallForRender.seats);
+            setChangedSeats(seatsFromServer); // console.log(seatsFromServer);
+
+            setRows(halls[0].row);
+            setSeatsInRow(halls[0].seats);
+            tableSeat = [];
+            counter = 0;
+
+            for (i = 1; i <= halls[0].row; i += 1) {
+              row = [];
+
+              for (y = 1; y <= halls[0].seats; y += 1) {
+                row.push(seatsFromServer[counter]);
+                counter += 1;
+              }
+
+              tableSeat.push(row);
+            }
+
+            setSeatsTable(tableSeat);
+            setSeatsIsLoaded(true); // renderSeatsTable(false);
+
             setIsLoaded(true);
 
-          case 14:
+          case 18:
           case "end":
             return _context.stop();
         }
       }
     }, _callee);
-  })), [halls, hallForRender]);
-  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2() {
-    var seatsFromServer;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            setIsLoaded(false);
-            _context2.next = 3;
-            return _functions_Api__WEBPACK_IMPORTED_MODULE_7__.default.getShow('seats', hallForRender.id);
+  })), [halls]);
 
-          case 3:
-            seatsFromServer = _context2.sent;
-            setSeats(seatsFromServer);
-            setRows(hallForRender.row);
-            setSeatsInRow(hallForRender.seats);
-            setIsLoaded(true);
+  var renderNewSeatTable = function renderNewSeatTable(rowNumb, seatNumb) {
+    setIsLoaded(false);
+    setSeatsIsLoaded(false);
+    var arrLength = rowNumb * seatNumb;
+    var seatsArr = [];
 
-          case 8:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2);
-  })), [activeHall]);
-  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
-    if (isRedacting) {
-      // if (rows <= 1) {
-      //   // setIsRedacting(false);
-      //   return;
-      // } else if (seatsInRow <= 1) {
-      //   // setIsRedacting(false);
-      //   return;
-      // }
-      var arrLength = rows * seatsInRow;
-      var seatsArr = [];
-
-      for (var i = 1; i <= arrLength; i += 1) {
-        var newObj = {
-          id: i,
-          hall_id: activeHall,
-          seat_number: i,
-          status: 1
-        };
-        seatsArr.push(newObj); // setSeats(seatsArr);
-
-        setIsRedacting(false);
-      }
-
-      setSeats(seatsArr);
-      setSeatsIsLoaded(true);
+    for (var i = 1; i <= arrLength; i += 1) {
+      var newObj = {
+        id: i,
+        hall_id: activeHall,
+        seat_number: i,
+        status: 1
+      };
+      seatsArr.push(newObj); // setSeats(seatsArr);
     }
 
+    var tableSeat = [];
+    var counter = 0; // console.log('rows');
+    // console.log(rows);
+
+    for (var _i2 = 1; _i2 <= rowNumb; _i2 += 1) {
+      var row = [];
+
+      for (var y = 1; y <= seatNumb; y += 1) {
+        row.push(seatsArr[counter]);
+        counter += 1;
+      }
+
+      tableSeat.push(row);
+    }
+
+    setSeatsTable(tableSeat);
+    setChangedSeats(seatsArr);
     setSeatsIsLoaded(true);
-  }, [seats, rows, seatsInRow]);
+    setIsLoaded(true);
+  };
+
+  var renderSeatsTable = function renderSeatsTable(incomeArr, rowNumb, seatNumb) {
+    setIsLoaded(false);
+    setSeatsIsLoaded(false); // const arrLength = rowNumb * seatNumb;
+
+    var tableSeat = [];
+    var counter = 0;
+
+    for (var i = 1; i <= rowNumb; i += 1) {
+      var row = [];
+
+      for (var y = 1; y <= seatNumb; y += 1) {
+        row.push(incomeArr[counter]);
+        counter += 1;
+      }
+
+      tableSeat.push(row);
+    }
+
+    setSeatsTable(tableSeat);
+    setSeatsIsLoaded(true);
+    setIsLoaded(true);
+  };
+
+  var refreshRenderArr = function refreshRenderArr() {
+    var tableSeat = [];
+    var counter = 0;
+
+    for (var i = 1; i <= rows; i += 1) {
+      var row = [];
+
+      for (var y = 1; y <= seatsInRow; y += 1) {
+        row.push(changedSeats[counter]);
+        counter += 1;
+      }
+
+      tableSeat.push(row);
+    }
+
+    setSeatsTable(tableSeat);
+    setSeatsIsLoaded(true);
+    setIsLoaded(true);
+  };
+
+  var handleStatusChange = function handleStatusChange(seat) {
+    var index = seat - 1;
+    var status = changedSeats[index].status;
+    var newStatus;
+
+    if (status + 1 > 2) {
+      newStatus = 0;
+    } else {
+      newStatus = status + 1;
+    }
+
+    var newArray = _toConsumableArray(changedSeats);
+
+    newArray[index].status = newStatus;
+    setSeatsIsLoaded(false);
+    setIsLoaded(false);
+    setChangedSeats(newArray);
+    refreshRenderArr();
+  };
 
   var handleLabelChange = function handleLabelChange(e) {
     setSeatsIsLoaded(false);
@@ -3328,28 +3439,25 @@ function HallConfig() {
 
     if (value === '') {
       if (name === 'rows') {
-        if (rows == 1) {
+        if (rows === 1) {
           setSeatsIsLoaded(true);
           return;
         }
 
-        setRows(1); // setIsRedacting(false);
+        setRows(1);
+        renderNewSeatTable(1, seatsInRow); // setIsRedacting(false);
       } else if (name === 'seats') {
-        if (seatsInRow == 1) {
+        if (seatsInRow === 1) {
           setSeatsIsLoaded(true);
           return;
         }
 
-        setSeatsInRow(1); // setIsRedacting(false);
+        setSeatsInRow(1);
+        renderNewSeatTable(rows, 1);
       }
 
       return;
-    } // else if (rows === 1) {
-    //   setSeatsIsLoaded(true);
-    // } else if (seatsInRow === 1) {
-    //   setSeatsIsLoaded(true);
-    // }
-
+    }
 
     var number;
 
@@ -3360,35 +3468,77 @@ function HallConfig() {
     }
 
     if (name === 'rows') {
+      // renderSeatsTable(true, seats, number, halls[activeHallIndex].seats);
+      renderNewSeatTable(number, seatsInRow);
       setRows(number);
     } else if (name === 'seats') {
+      // renderSeatsTable(true, seats, halls[activeHallIndex].row, number);
+      renderNewSeatTable(rows, number);
       setSeatsInRow(number);
-    }
+    } // setIsRedacting(true);
 
-    setIsRedacting(true);
   };
 
   var resetChanges = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee3() {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2() {
       var seats;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              setIsLoaded(false);
+              setSeatsIsLoaded(false);
+              setRows(halls[activeHallIndex].row);
+              setSeatsInRow(halls[activeHallIndex].seats);
+              _context2.next = 6;
+              return _functions_Api__WEBPACK_IMPORTED_MODULE_7__.default.getShow('seats', halls[activeHallIndex].id);
+
+            case 6:
+              seats = _context2.sent;
+              setSeats(seats);
+              setChangedSeats(seats);
+              renderSeatsTable(seats, halls[activeHallIndex].row, halls[activeHallIndex].seats);
+
+            case 10:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function resetChanges() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  var handleSetActive = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee3(hallId) {
+      var index, seats;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              setIsLoaded(false);
               setSeatsIsLoaded(false);
-              setRows(hallForRender.row);
-              setSeatsInRow(hallForRender.seats);
-              setSeats([]);
+              setIsLoaded(false);
+              index = halls.map(function (hall) {
+                return hall.id;
+              }).indexOf(hallId);
+              setActiveHall(hallId);
+              setActiveHallIndex(index);
               _context3.next = 7;
-              return _functions_Api__WEBPACK_IMPORTED_MODULE_7__.default.getShow('seats', hallForRender.id);
+              return _functions_Api__WEBPACK_IMPORTED_MODULE_7__.default.getShow('seats', hallId);
 
             case 7:
               seats = _context3.sent;
               setSeats(seats);
-              setIsLoaded(true);
+              setChangedSeats(seats);
+              setRows(halls[index].row);
+              setSeatsInRow(halls[index].seats);
+              renderSeatsTable(seats, halls[index].row, halls[index].seats);
+              setSeatsIsLoaded(true);
 
-            case 10:
+            case 14:
             case "end":
               return _context3.stop();
           }
@@ -3396,35 +3546,44 @@ function HallConfig() {
       }, _callee3);
     }));
 
-    return function resetChanges() {
+    return function handleSetActive(_x) {
       return _ref3.apply(this, arguments);
     };
   }();
 
+  var submitChanges = function submitChanges() {
+    setSeatsIsLoaded(false);
+    setIsLoaded(false);
+    _functions_Api__WEBPACK_IMPORTED_MODULE_7__.default.updateSeats('seats', activeHall, changedSeats, rows, seatsInRow);
+    loadFromServer();
+  };
+
+  var seatStatus = ['chair_disabled', 'chair_standart', 'chair_vip'];
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
     className: "conf-step__wrapper",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
       className: "conf-step__paragraph",
       onClick: function onClick() {
-        return console.log(hallForRender);
+        return console.log(changedSeats);
       },
       children: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0437\u0430\u043B \u0434\u043B\u044F \u043A\u043E\u043D\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u0438:"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_HallBtnContainer__WEBPACK_IMPORTED_MODULE_4__.default, {
+      name: 'config',
       active: activeHall,
-      setActive: setActiveHall,
-      setHallForRender: setHallForRender
+      setActive: handleSetActive
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
       className: "conf-step__paragraph",
       onClick: function onClick() {
-        return console.log(seatsIsLoaded);
+        return console.log(seats);
       },
       children: "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0440\u044F\u0434\u043E\u0432 \u0438 \u043C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435 \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043A\u0440\u0435\u0441\u0435\u043B \u0432 \u0440\u044F\u0434\u0443:"
     }), !isLoaded && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Preloader__WEBPACK_IMPORTED_MODULE_5__.default, {}), isLoaded && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
       className: "conf-step__legend",
-      children: [rows && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
         className: "conf-step__label",
         children: ["\u0420\u044F\u0434\u043E\u0432, \u0448\u0442", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-          type: "text",
+          type: "number",
+          min: "1",
           className: "conf-step__input",
           placeholder: "10",
           name: "rows",
@@ -3436,10 +3595,11 @@ function HallConfig() {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
         className: "multiplier",
         children: "x"
-      }), seatsInRow && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
         className: "conf-step__label",
         children: ["\u041C\u0435\u0441\u0442, \u0448\u0442", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-          type: "text",
+          type: "number",
+          min: "1",
           className: "conf-step__input",
           placeholder: "10",
           name: "seats",
@@ -3464,13 +3624,33 @@ function HallConfig() {
         className: "conf-step__hint",
         children: "\u0427\u0442\u043E\u0431\u044B \u0438\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u0432\u0438\u0434 \u043A\u0440\u0435\u0441\u043B\u0430, \u043D\u0430\u0436\u043C\u0438\u0442\u0435 \u043F\u043E \u043D\u0435\u043C\u0443 \u043B\u0435\u0432\u043E\u0439 \u043A\u043D\u043E\u043F\u043A\u043E\u0439 \u043C\u044B\u0448\u0438"
       })]
-    }), (!isLoaded || !seatsIsLoaded) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Preloader__WEBPACK_IMPORTED_MODULE_5__.default, {}), isLoaded && seatsIsLoaded && seats.length > 0 && activeHall !== 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_ConfStepHall__WEBPACK_IMPORTED_MODULE_6__.default, {
-      activeHall: activeHall,
-      seats: seats,
-      rows: rows,
-      setHallForRender: setHallForRender,
-      seatsInRow: seatsInRow,
-      resetChanges: resetChanges
+    }), !isLoaded || !seatsIsLoaded ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Preloader__WEBPACK_IMPORTED_MODULE_5__.default, {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+      className: "conf-step__hall",
+      onClick: function onClick() {
+        return console.log(seatsTable);
+      },
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "conf-step__hall-wrapper",
+        children: rows > 0 && seatsInRow > 0 && seatsTable.length > 0 && seatsTable.map(function (row) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+            className: "conf-step__row",
+            children: row.map(function (o) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+                className: "conf-step__chair conf-step__".concat(seatStatus[o.status]),
+                onClick: function onClick() {
+                  return handleStatusChange(o.seat_number);
+                }
+              }, o.id);
+            })
+          }, row[0].id);
+        })
+      })
+    }), halls[activeHallIndex].is_active === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_InterfaceBtnContainer__WEBPACK_IMPORTED_MODULE_8__.default, {
+      reset: resetChanges,
+      accept: submitChanges
+    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+      className: "conf-step__paragraph",
+      children: "\u041D\u0435\u043B\u044C\u0437\u044F \u043C\u0435\u043D\u044F\u0442\u044C \u043A\u043E\u043D\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u044E \u043E\u0442\u043A\u0440\u044B\u0442\u043E\u0433\u043E \u0434\u043B\u044F \u043F\u0440\u043E\u0434\u0430\u0436\u0438 \u0437\u0430\u043B\u0430, \u0441\u043D\u0430\u0447\u0430\u043B\u0430 \u0437\u0430\u043A\u0440\u043E\u0439\u0442\u0435 \u043F\u0440\u043E\u0434\u0430\u0436\u0443 \u0431\u0438\u043B\u0435\u0442\u043E\u0432"
     })]
   });
 }
@@ -3749,7 +3929,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function HallSaleManagement() {
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_2__.useContext)(_AdminContext__WEBPACK_IMPORTED_MODULE_3__.default),
       halls = _useContext.halls,
-      setHalls = _useContext.setHalls,
       loadFromServer = _useContext.loadFromServer;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0),
@@ -3757,11 +3936,19 @@ function HallSaleManagement() {
       activeHall = _useState2[0],
       setActiveHall = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0),
       _useState4 = _slicedToArray(_useState3, 2),
-      hallForRender = _useState4[0],
-      setHallForRender = _useState4[1]; // const [isLoaded, setIsLoaded] = useState(false);
+      activeHallIndex = _useState4[0],
+      setActiveHallIndex = _useState4[1]; // const [isLoaded, setIsLoaded] = useState(false);
 
+
+  var handleSetActive = function handleSetActive(hallId) {
+    var index = halls.map(function (hall) {
+      return hall.id;
+    }).indexOf(hallId);
+    setActiveHall(hallId);
+    setActiveHallIndex(index);
+  };
 
   var handleOpenSale = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
@@ -3770,19 +3957,19 @@ function HallSaleManagement() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              status = hallForRender.is_active === 1 ? 0 : 1;
+              status = halls[activeHallIndex].is_active === 1 ? 0 : 1;
               _context.next = 3;
               return _functions_Api__WEBPACK_IMPORTED_MODULE_5__.default.openSales('hall', status, activeHall);
 
             case 3:
               response = _context.sent;
-              console.log(response);
 
+              // console.log(response);
               if (response === 'Status update successful') {
                 loadFromServer();
               }
 
-            case 6:
+            case 5:
             case "end":
               return _context.stop();
           }
@@ -3801,7 +3988,6 @@ function HallSaleManagement() {
       return;
     }
 
-    setHallForRender(halls[0]);
     setActiveHall(halls[0].id); // setIsLoaded(true);
   }, [halls]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
@@ -3810,24 +3996,78 @@ function HallSaleManagement() {
       className: "conf-step__paragraph",
       children: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0437\u0430\u043B \u0434\u043B\u044F \u043A\u043E\u043D\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u0438:"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_HallBtnContainer__WEBPACK_IMPORTED_MODULE_4__.default, {
+      name: 'opensale',
       active: activeHall,
-      setActive: setActiveHall,
-      setHallForRender: setHallForRender
+      setActive: handleSetActive
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
       className: "conf-step__wrapper text-center",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
         className: "conf-step__paragraph",
         children: "\u0412\u0441\u0451 \u0433\u043E\u0442\u043E\u0432\u043E, \u0442\u0435\u043F\u0435\u0440\u044C \u043C\u043E\u0436\u043D\u043E:"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
+      }), halls.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
         className: "conf-step__button conf-step__button-accent",
         onClick: handleOpenSale,
-        children: hallForRender.is_active === 1 ? 'Закрыть продажу билетов' : 'Открыть продажу билетов'
+        children: halls[activeHallIndex].is_active === 1 ? 'Закрыть продажу билетов' : 'Открыть продажу билетов'
       })]
     })]
   });
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HallSaleManagement);
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/InfoPopup.jsx":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/Admin/InfoPopup.jsx ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _images_admin_close_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../images/admin/close.png */ "./resources/images/admin/close.png");
+
+
+
+
+
+function InfoPopup(props) {
+  var handleClose = props.handleClose,
+      text = props.text;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+    className: "popup active",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+      className: "popup__container",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "popup__content",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+          className: "popup__header",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h2", {
+            className: "popup__title",
+            children: [text, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
+              className: "popup__dismiss",
+              href: "#",
+              onClick: function onClick() {
+                return handleClose(false);
+              },
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
+                src: _images_admin_close_png__WEBPACK_IMPORTED_MODULE_2__.default,
+                alt: "\u0417\u0430\u043A\u0440\u044B\u0442\u044C"
+              })
+            })]
+          })
+        })
+      })
+    })
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (InfoPopup);
 
 /***/ }),
 
@@ -4013,7 +4253,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AddFilmPopup__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AddFilmPopup */ "./resources/js/components/Admin/AddFilmPopup.jsx");
 /* harmony import */ var _AddMovieShowPopup__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./AddMovieShowPopup */ "./resources/js/components/Admin/AddMovieShowPopup.jsx");
 /* harmony import */ var _ConfirmPopup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ConfirmPopup */ "./resources/js/components/Admin/ConfirmPopup.jsx");
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
+/* harmony import */ var _InfoPopup__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./InfoPopup */ "./resources/js/components/Admin/InfoPopup.jsx");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
 
 
 
@@ -4053,6 +4294,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function MovieShowConfig() {
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_2__.useContext)(_AdminContext__WEBPACK_IMPORTED_MODULE_3__.default),
       halls = _useContext.halls;
@@ -4069,63 +4311,68 @@ function MovieShowConfig() {
 
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
       _useState6 = _slicedToArray(_useState5, 2),
-      isAddMovieShow = _useState6[0],
-      setIsAddMovieShow = _useState6[1];
+      isInfoPopup = _useState6[0],
+      setIsInfoPopup = _useState6[1];
 
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
       _useState8 = _slicedToArray(_useState7, 2),
-      isDeletePopup = _useState8[0],
-      setIsDeletePopup = _useState8[1];
+      isAddMovieShow = _useState8[0],
+      setIsAddMovieShow = _useState8[1];
 
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
       _useState10 = _slicedToArray(_useState9, 2),
-      films = _useState10[0],
-      setFilms = _useState10[1];
+      isDeletePopup = _useState10[0],
+      setIsDeletePopup = _useState10[1];
 
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
       _useState12 = _slicedToArray(_useState11, 2),
-      newMovieShows = _useState12[0],
-      setNewMovieShows = _useState12[1];
+      films = _useState12[0],
+      setFilms = _useState12[1];
 
   var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
       _useState14 = _slicedToArray(_useState13, 2),
-      deletedMoviesShow = _useState14[0],
-      setDeletedMoviesShow = _useState14[1];
+      newMovieShows = _useState14[0],
+      setNewMovieShows = _useState14[1];
 
   var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
       _useState16 = _slicedToArray(_useState15, 2),
-      addedMoviesShow = _useState16[0],
-      setAddedMoviesShow = _useState16[1];
+      deletedMoviesShow = _useState16[0],
+      setDeletedMoviesShow = _useState16[1];
 
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({}),
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
       _useState18 = _slicedToArray(_useState17, 2),
-      deleteState = _useState18[0],
-      setDeleteState = _useState18[1];
+      addedMoviesShow = _useState18[0],
+      setAddedMoviesShow = _useState18[1];
+
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({}),
+      _useState20 = _slicedToArray(_useState19, 2),
+      deleteState = _useState20[0],
+      setDeleteState = _useState20[1];
 
   var now = new Date();
   var day = ("0" + now.getDate()).slice(-2);
   var month = ("0" + (now.getMonth() + 1)).slice(-2);
   var today = now.getFullYear() + "-" + month + "-" + day;
 
-  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(today),
-      _useState20 = _slicedToArray(_useState19, 2),
-      activeDate = _useState20[0],
-      setActiveDate = _useState20[1];
-
-  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({}),
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(today),
       _useState22 = _slicedToArray(_useState21, 2),
-      draggedFilm = _useState22[0],
-      setDraggedFilm = _useState22[1];
+      activeDate = _useState22[0],
+      setActiveDate = _useState22[1];
 
-  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({}),
       _useState24 = _slicedToArray(_useState23, 2),
-      activeHall = _useState24[0],
-      setActiveHall = _useState24[1];
+      draggedFilm = _useState24[0],
+      setDraggedFilm = _useState24[1];
 
-  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(''),
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
       _useState26 = _slicedToArray(_useState25, 2),
-      addMovieShowErr = _useState26[0],
-      setAddMovieShowErr = _useState26[1];
+      activeHall = _useState26[0],
+      setActiveHall = _useState26[1];
+
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(''),
+      _useState28 = _slicedToArray(_useState27, 2),
+      addMovieShowErr = _useState28[0],
+      setAddMovieShowErr = _useState28[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
     var movies;
@@ -4287,7 +4534,7 @@ function MovieShowConfig() {
                 movie_show_duration: film.duration,
                 start_day: activeDate,
                 film_name: film.name,
-                id: (0,uuid__WEBPACK_IMPORTED_MODULE_8__.default)(),
+                id: (0,uuid__WEBPACK_IMPORTED_MODULE_9__.default)(),
                 newItem: true
               };
               setNewMovieShows(function (prevState) {
@@ -4407,6 +4654,15 @@ function MovieShowConfig() {
       target.style.backgroundColor = 'transparent';
     }
 
+    if (hall.is_active === 1) {
+      setIsInfoPopup(true);
+      return;
+    } // const {target} = e;
+    // if(target.classList.contains('conf-step__seances-timeline')) {
+    //   target.style.backgroundColor = 'transparent';
+    // }
+
+
     setIsAddMovieShow(true);
     setActiveHall(hall);
   };
@@ -4432,7 +4688,12 @@ function MovieShowConfig() {
     setIsDeletePopup(false);
   };
 
-  var hadleMovieShowClick = function hadleMovieShowClick(o) {
+  var hadleMovieShowClick = function hadleMovieShowClick(o, closedSale) {
+    if (closedSale === 1) {
+      setIsInfoPopup(true);
+      return;
+    }
+
     setDeleteState(o);
     setIsDeletePopup(true);
   };
@@ -4473,6 +4734,9 @@ function MovieShowConfig() {
     children: [isAddPopup && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_AddFilmPopup__WEBPACK_IMPORTED_MODULE_5__.default, {
       handleClose: setIsAddPopup,
       handleSubmit: handleAddFilmSubmit
+    }), isInfoPopup && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_InfoPopup__WEBPACK_IMPORTED_MODULE_8__.default, {
+      handleClose: setIsInfoPopup,
+      text: 'Нельзя добавить или удалить сеанс в зале с открытыми продажами'
     }), isAddMovieShow && activeHall && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_AddMovieShowPopup__WEBPACK_IMPORTED_MODULE_6__.default, {
       error: addMovieShowErr,
       film: draggedFilm,
@@ -4507,6 +4771,9 @@ function MovieShowConfig() {
           return handleDateChange(e);
         }
       })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+      className: "conf-step__paragraph",
+      children: "\u041F\u0435\u0440\u0435\u0442\u0430\u0449\u0438\u0442\u0435 \u0444\u0438\u043B\u044C\u043C \u0434\u043B\u044F \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F \u0441\u0435\u0430\u043D\u0441\u0430"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
       className: "conf-step__movies",
       children: films.length > 0 && films.map(function (film) {
@@ -4551,7 +4818,7 @@ function MovieShowConfig() {
             children: newMovieShows && newMovieShows.map(function (movie) {
               return movie.hall_id === hall.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                 onClick: function onClick() {
-                  return hadleMovieShowClick(movie);
+                  return hadleMovieShowClick(movie, hall.is_active);
                 },
                 className: "conf-step__seances-movie",
                 style: {
@@ -4640,10 +4907,10 @@ function PriceConfig() {
       activeHall = _useState2[0],
       setActiveHall = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
       _useState4 = _slicedToArray(_useState3, 2),
-      hallForRender = _useState4[0],
-      setHallForRender = _useState4[1];
+      activeHallIndex = _useState4[0],
+      setActiveHallIndex = _useState4[1];
 
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
       _useState6 = _slicedToArray(_useState5, 2),
@@ -4667,18 +4934,12 @@ function PriceConfig() {
       return;
     }
 
-    if (hallForRender.length === 0) {
-      setVipPrice(halls[0].vip_price);
-      setPrice(halls[0].price);
-      setActiveHall(halls[0].id);
-      setHallForRender(halls[0]);
-    } else {
-      setVipPrice(hallForRender.vip_price);
-      setPrice(hallForRender.price);
-    }
-
+    setVipPrice(halls[0].vip_price);
+    setPrice(halls[0].price);
+    setActiveHall(halls[0].id);
+    setActiveHallIndex(0);
     setIsLoaded(true);
-  }, [halls, activeHall]);
+  }, [halls]);
 
   var handleLabelChange = function handleLabelChange(e) {
     var _e$target = e.target,
@@ -4711,15 +4972,24 @@ function PriceConfig() {
   };
 
   var resetChanges = function resetChanges() {
-    setVipPrice(hallForRender.vip_price);
-    setPrice(hallForRender.price);
+    setVipPrice(halls[activeHallIndex].vip_price);
+    setPrice(halls[activeHallIndex].price);
   };
 
   var submitChanges = function submitChanges() {
     _functions_Api__WEBPACK_IMPORTED_MODULE_5__.default.updateHallPrice('hall', activeHall, price, vipPrice);
     setIsLoaded(false);
-    setHallForRender([]);
     loadFromServer();
+  };
+
+  var handleSetActive = function handleSetActive(hallId) {
+    var index = halls.map(function (hall) {
+      return hall.id;
+    }).indexOf(hallId);
+    setVipPrice(halls[index].vip_price);
+    setPrice(halls[index].price);
+    setActiveHall(hallId);
+    setActiveHallIndex(index);
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
@@ -4728,9 +4998,9 @@ function PriceConfig() {
       className: "conf-step__paragraph",
       children: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0437\u0430\u043B \u0434\u043B\u044F \u043A\u043E\u043D\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u0438:"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_HallBtnContainer__WEBPACK_IMPORTED_MODULE_3__.default, {
+      name: 'price',
       active: activeHall,
-      setActive: setActiveHall,
-      setHallForRender: setHallForRender
+      setActive: handleSetActive
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
       className: "conf-step__paragraph",
       children: "\u0423\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u0435 \u0446\u0435\u043D\u044B \u0434\u043B\u044F \u0442\u0438\u043F\u043E\u0432 \u043A\u0440\u0435\u0441\u0435\u043B:"
@@ -4768,7 +5038,7 @@ function PriceConfig() {
       }), "\u0437\u0430 ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
         className: "conf-step__chair conf-step__chair_vip"
       }), " VIP \u043A\u0440\u0435\u0441\u043B\u0430"]
-    }), hallForRender.is_active ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+    }), halls[activeHallIndex].is_active === 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
       className: "conf-step__paragraph",
       children: "\u041D\u0435\u043B\u044C\u0437\u044F \u043C\u0435\u043D\u044F\u0442\u044C \u0446\u0435\u043D\u044B \u0432 \u0437\u0430\u043B\u0435 \u0441 \u043E\u0442\u043A\u0440\u044B\u0442\u043E\u0439 \u043F\u0440\u043E\u0434\u0430\u0436\u0435\u0439 \u0431\u0438\u043B\u0435\u0442\u043E\u0432, \u0441\u043D\u0430\u0447\u0430\u043B\u0430 \u0437\u0430\u043A\u0440\u043E\u0439\u0442\u0435 \u043F\u0440\u043E\u0434\u0430\u0436\u0443 \u0431\u0438\u043B\u0435\u0442\u043E\u0432"
     }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_InterfaceBtnContainer__WEBPACK_IMPORTED_MODULE_4__.default, {

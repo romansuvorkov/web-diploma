@@ -7,6 +7,7 @@ import Ticket from './components/User/Ticket';
 import MovieShowHall from './components/User/MovieShowHall';
 import UserContext from './components/User/UserContext';
 import UserProvider from './components/User/UserProvider';
+import AdminProvider from './components/Admin/AdminProvider';
 
 function Application() {
 
@@ -14,22 +15,21 @@ function Application() {
 
   return (
     <Router>
-      <UserProvider>
-      <Switch>
-        <Route path="/" exact>
-          <UserPanel />
-        </Route>
-        <Route path="/admin" exact>
-          <AdminPanel />
-        </Route>
-        <Route path="/hall/:id" component={MovieShowHall} exact/>
-        <Route path="/payment" component={Payment} exact />
-        <Route path="/ticket/:id" component={Ticket} exact />
-        {/* <Route path="/hall/:id" exact> */}
-          {/* <MovieShowHall /> */}
-        {/* </Route> */}
-      </Switch>
-      </UserProvider>
+      <AdminProvider>
+        <UserProvider>
+        <Switch>
+          <Route path="/" exact>
+            <UserPanel />
+          </Route>
+          <Route path="/admin" exact>
+            <AdminPanel />
+          </Route>
+          <Route path="/hall/:id" component={MovieShowHall} exact/>
+          <Route path="/payment" component={Payment} exact />
+          <Route path="/ticket/:id" component={Ticket} exact />
+        </Switch>
+        </UserProvider>
+      </AdminProvider>
     </Router>
 
 
