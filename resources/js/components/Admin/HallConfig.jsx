@@ -3,7 +3,6 @@ import { useContext } from 'react';
 import AdminContext from './AdminContext';
 import HallBtnContainer from './HallBtnContainer';
 import Preloader from '../Preloader';
-import ConfStepHall from './ConfStepHall';
 import Api from '../../functions/Api';
 import InterfaceBtnContainer from './InterfaceBtnContainer';
 

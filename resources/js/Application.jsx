@@ -6,8 +6,9 @@ import Payment from './components/User/Payment';
 import Ticket from './components/User/Ticket';
 import MovieShowHall from './components/User/MovieShowHall';
 import UserContext from './components/User/UserContext';
-import UserProvider from './components/User/UserProvider';
+import PageDontExist from './components/PageDontExist';
 import AdminProvider from './components/Admin/AdminProvider';
+import UserProvider from './components/User/UserProvider';
 
 function Application() {
 
@@ -27,6 +28,12 @@ function Application() {
           <Route path="/hall/:id" component={MovieShowHall} exact/>
           <Route path="/payment" component={Payment} exact />
           <Route path="/ticket/:id" component={Ticket} exact />
+          <Route path="/404" exact>
+            <PageDontExist />
+          </Route>
+          <Route path="*">
+            <Redirect to="/404" />
+          </Route>
         </Switch>
         </UserProvider>
       </AdminProvider>

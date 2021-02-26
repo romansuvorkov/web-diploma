@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Resources\Post;
 use App\Models\Ticket;
 use App\Models\MovieShow;
-// use SimpleSoftwareIO\QrCode\Generator;
-// use QRcode;
+use SimpleSoftwareIO\QrCode\Generator;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 
 class TicketController extends Controller
@@ -77,7 +77,7 @@ class TicketController extends Controller
     //   ->size(399)
     //   ->color(40, 40, 40)
     //   ->generate('Lorem ipsum!');
-        return new Post($newTicket);
+        return $newTicket->id;
     // return $data_1;
     
     }
@@ -90,6 +90,37 @@ class TicketController extends Controller
      */
     public function show($id)
     {
+
+        // include('../phpqrcode/qrlib.php');
+    
+        // outputs image directly into browser, as PNG stream
+        // $data_1 = QRcode::png('PHP QR Code :)');
+        // $qrCode = QrCode::generate('Make me into a QrCode!
+        // Make me into a QrCode!
+        // Make me into a QrCode!
+        // Make me into a QrCode!
+        // Make me into a QrCode!');
+
+        // $ticket = Ticket::findOrFail($id);
+        // $ticket->qrCode = $qrCode;
+
+
+
+
+
+        //     $qrcode_1 = new Generator;
+
+        //     $data_1 = $qrcode_1->size(250)
+        //   ->color(255, 0, 0)
+        //   ->backgroundColor(0, 0, 0)
+        //   ->generate('Lorem ipsum!');
+    
+        // $data_1 = $qrcode_1->format('png')
+        //   ->size(399)
+        //   ->color(40, 40, 40)
+        //   ->generate('Lorem ipsum!');
+        // return $data_1;
+        // return $qrCode;
         return new Post(Ticket::findOrFail($id));
     }
 

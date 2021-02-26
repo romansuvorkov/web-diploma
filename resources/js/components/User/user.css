@@ -430,3 +430,9 @@ body {
     display: none;
   }
 }
+
+.qr_qode {
+  min-width: 350px;
+  min-height: 350px;
+  /* background-color: red; */
+}

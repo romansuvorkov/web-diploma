@@ -9,11 +9,10 @@
 Для запуска необходимо склонировать реппозиторий.
 1. Выполнить composer install в папке с проектом
 2. Выполнить npm install в папке с проектом
-3. Выполнить npm run dev
-4. Переименовать фаил .env.example в .env  и установить в нем подключение к базе данных.
-5. Выполнить php artisan key:generate
-6. Выполнить php artisan migrate:fresh --seed для заполнения базы данными.
-7. Запуск сервера php artisan serve
+3. Переименовать фаил .env.example в .env  и установить в нем подключение к базе данных.
+4. Выполнить php artisan key:generate
+5. Выполнить php artisan migrate:fresh --seed для заполнения базы данными.
+6. Запуск сервера php artisan serve
 
 ## 3. Доп. информация
 Логин admin@admin.com

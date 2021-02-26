@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import UserContext from './UserContext';
+import Preloader from '../Preloader';
 import Api from '../../functions/Api';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -57,7 +58,6 @@ function MovieShowHall({ match, history }) {
         ]));
         // const newArray = seatsSource.map(a => ({...a}));
         const newArr = [...seatsSource];
-        console.log(newArr);
         newArr[seatNumb - 1].status = 4;
         
         setIsLoaded(false);
@@ -127,18 +127,19 @@ function MovieShowHall({ match, history }) {
     
 
     return (
-      isLoaded && <section className="buying">
-      <div className="buying__info">
+      <section className="buying">
+      {!isLoaded && <Preloader />}
+      {isLoaded && <div className="buying__info">
         <div className="buying__info-description">
-          <h2 className="buying__info-title" onClick={() => console.log(data.seats)}>{data.movieShow.film_name}</h2>
+          <h2 className="buying__info-title">{data.movieShow.film_name}</h2>
           <p className="buying__info-start">Начало сеанса: {parseInt(data.movieShow.start_time / 60)}:{(data.movieShow.start_time % 60) < 10 ? ('0' + data.movieShow.start_time % 60) : (data.movieShow.start_time % 60)}</p>
           <p className="buying__info-hall">{data.hall.name}</p>          
         </div>
         <div className="buying__info-hint">
           <p>Тапните дважды,<br/>чтобы увеличить</p>
         </div>
-      </div>
-      <div className="buying-scheme">
+      </div>}
+      {isLoaded && <div className="buying-scheme">
         <div className="buying-scheme__wrapper">
           {seats.length > 0 && seats.map((row) => (
                   <div className="buying-scheme__row" key={uuidv4()}>
@@ -156,15 +157,6 @@ function MovieShowHall({ match, history }) {
                     ))}
                   </div>
                 ))}
-          
-            {/* <div className="buying-scheme__row">
-              <span className="buying-scheme__chair buying-scheme__chair_standart"></span><span className="buying-scheme__chair buying-scheme__chair_standart"></span>
-              <span className="buying-scheme__chair buying-scheme__chair_standart"></span><span className="buying-scheme__chair buying-scheme__chair_standart"></span>
-              <span className="buying-scheme__chair buying-scheme__chair_standart"></span><span className="buying-scheme__chair buying-scheme__chair_taken"></span>
-              <span className="buying-scheme__chair buying-scheme__chair_taken"></span><span className="buying-scheme__chair buying-scheme__chair_taken"></span>
-              <span className="buying-scheme__chair buying-scheme__chair_standart"></span><span className="buying-scheme__chair buying-scheme__chair_standart"></span>
-              <span className="buying-scheme__chair buying-scheme__chair_standart"></span><span className="buying-scheme__chair buying-scheme__chair_standart"></span>
-            </div> */}
         </div>
         <div className="buying-scheme__legend">
           <div className="col">
@@ -176,9 +168,9 @@ function MovieShowHall({ match, history }) {
             <p className="buying-scheme__legend-price"><span className="buying-scheme__chair buying-scheme__chair_selected"></span> Выбрано на {orderSum} руб.</p>                    
           </div>
         </div>
-      </div>
+      </div>}
       <button className="acceptin-button" onClick={handleSubmit}>Забронировать</button>
-    </section>     
+    </section>  
     )
 }
 

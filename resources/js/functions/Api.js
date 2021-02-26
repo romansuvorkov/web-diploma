@@ -57,10 +57,12 @@ export default class Api {
           xhr.addEventListener('load', () => {
             if (xhr.readyState === 4) {
               if (xhr.status === 200) {
-              // console.log(xhr);
+              // console.log(xhr.responseText);
               const data = JSON.parse(xhr.responseText);
+              // const data = xhr.responseText;
               // console.log(data.data);
               return resolve(data.data);
+              // return resolve(data);
               }
             }
             return reject(xhr.responseText);
@@ -200,10 +202,10 @@ export default class Api {
         xhr.open('POST', `http://localhost:8000/api/${address}`);
         xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
         xhr.addEventListener('load', () => {
-          if (xhr.status === 201) {
-            const data = JSON.parse(xhr.responseText);
+          if (xhr.status === 200) {
+            // const data = JSON.parse(xhr.responseText);
             // console.log(data.data);
-            return resolve(data.data);
+            return resolve(xhr.responseText);
           }
           return reject(xhr.responseText);
         });
@@ -275,24 +277,24 @@ export default class Api {
         xhr.send(params);
       });
     }
-    // sendOrder(name, phone, email) {
-    //   return new Promise((resolve, reject) => {
-    //     const params = new URLSearchParams();
-    //     params.append('name', name);
-    //     params.append('phone', phone);
-    //     params.append('email', email);
-    //     const xhr = new XMLHttpRequest();
-    //     xhr.open('POST', `${this.server}/test`);
-    //     xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
-    //     xhr.addEventListener('load', () => {
-    //       if (xhr.status === 204) {
-    //         return resolve(xhr.responseText);
-    //       }
-    //       return reject(xhr.responseText);
-    //     });
-    //     xhr.send(params);
-    //   });
-    // }
+
+    static async getQr(address, number) {
+      return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        // xhr.open('GET', `${this.server}/${address}/${number}`);
+        xhr.open('GET', `http://localhost:8000/api/${address}/${number}`);
+        xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
+        xhr.addEventListener('load', () => {
+          if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+            return resolve(xhr.responseText);
+            }
+          }
+          return reject(xhr.responseText);
+        });
+        xhr.send();
+      });
+  }
   
 }
 // const axios = window.axios;

@@ -1,5 +1,6 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import UserContext from './UserContext';
+import Preloader from '../Preloader';
 import { v4 as uuidv4 } from 'uuid';
 import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
 import Api from '../../functions/Api';
@@ -7,6 +8,8 @@ import Api from '../../functions/Api';
 function UserMoviesList() {
 
     const { movieShows } = useContext(UserContext);
+    const [isLoaded, setIsLoaded] = useState(false);
+
 
     const onClick = async () => {
         // console.log(halls);
@@ -14,12 +17,17 @@ function UserMoviesList() {
         // console.log(test);
     };
 
-    useEffect(async () => {
-      console.log(movieShows);
-    },[movieShows]);
+    // useEffect(async () => {
+    //   console.log(movieShows);
+    // },[movieShows]);
+
+    useEffect(() => {
+      setIsLoaded(true);
+    },[]);
 
     return (
       <>
+      {!isLoaded && <Preloader />}
       { movieShows && movieShows.map((film) => (
         <section className="movie" key={uuidv4()}>
           <div className="movie__info">
