@@ -6,6 +6,7 @@ import AddFilmPopup from './AddFilmPopup';
 import AddMovieShowPopup from './AddMovieShowPopup';
 import ConfirmPopup from './ConfirmPopup';
 import InfoPopup from './InfoPopup';
+import Preloader from '../Preloader';
 import { v4 as uuidv4 } from 'uuid';
 
 function  MovieShowConfig() {
@@ -22,6 +23,7 @@ function  MovieShowConfig() {
     const [deletedMoviesShow, setDeletedMoviesShow] = useState([]);
     const [addedMoviesShow, setAddedMoviesShow] = useState([]);
     const [deleteState, setDeleteState] = useState({});
+    const [isLoaded, setIsLoaded] = useState(false);
 
     const now = new Date();
     const day = ("0" + now.getDate()).slice(-2);
@@ -39,6 +41,7 @@ function  MovieShowConfig() {
       setMovieShows([...movies]);
       setNewMovieShows([...movies]);
       setFilms(await Api.getItems('film'));
+      setIsLoaded(true);
     },[]);
 
     const handleAddFilmSubmit = async(e, film, file) => {
@@ -91,6 +94,7 @@ function  MovieShowConfig() {
     }
 
     const handleSumbitMovieShow = async () => {
+      setIsLoaded(false);
       let response = await Api.patchMovie('movie', activeDate, addedMoviesShow, deletedMoviesShow);
       if(response === 'Update successful') {
         const movies = await Api.getMovie('movie', activeDate);
@@ -99,6 +103,7 @@ function  MovieShowConfig() {
       }
       setAddedMoviesShow([]);
       setDeletedMoviesShow([]);
+      setIsLoaded(true);
     }
 
     const handleResetMovieShows = () => {
@@ -110,7 +115,6 @@ function  MovieShowConfig() {
     const handleDateChange = (e) => {
       const {target} = e;
       setActiveDate(target.value);
-      console.log(activeDate);
     }
 
     const handleDate = async () => {
@@ -134,10 +138,6 @@ function  MovieShowConfig() {
         setIsInfoPopup(true);
         return;
       }
-      // const {target} = e;
-      // if(target.classList.contains('conf-step__seances-timeline')) {
-      //   target.style.backgroundColor = 'transparent';
-      // }
       setIsAddMovieShow(true);
       setActiveHall(hall);
     }
@@ -172,7 +172,6 @@ function  MovieShowConfig() {
 
     const handleDelete = (e, object) => {
       e.preventDefault();
-      console.log(object);
       if (object.newItem) {
         for(let i = 0; i < newMovieShows.length; i += 1) {
           if (object.id === newMovieShows[i].id) {
@@ -195,7 +194,9 @@ function  MovieShowConfig() {
     }
 
     return (
-            <div className="conf-step__wrapper">
+      <>
+      {!isLoaded && <Preloader />}
+      {isLoaded && <div className="conf-step__wrapper">
               {isAddPopup && <AddFilmPopup handleClose={setIsAddPopup} handleSubmit={handleAddFilmSubmit}/>}
               {isInfoPopup && <InfoPopup handleClose={setIsInfoPopup} text={'Нельзя добавить или удалить сеанс в зале с открытыми продажами'}/>}
               {isAddMovieShow && activeHall && <AddMovieShowPopup error={addMovieShowErr} film={draggedFilm} hall={activeHall} handleClose={setIsAddMovieShow} handleSubmit={handleAddMovieShow}/>}
@@ -234,45 +235,15 @@ function  MovieShowConfig() {
                       </div>))}
                     </div>
                   </div>
-                    
               ))}
-              {/* <div className="conf-step__seances-hall">
-                <h3 className="conf-step__seances-title">Зал 1</h3>
-                <div className="conf-step__seances-timeline">
-                  <div className="conf-step__seances-movie" style={{width: 20 + '%', backgroundColor: 'rgb(133, 255, 137)', left: 0}}>
-                    <p className="conf-step__seances-movie-title">Миссия выполнима</p>
-                    <p className="conf-step__seances-movie-start">00:00</p>
-                  </div>
-                  <div className="conf-step__seances-movie" style={{width: 60 + 'px', backgroundColor: 'rgb(133, 255, 137)', left: 360 + 'px'}}>
-                    <p className="conf-step__seances-movie-title">Миссия выполнима</p>
-                    <p className="conf-step__seances-movie-start">12:00</p>
-                  </div>
-                  <div className="conf-step__seances-movie" style={{width: 65 + 'px', backgroundColor: 'rgb(202, 255, 133)', left: 420 + 'px'}}>
-                    <p className="conf-step__seances-movie-title">Звёздные войны XXIII: Атака клонированных клонов</p>
-                    <p className="conf-step__seances-movie-start">14:00</p>
-                  </div>              
-                </div>
-              </div> */}
-              {/* <div className="conf-step__seances-hall">
-                <h3 className="conf-step__seances-title">Зал 2</h3>
-                <div className="conf-step__seances-timeline">
-                  <div className="conf-step__seances-movie" style={{width: 65 + 'px', backgroundColor: 'rgb(202, 255, 133)', left: 595 + 'px'}}>
-                    <p className="conf-step__seances-movie-title">Звёздные войны XXIII: Атака клонированных клонов</p>
-                    <p className="conf-step__seances-movie-start">19:50</p>
-                  </div>
-                  <div className="conf-step__seances-movie" style={{width: 60 + 'px', backgroundColor: 'rgb(133, 255, 137)', left: 66 + 'px'}}>
-                    <p className="conf-step__seances-movie-title">Миссия выполнима</p>
-                    <p className="conf-step__seances-movie-start">22:00</p>
-                  </div>              
-                </div>
-              </div> */}
             </div>
             
             <fieldset className="conf-step__buttons text-center">
               <button className="conf-step__button conf-step__button-regular" onClick={handleResetMovieShows}>Отмена</button>
               <input type="submit" value="Сохранить" className="conf-step__button conf-step__button-accent" onClick={handleSumbitMovieShow} />
             </fieldset>  
-          </div>
+          </div>}
+          </>
     )
 
   }
