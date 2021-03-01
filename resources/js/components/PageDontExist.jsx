@@ -1,16 +1,14 @@
 import React from 'react';
 
 function Preloader() {
+  return (
+    <section className="movie">
+      <div className="movie__description">
+        <h2 className="movie__title">Такой страницы не существует</h2>
+      </div>
 
-    return (
-        <section className="movie">
-            <div className="movie__description">
-              <h2 className="movie__title">Такой страницы не существует</h2>
-            </div> 
+    </section>
+  );
+}
 
-        </section> 
-    )
-
-  }
-  
-  export default Preloader;
+export default Preloader;

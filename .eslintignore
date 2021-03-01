@@ -1,0 +1,15 @@
+dist
+coverage
+docs
+.vscode
+app
+bootstrap
+config
+database
+node_modules
+phpqrcode
+public
+routes
+storage
+tests
+vendor

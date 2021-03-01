@@ -1,32 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import UserContext from './UserContext';
 
 export default function UserProvider(props) {
-    
-    const [movieShows, setMovieShows] = useState([]);
-    const [orderData, setOrderData] = useState({});
-    // const [activeHall, setActiveHall] = useState('');
-    // const [films, setFilms] = useState([]);
+  const [movieShows, setMovieShows] = useState([]);
+  const [orderData, setOrderData] = useState({});
 
-    // const loadMovies = async () => {
-    //     const movies = await Api.getItems('movie_hall');
-    //     setHalls(movies);
-    // };
-    
-    // const loadFilmsFromServer = async () => {
-    //     setFilms(await Api.getItems('film'));
-    //     console.log('loadFilmsFromServer');
-    // };
-
-    useEffect(() => {
-        // loadMovies();
-    }, []);
-
-    
-
-    return (
-        <UserContext.Provider value={{setMovieShows, movieShows, setOrderData, orderData}}>
-            {props.children}
-        </UserContext.Provider>
-    )
+  return (
+    <UserContext.Provider value={{
+      setMovieShows, movieShows, setOrderData, orderData,
+    }}
+    >
+      {props.children}
+    </UserContext.Provider>
+  );
 }

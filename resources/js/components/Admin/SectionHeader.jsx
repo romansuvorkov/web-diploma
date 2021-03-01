@@ -1,23 +1,34 @@
-import React, { useEffect } from 'react';
-import { useContext } from 'react';
-import AdminContext from './AdminContext';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function SectionHeader(props) {
+  const { title } = props;
 
-    const { halls } = useContext(AdminContext);
+  const onClick = (event) => {
+    event.currentTarget.classList.toggle('conf-step__header_closed');
+    event.currentTarget.classList.toggle('conf-step__header_opened');
+  };
 
-    const title = props.title;
+  return (
+    <header
+      className="conf-step__header conf-step__header_closed"
+      onClick={(event) => onClick(event)}
+      aria-label="Open button"
+      role="button"
+      tabIndex={0}
+      onKeyPress={(e) => { if (e.key === 'Enter') onClick(e); }}
+    >
+      <h2 className="conf-step__title">{title}</h2>
+    </header>
+  );
+}
 
-    const onClick = (event) => {
-        event.currentTarget.classList.toggle('conf-step__header_closed');
-        event.currentTarget.classList.toggle('conf-step__header_opened');
-    };
+SectionHeader.propTypes = {
+  title: PropTypes.string,
+};
 
-    return (
-          <header className="conf-step__header conf-step__header_closed" onClick={(event) => onClick(event)}>
-            <h2 className="conf-step__title">{title}</h2>
-          </header> 
-    );
-  }
-  
-  export default SectionHeader;
+SectionHeader.defaultProps = {
+  title: null,
+};
+
+export default SectionHeader;
