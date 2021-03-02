@@ -63,8 +63,6 @@ class UserSeatsController extends Controller
             'movieShow' => $movieShow
         ];
         return new Post($output);
-        // return $output;
-        // return new Post(MovieShow::findOrFail($id));
     }
 
     /**

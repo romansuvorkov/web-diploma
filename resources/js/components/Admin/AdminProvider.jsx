@@ -1,3 +1,5 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import AdminContext from './AdminContext';
 import Api from '../../functions/Api';

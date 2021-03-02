@@ -49,7 +49,6 @@ class SeatsController extends Controller
     public function show($id)
     {
         return Post::collection(Seat::all()->where('hall_id', $id));
-        // return Post::collection(DB::table('seats')->where('id', '=', $id));
     }
 
     /**
@@ -88,7 +87,6 @@ class SeatsController extends Controller
                 'seat_number' => $value->seat_number,
                 'status' => $value->status,
             ]);
-            // $seat->status = $value->status;
             $seat->save();
         }
         return "Update successful";

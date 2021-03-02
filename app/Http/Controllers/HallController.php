@@ -19,8 +19,6 @@ class HallController extends Controller
     public function index()
     {
         return Post::collection(Hall::all());
-        // return Hall::all();
-
     }
 
     /**
@@ -30,28 +28,7 @@ class HallController extends Controller
      */
     public function create()
     {
-        // $newHall = new Hall([
-        //   'name'=> $request->name,
-        //   'row' => 7,
-        //   'seats' => 7,
-        //   'price' => 200,
-        //   'vip_price' => 300,
-        //   'is_active' => false
-        // ]);
-        // $newHall->save();
 
-        // $i = 1;
-        // do {
-        //   $seat = new Seat([
-        //   'hall_id' =>  $newHall->id,
-        //   'seat_number' => $i,
-        //   'status' => 1,
-        //   ]);
-        //     $seat->save();
-        //     $i += 1;
-        // } while ($i <= 49);
-
-        // return "Hall created";
     }
 
     /**

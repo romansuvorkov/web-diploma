@@ -50,7 +50,6 @@ class UserMovieShowController extends Controller
      */
     public function show($id)
     {
-        // return Post::collection(MovieShow::all()->where('start_day', $id));
         $halls = Hall::all()->where('is_active', 1);
         $films = Film::all();
         $movieShow = MovieShow::all()->where('start_day', $id)->sortBy('start_time');;
@@ -59,7 +58,6 @@ class UserMovieShowController extends Controller
             $newArr = ['film_id'=> $film['id'],'name'=> $film['name'], 'country'=> $film['country'], 'duration'=> $film['duration'],'poster'=> $film['poster'], 'halls'=> []];
             foreach ($halls as $hall) {
                 $newHall = ['hall_id'=> $hall['id'],'name'=> $hall['name'], 'row'=> $hall['row'], 'row'=> $hall['row'], 'seats'=> $hall['seats'], 'price'=> $hall['price'], 'vip_price'=> $hall['vip_price'], 'seances'=> []];
-                // $newArr['halls'][] = $newHall;
                 foreach ($movieShow as $movie) {
                 if ($movie['hall_id'] === $newHall['hall_id']) {
                     if ($movie['film_id'] === $film['id']) {
@@ -72,15 +70,7 @@ class UserMovieShowController extends Controller
             $output[] = $newArr;
         }
 
-        // 'hall_id',
-        // 'film_id',
-        // 'start_time',
-        // 'movie_show_duration',
-        // 'film_name',
-        // 'start_day'
         return new Post($output);
-        // return $output;
-
 
     }
 

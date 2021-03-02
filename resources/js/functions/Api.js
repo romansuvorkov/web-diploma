@@ -1,21 +1,17 @@
 export default class Api {
   constructor() {
     this.server = 'http://localhost:8000/api';
-    //   this.server = 'https://ahj-diploma-serv.herokuapp.com';
   }
 
   static async getItems(address) {
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      // xhr.open('GET', `${this.server}/${address}`);
       xhr.open('GET', `http://localhost:8000/api/${address}`);
       xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
       xhr.addEventListener('load', () => {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
-            // console.log(xhr);
             const data = JSON.parse(xhr.responseText);
-            // console.log(data);
             return resolve(data.data);
           }
         }
@@ -30,15 +26,12 @@ export default class Api {
       const params = new URLSearchParams();
       params.append('name', name);
       const xhr = new XMLHttpRequest();
-      // xhr.open('GET', `${this.server}/${address}`);
       xhr.open('POST', `http://localhost:8000/api/${address}`);
       xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
       xhr.addEventListener('load', () => {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
-            // console.log(xhr);
             const data = xhr.responseText;
-            // console.log(data);
             return resolve(data);
           }
         }
@@ -51,18 +44,13 @@ export default class Api {
   static async getShow(address, number) {
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      // xhr.open('GET', `${this.server}/${address}/${number}`);
       xhr.open('GET', `http://localhost:8000/api/${address}/${number}`);
       xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
       xhr.addEventListener('load', () => {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
-            // console.log(xhr.responseText);
             const data = JSON.parse(xhr.responseText);
-            // const data = xhr.responseText;
-            // console.log(data.data);
             return resolve(data.data);
-            // return resolve(data);
           }
         }
         return reject(xhr.responseText);
@@ -74,15 +62,12 @@ export default class Api {
   static async deleteItem(address, id) {
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      // xhr.open('GET', `${this.server}/${address}/${number}`);
       xhr.open('DELETE', `http://localhost:8000/api/${address}/${id}`);
       xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
       xhr.addEventListener('load', () => {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
-            // console.log(xhr);
             const data = xhr.responseText;
-            // console.log(data);
             return resolve(data);
           }
         }
@@ -149,15 +134,6 @@ export default class Api {
   }
 
   static async storeFilm(address, object, poster) {
-    // const formData = new FormData();
-    // formData.append('name', object.name);
-    // formData.append('description', object.description);
-    // formData.append('duration', object.duration);
-    // formData.append('country', object.country);
-    // formData.append('poster', poster);
-    //   for (var value of formData.values()) {
-    //     console.log(value);
-    //  }
     return new Promise((resolve, reject) => {
       const formData = new FormData();
       formData.append('name', object.name);
@@ -179,15 +155,6 @@ export default class Api {
   }
 
   static async storeTicket(address, object) {
-    // const formData = new FormData();
-    // formData.append('name', object.name);
-    // formData.append('description', object.description);
-    // formData.append('duration', object.duration);
-    // formData.append('country', object.country);
-    // formData.append('poster', poster);
-    //   for (var value of formData.values()) {
-    //     console.log(value);
-    //  }
     return new Promise((resolve, reject) => {
       const params = new URLSearchParams();
       params.append('show_id', object.movieShowId);
@@ -203,8 +170,6 @@ export default class Api {
       xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
       xhr.addEventListener('load', () => {
         if (xhr.status === 200) {
-          // const data = JSON.parse(xhr.responseText);
-          // console.log(data.data);
           return resolve(xhr.responseText);
         }
         return reject(xhr.responseText);
@@ -215,19 +180,13 @@ export default class Api {
 
   static async getMovie(address, date) {
     return new Promise((resolve, reject) => {
-      // const params = new URLSearchParams();
-      // params.append('date', date);
-      // console.log(date);
       const xhr = new XMLHttpRequest();
-      // xhr.open('GET', `${this.server}/${address}`);
       xhr.open('GET', `http://localhost:8000/api/${address}/${date}`);
       xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
       xhr.addEventListener('load', () => {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
-            // console.log(xhr);
             const data = JSON.parse(xhr.responseText);
-            // console.log(data);
             if (data.data) {
               return resolve(data.data);
             }
@@ -280,7 +239,6 @@ export default class Api {
   static async getQr(address, number) {
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      // xhr.open('GET', `${this.server}/${address}/${number}`);
       xhr.open('GET', `http://localhost:8000/api/${address}/${number}`);
       xhr.setRequestHeader('X-CSRF-TOKEN', window.csrfToken);
       xhr.addEventListener('load', () => {
@@ -295,12 +253,3 @@ export default class Api {
     });
   }
 }
-// const axios = window.axios;
-// console.log(axios);
-
-// const BASE_API_URL = 'http://localhost:8000/api';
-
-// export default {
-//   getAllPosts: (teset) =>
-//   window.axios.get(`${BASE_API_URL}/${teset}`)
-// }

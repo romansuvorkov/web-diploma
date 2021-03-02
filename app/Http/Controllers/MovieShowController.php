@@ -16,14 +16,7 @@ class MovieShowController extends Controller
      */
     public function index()
     {
-        // $date = new DateTime($request->date);
-        // $date = new dateTime();
-        // $date1 = $date->format('Y-m-d');
         return Post::collection(MovieShow::all());
-        // return Post::collection(MovieShow::all()->where('start_day', $request->date));
-        // return [$request->date];
-        // $responce = MovieShow::all()->where('start_day', $date1);
-        // return $responce;
     }
 
     /**
@@ -44,19 +37,6 @@ class MovieShowController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->name;
-        // $path = $request->file('poster');
-        // return $path;
-        // params.append('film_id', filmId);
-        // params.append('hall_id', hallId);
-        // params.append('start_time', start);
-        // params.append('movie_show_duration', filmDuration);
-        // params.append('start_day', date);
-        // $image = $request->file('poster');
-        // $imageName = time().'.'.$image->extension();
-        // $image->move(public_path('images'),$imageName);
-        // $path = 'images/'.$imageName;
-
         $newMovie = new MovieShow([
             'film_id' =>  $request->film_id,
             'hall_id' => $request->hall_id,
@@ -69,16 +49,8 @@ class MovieShowController extends Controller
 
         $newMovie->save();
 
-        // $image_path = 'images/1612891883.jpg';
-        // if (File::exists($image_path)) {
-        //     File::delete($image_path);
-        //     // unlink($image_path);
-        // }
-        // $path = Storage::putFile('poster', $request->file('poster'));
         return 'New movie show added';
-        // return $request->movie_show_duration;
 
-        // return 'test';
     }
 
     /**
@@ -116,7 +88,6 @@ class MovieShowController extends Controller
         $deleted = json_decode($request->deleted);
 
         if(count($deleted) > 0) {
-            // $arrForDelete = MovieShow::all()->where('start_day', $id);
             foreach($deleted as $item) {
                 $targetItem = MovieShow::findOrFail($item);
                 $tickets = Ticket::all()->where('show_id', $item);

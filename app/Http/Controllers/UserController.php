@@ -35,7 +35,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // $user = User::all()->where('login', $request->login);
         $user = User::where('email', $request->login)->get();
         $length = count($user);
         if ($length === 0) {
@@ -46,8 +45,6 @@ class UserController extends Controller
         } else {
             return 'Неправильный пароль';
         }
-
-        // return $user;
 
     }
 

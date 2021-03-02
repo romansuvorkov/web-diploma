@@ -38,9 +38,6 @@ class FilmController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->name;
-        // $path = $request->file('poster');
-        // return $path;
 
         $image = $request->file('poster');
         $imageName = time().'.'.$image->extension();
@@ -56,16 +53,8 @@ class FilmController extends Controller
         ]);
         $newFilm->save();
 
-        // $image_path = 'images/1612891883.jpg';
-        // if (File::exists($image_path)) {
-        //     File::delete($image_path);
-        //     // unlink($image_path);
-        // }
-        // $path = Storage::putFile('poster', $request->file('poster'));
-
         return 'New film added';
 
-        // return 'test';
     }
 
     /**
